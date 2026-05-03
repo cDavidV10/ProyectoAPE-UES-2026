@@ -62,7 +62,7 @@ public class ControllerRegEstu {
                 "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+     
     private void limpiar() {
         vista.txtIdEstudiante.setText("");
         vista.txtDui.setText("");
