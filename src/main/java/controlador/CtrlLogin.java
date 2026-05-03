@@ -5,8 +5,14 @@
 package controlador;
 
 import dao.UsuarioDAO;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JOptionPane;
 
@@ -28,6 +34,38 @@ public class CtrlLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 acceder();
+            }
+
+        });
+
+        this.loginView.getTxtUser().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (loginView.getTxtUser().getText().equals("Ingrese su nombre de usuario")) {
+                    loginView.getTxtUser().setText("");
+                    loginView.getTxtUser().setForeground(new Color(0, 0, 0));
+                }
+
+                if (String.valueOf(loginView.getTxtPassword().getPassword()).isEmpty()) {
+                    loginView.getTxtPassword().setText("****");
+                    loginView.getTxtPassword().setForeground(new Color(170, 170, 170));
+                }
+            }
+
+        });
+
+        this.loginView.getTxtPassword().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (String.valueOf(loginView.getTxtPassword().getPassword()).equals("****")) {
+                    loginView.getTxtPassword().setText("");
+                    loginView.getTxtPassword().setForeground(new Color(0, 0, 0));
+                }
+
+                if (String.valueOf(loginView.getTxtUser().getText()).isEmpty()) {
+                    loginView.getTxtUser().setText("Ingrese su nombre de usuario");
+                    loginView.getTxtUser().setForeground(new Color(170, 170, 170));
+                }
             }
 
         });
