@@ -33,7 +33,7 @@ public class CtrlLogin {
         });
     }
 
-    public void acceder() {
+    private void acceder() {
 
         String username = this.loginView.getTxtUser().getText();
         String password = String.valueOf(this.loginView.getTxtPassword().getPassword());
