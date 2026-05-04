@@ -12,11 +12,12 @@ import java.time.LocalDate;
  */
 public class Cursos {
     int idCurso;
+    int capacidad;
     String nombreCurso;
     String departamento;
     boolean estado;
-    int capacidadMax;
     LocalDate inicioCurso;
+    LocalDate cierreCurso;
 
     public Cursos() {
     }
@@ -26,7 +27,6 @@ public class Cursos {
         this.nombreCurso = nombreCurso;
         this.departamento = departamento;
         this.estado = estado;
-        this.capacidadMax = capacidadMax;
         this.inicioCurso = inicioCurso;
     }
 
@@ -46,13 +46,62 @@ public class Cursos {
         return estado;
     }
 
-    public int getCapacidadMax() {
-        return capacidadMax;
-    }
-
     public LocalDate getInicioCurso() {
         return inicioCurso;
     }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
+
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public void setInicioCurso(LocalDate inicioCurso) {
+        this.inicioCurso = inicioCurso;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public LocalDate getCierreCurso() {
+        return cierreCurso;
+    }
+
+    public void setCierreCurso(LocalDate cierreCurso) {
+        this.cierreCurso = cierreCurso;
+    }
+
+    @Override
+    public String toString() {
+        return "Cursos{" + "idCurso=" + idCurso + ", capacidad=" + capacidad + ", nombreCurso=" + nombreCurso + ", departamento=" + departamento + ", estado=" + estado + ", inicioCurso=" + inicioCurso + ", cierreCurso=" + cierreCurso + '}';
+    }
+
+    public Object getApellido() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getApellido'");
+    }
+    
+    
+    
+    
+    
+
+    
     
     
 }
