@@ -17,6 +17,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JOptionPane;
 
 import vista.AdminView;
+import vista.DocenteView;
 import vista.Login;
 
 /**
@@ -90,7 +91,8 @@ public class CtrlLogin {
             }
 
             if (result.equalsIgnoreCase("Docente")) {
-                JOptionPane.showMessageDialog(loginView, result);
+                DocenteView docenteView = new DocenteView();
+                docenteView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("No")) {
