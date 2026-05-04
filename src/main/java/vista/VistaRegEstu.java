@@ -68,7 +68,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
 
         btnGenerarId.setText("Generar ID");
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("FORMULARIO DE REGISTRO DE ESTUDIANTE ");
@@ -242,24 +242,24 @@ public class VistaRegEstu extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public com.toedter.calendar.JDateChooser JdFechaNaci;
-    public javax.swing.JButton btnCancelar;
-    public javax.swing.JButton btnGenerarId;
-    public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton btnRegistrar;
-    public javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel jLabel3;
-    public javax.swing.JLabel jLabel4;
-    public javax.swing.JLabel jLabel5;
-    public javax.swing.JLabel jLabel6;
-    public javax.swing.JLabel jLabel7;
-    public javax.swing.JLabel jLabel8;
-    public javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField txtApellido;
-    public javax.swing.JTextField txtCorreo;
-    public javax.swing.JTextField txtDui;
-    public javax.swing.JTextField txtIdEstudiante;
-    public javax.swing.JTextField txtNombre;
+    private com.toedter.calendar.JDateChooser JdFechaNaci;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGenerarId;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDui;
+    private javax.swing.JTextField txtIdEstudiante;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
