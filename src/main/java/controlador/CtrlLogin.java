@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import vista.AdminView;
 import vista.DocenteView;
+import vista.EstudianteView;
 import vista.Login;
 
 /**
@@ -87,7 +88,8 @@ public class CtrlLogin {
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
-                JOptionPane.showMessageDialog(loginView, result);
+                EstudianteView estudianteView = new EstudianteView();
+                estudianteView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("Docente")) {
