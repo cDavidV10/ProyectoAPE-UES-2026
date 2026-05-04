@@ -18,23 +18,14 @@ import modelo.Cursos;
  * @author alexi
  */
 public class CursosDAO {
-    // CREATE
-    private static final String INSERT = "INSERT INTO public.curso (nombre, estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
-
-    // READ (Listar todos)
+    //private static final String INSERT = "INSERT INTO public.curso (nombre, estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO public.curso (nombre, estado, capacidad) VALUES (?, ?, ?)";
     private static final String SELECT_ALL = "SELECT * FROM public.curso ORDER BY id_curso";
-
-    // READ (Buscar por ID)
     private static final String SELECT_ID = "SELECT * FROM public.curso WHERE id_curso = ?";
-
-    // UPDATE
-    private static final String UPDATE = "UPDATE public.curso SET nombre = ?, estado = ?, capacidad = ?, fecha_inicio = ?, fecha_cierre = ? WHERE id_curso = ?";
-
-    // DELETE
+    private static final String UPDATE = "UPDATE public.curso SET nombre = ?, estado = ?, capacidad = ? WHERE id_curso = ?";
     private static final String DELETE = "DELETE FROM public.curso WHERE id_curso = ?";
 
     public void insertar(Cursos c) throws Exception {
-        System.out.println("TETAAAAAAS");
 
         try {
             Connection conn = Conexion.getConexion();
@@ -50,8 +41,8 @@ public class CursosDAO {
             ps.setString(1, c.getNombreCurso());
             ps.setBoolean(2, c.isEstado());
             ps.setInt(3, c.getCapacidad());
-            ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
-            ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
+            //ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
+            //ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
 
             ps.executeUpdate();
             conn.commit();
@@ -71,8 +62,8 @@ public class CursosDAO {
             c.setNombreCurso(rs.getString("nombre"));
             c.setEstado(rs.getBoolean("estado"));
             c.setCapacidad(rs.getInt("capacidad"));
-            c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
-            c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
+            //c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
+            //c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
             lista.add(c);
         }
         conn.close();
@@ -98,9 +89,9 @@ public class CursosDAO {
             ps.setString(1, c.getNombreCurso());
             ps.setBoolean(2, c.isEstado());
             ps.setInt(3, c.getCapacidad());
-            ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
-            ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
-            ps.setInt(6, c.getIdCurso());
+            //ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
+            //ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
+            ps.setInt(4, c.getIdCurso());
 
             ps.executeUpdate();
             conn.commit();
@@ -110,6 +101,29 @@ public class CursosDAO {
         } finally {
             conn.close();
         }
+    }
+    
+    public Cursos buscar(int idCurso) throws Exception {
+        Cursos c = null;
+        Connection conn = Conexion.getConexion();
+        PreparedStatement ps = conn.prepareStatement(
+                "SELECT * FROM public.curso WHERE id_curso = ?"
+        );
+        ps.setInt(1, idCurso);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            c = new Cursos();
+            c.setIdCurso(rs.getInt("id_curso"));
+            c.setNombreCurso(rs.getString("nombre"));
+            c.setEstado(rs.getBoolean("estado"));
+            c.setCapacidad(rs.getInt("capacidad"));
+            //c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
+            //c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
+        }
+
+        conn.close();
+        return c;
     }
 
 }
