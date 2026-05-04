@@ -16,6 +16,9 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JOptionPane;
 
+import vista.AdminView;
+import vista.DocenteView;
+import vista.EstudianteView;
 import vista.Login;
 
 /**
@@ -80,15 +83,18 @@ public class CtrlLogin {
             String result = usuarioDAO.buscar(username, password);
 
             if (result.equalsIgnoreCase("Administrador")) {
-                JOptionPane.showMessageDialog(loginView, result);
+                AdminView adminView = new AdminView();
+                adminView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
-                JOptionPane.showMessageDialog(loginView, result);
+                EstudianteView estudianteView = new EstudianteView();
+                estudianteView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("Docente")) {
-                JOptionPane.showMessageDialog(loginView, result);
+                DocenteView docenteView = new DocenteView();
+                docenteView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("No")) {
