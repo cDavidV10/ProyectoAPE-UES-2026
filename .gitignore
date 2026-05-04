@@ -15,6 +15,7 @@ dist/
 nbdist/
 .nb-gradle/
 build/
+target/
 nb-configuration.xml
 nbactions.xml
 
