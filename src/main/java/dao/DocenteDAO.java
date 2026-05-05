@@ -5,6 +5,7 @@
 package dao;
 
 import conexion.Conexion;
+import interfaz.IDocenteDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,7 +20,8 @@ import modelo.Docente;
  *
  * @author Yonathan
  */
-public class DocenteDAO {
+public class DocenteDAO implements IDocenteDAO {
+    
     private static final String INSERT = "INSERT INTO docente (dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT id_docente, dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico FROM docente";
     
@@ -91,5 +93,12 @@ public class DocenteDAO {
         conn.close();
         return lista;
     }
+
+    @Override
+    public void eliminar(String dui) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
 
 }
