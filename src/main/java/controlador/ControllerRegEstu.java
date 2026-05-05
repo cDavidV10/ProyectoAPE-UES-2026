@@ -2,11 +2,15 @@ package controlador;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
 import modelo.ModelRegEstu;
+
+import vista.VistaEstudiantesRegistrados;
 import vista.VistaRegEstu;
 
 public class ControllerRegEstu {
@@ -24,7 +28,10 @@ public class ControllerRegEstu {
         vista.btnGenerarId.addActionListener(e -> generarId());
         vista.btnRegistrar.addActionListener(e -> registrar());
         vista.btnLimpiar.addActionListener(e -> limpiar());
-        vista.btnCancelar.addActionListener(e -> cancelar());
+        //vista.btnCancelar.addActionListener(e -> cancelar());
+
+        vista.btnCancelar.addActionListener(e -> vista.dispose());
+        vista.btnRegistrados.addActionListener(e -> VistaEstudiantesRegistrados());
     }
 
     private void generarId() {
@@ -72,9 +79,47 @@ public class ControllerRegEstu {
         vista.txtCorreo.setText("");
     }
 
-    private void cancelar() {
-        vista.dispose();
+    private void VistaEstudiantesRegistrados() {
+        VistaEstudiantesRegistrados vistaTabla = new VistaEstudiantesRegistrados();
+
+        cargarTabla(vistaTabla);
+
+        vistaTabla.getBtnRegresar().addActionListener(e -> {
+            vistaTabla.dispose();
+            vista.setVisible(true);
+            
+        });
+
+        vista.setVisible(false);
+        vistaTabla.setVisible(true);
     }
+
+    private void cargarTabla(VistaEstudiantesRegistrados vistaTabla) {
+        DefaultTableModel modelo = (DefaultTableModel) vistaTabla.getTblEstudiantes().getModel();
+        modelo.setRowCount(0);
+
+        try {
+            List<ModelRegEstu> lista = dao.listar();
+            for (ModelRegEstu e : lista) {
+                modelo.addRow(new Object[]{
+                    e.getIdEstudiante(),
+                    e.getNombre(),
+                    e.getApellido(),
+                    e.getDui(),
+                    e.getFechaNacimiento(),
+                    e.getCorreo()
+                });
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(vistaTabla,
+                "Error al cargar datos: " + ex.getMessage(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // private void cancelar() {
+    //     vista.dispose();
+    // }
 
     private boolean validarCampos() {
         if (vista.txtNombre.getText().trim().isEmpty()

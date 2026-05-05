@@ -18,7 +18,7 @@ public class Conexion {
 
     public static Connection getConexion() {
         try {
-            Class.forName("org.postgresql.Driver");
+           // Class.forName("org.postgresql.Driver");
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
             System.out.println("Error de conexión: " + e.getMessage());
