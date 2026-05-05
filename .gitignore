@@ -1,4 +1,4 @@
-# --- Maven (Lo más importante) ---
+.env# --- Maven (Lo más importante) ---
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -15,6 +15,7 @@ dist/
 nbdist/
 .nb-gradle/
 build/
+target/
 nb-configuration.xml
 nbactions.xml
 
