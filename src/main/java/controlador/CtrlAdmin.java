@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import funciones.Paneles;
 import vista.AdminView;
+import vista.AdministrarCursos;
 import vista.DocentePrincipalView;
 
 /**
@@ -29,6 +30,17 @@ public class CtrlAdmin {
 
                 CtrlDocente controlador = new CtrlDocente(vistaPrincipal);
                 new Paneles().insertarPaneles(vistaPrincipal, adminView.getBgPanel());
+            }
+
+        });
+
+        adminView.getBtnCurso().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                AdministrarCursos administrarCursos = new AdministrarCursos();
+                ControladorAdministrarCursos ctrlCursos = new ControladorAdministrarCursos(administrarCursos);
+                new Paneles().insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
 
         });

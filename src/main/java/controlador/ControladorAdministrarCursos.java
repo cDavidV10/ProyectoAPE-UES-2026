@@ -26,11 +26,10 @@ public class ControladorAdministrarCursos {
         this.modelo = (DefaultTableModel) vista.getTblAdmin().getModel();
 
         this.vista.getBtnEliminar().addActionListener(e -> eliminar());
-        this.vista.getBtnBack().addActionListener(e -> vista.dispose());
+        // this.vista.getBtnBack().addActionListener(e -> vista.dispose());
 
         this.vista.getBtnAgregar().addActionListener(e -> abrirFormulario(null));
         this.vista.getBtnModificar().addActionListener(e -> editar());
-        
 
         cargarTabla();
     }
@@ -39,14 +38,14 @@ public class ControladorAdministrarCursos {
         try {
             modelo.setRowCount(0);
             for (Cursos c : dao.listar()) {
-                modelo.addRow(new Object[]{
-                    c.getIdCurso(),
-                    c.getNombreCurso(),
-                    c.getDescripcion()
-                    //c.isEstado(),
-                    //c.getCapacidad(),
-                    //c.getInicioCurso(),
-                    //c.getCierreCurso()
+                modelo.addRow(new Object[] {
+                        c.getIdCurso(),
+                        c.getNombreCurso(),
+                        c.getDescripcion()
+                        // c.isEstado(),
+                        // c.getCapacidad(),
+                        // c.getInicioCurso(),
+                        // c.getCierreCurso()
                 });
             }
         } catch (Exception e) {
