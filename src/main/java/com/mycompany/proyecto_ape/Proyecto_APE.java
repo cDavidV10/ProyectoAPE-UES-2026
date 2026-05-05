@@ -10,6 +10,8 @@ import vista.AdministrarCursos;
 import vista.RegistrarCursos;
 
 
+import controlador.CtrlLogin;
+import vista.Login;
 
 /**
  *
@@ -26,5 +28,9 @@ public class Proyecto_APE {
                 vista.setVisible(true);
             }
         });
+        Login login = new Login();
+        CtrlLogin ctrLogin = new CtrlLogin(login);
+
+        login.setVisible(true);
     }
 }
