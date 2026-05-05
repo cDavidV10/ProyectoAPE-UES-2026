@@ -36,7 +36,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnGenerarId = new javax.swing.JButton();
         txtCorreo = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -75,9 +74,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Correo Electronico: ");
 
-        btnGenerarId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnGenerarId.setText("Generar ID");
-
         jPanel1.setBackground(new java.awt.Color(21, 39, 93));
 
         jLabel1.setBackground(new java.awt.Color(102, 153, 255));
@@ -86,6 +82,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
         jLabel1.setText("FORMULARIO DE REGISTRO DE ESTUDIANTE ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("complete los campos para registrar un nuevo alumno en el sistema");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -135,7 +132,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                                 .addComponent(btnCancelar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnRegistrados)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                                 .addComponent(btnLimpiar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRegistrar)
@@ -154,13 +151,10 @@ public class VistaRegEstu extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addGap(179, 179, 179)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txtIdEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnGenerarId))
                                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtDui))))
+                                    .addComponent(txtDui)
+                                    .addComponent(txtIdEstudiante))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -170,9 +164,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnGenerarId)
-                        .addComponent(txtIdEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtIdEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -195,7 +187,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                         .addComponent(JdFechaNaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnLimpiar)
@@ -245,11 +237,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
-
-    public JButton getBtnGenerarId() {
-        return btnGenerarId;
-    }
-
+    
     public JButton getBtnLimpiar() {
         return btnLimpiar;
     }
@@ -264,7 +252,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public com.toedter.calendar.JDateChooser JdFechaNaci;
     public javax.swing.JButton btnCancelar;
-    public javax.swing.JButton btnGenerarId;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegistrados;
     public javax.swing.JButton btnRegistrar;

@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conexion.Conexion;
+import interfaz.IEstudianteDAO;
 import modelo.ModelRegEstu;
 
-public class RegEstuDAO {
+public class RegEstuDAO implements IEstudianteDAO{
     
 private static final String INSERT =
         "INSERT INTO estudiante (dui, nombre, apellido, fecha_nacimiento, correo) VALUES (?, ?, ?, ?, ?)";
