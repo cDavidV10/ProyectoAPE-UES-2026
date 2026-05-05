@@ -25,24 +25,14 @@ public class ControllerRegEstu {
     }
 
     private void iniciarEventos() {
-        vista.btnGenerarId.addActionListener(e -> generarId());
+
         vista.btnRegistrar.addActionListener(e -> registrar());
+
         vista.btnLimpiar.addActionListener(e -> limpiar());
-        //vista.btnCancelar.addActionListener(e -> cancelar());
-
+       
         vista.btnCancelar.addActionListener(e -> vista.dispose());
+        
         vista.btnRegistrados.addActionListener(e -> VistaEstudiantesRegistrados());
-    }
-
-    private void generarId() {
-        try {
-            int id = dao.generarId();
-            vista.txtIdEstudiante.setText(String.valueOf(id));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista,
-                "Error al generar ID: " + e.getMessage(),
-                "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     private void registrar() {
