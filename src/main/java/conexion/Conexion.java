@@ -18,13 +18,18 @@ public class Conexion {
         String dbUser = dotenv.get("DB_USER");
         String dbPassword = dotenv.get("DB_PASSWORD");
 
-    public static Connection getConexion() {
         try {
-           // Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (Exception e) {
-            System.out.println("Error de conexión: " + e.getMessage());
-            return null;
+            Connection conexion = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+
+            if (conexion != null) {
+                System.out.println("conexion");
+
+                return conexion;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al conectar: " + e.getMessage());
         }
+
+        return null;
     }
 }
