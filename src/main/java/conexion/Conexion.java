@@ -11,10 +11,12 @@ import io.github.cdimascio.dotenv.Dotenv;
  * @author cdavi
  */
 public class Conexion {
-    
-    private static final String URL = "jdbc:postgresql://localhost:5432/ApeBd";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "root";
+
+    public static Connection getConexion() {
+        Dotenv dotenv = Dotenv.load();
+        String dbHost = dotenv.get("DB_HOST");
+        String dbUser = dotenv.get("DB_USER");
+        String dbPassword = dotenv.get("DB_PASSWORD");
 
     public static Connection getConexion() {
         try {
