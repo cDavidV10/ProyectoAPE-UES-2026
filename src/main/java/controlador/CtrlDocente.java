@@ -22,25 +22,25 @@ public class CtrlDocente {
     public CtrlDocente(DocentePrincipalView vistaPrincipal) {
         this.vistaPrincipal = vistaPrincipal;
         this.dao = new DocenteDAO();
-        
+
         cargarTabla();
         onClickAgregar();
         /*
-        onClickModificar();
-        onClickEliminar();
-        onClickBuscar();
-        */
+         * onClickModificar();
+         * onClickEliminar();
+         * onClickBuscar();
+         */
     }
 
     public void onClickAgregar() {
         vistaPrincipal.getBtnNuevoDocente().addActionListener(e -> {
-            
-            //Crear el formulario en este momento
+
+            // Crear el formulario en este momento
             FormDocente formDocente = new FormDocente();
 
-            //Conectar el botón Guardar del formulario
+            // Conectar el botón Guardar del formulario
             formDocente.getBtnGuardarDocente().addActionListener(ev -> {
-                
+
                 try {
                     // Capturar datos desde la vista
                     String dui = formDocente.getTxtDui().getText().trim();
@@ -54,11 +54,12 @@ public class CtrlDocente {
                     String gradoAcademico = formDocente.getCbGradoAcademico().getSelectedItem().toString();
 
                     // Crear objeto Docente
-                    Docente docente = new Docente(0, dui, nombre, apellido, correo, telefono, fechaSeleccionada, tipoContrato, especialidad, gradoAcademico);
+                    Docente docente = new Docente(0, dui, nombre, apellido, correo, telefono, fechaSeleccionada,
+                            tipoContrato, especialidad, gradoAcademico);
 
                     // Validar y guardar
                     validar(docente);
-                    
+
                     if (dao.existeDui(docente.getDui())) {
                         JOptionPane.showMessageDialog(null, "El DUI ya está registrado, no se puede guardar.");
                         return;
@@ -66,22 +67,22 @@ public class CtrlDocente {
                     dao.insertar(docente);
 
                     JOptionPane.showMessageDialog(null, "Docente guardado correctamente");
-                    cargarTabla(); //Actualizando la tabla
+                    cargarTabla(); // Actualizando la tabla
                     formDocente.dispose();
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
             });
-            
-            //Conectar el botón Cancelar
+
+            // Conectar el botón Cancelar
             formDocente.getBtnCancelarDocente().addActionListener(ev -> formDocente.dispose());
-            
+
             formDocente.setVisible(true);
         });
     }
-        
-    //Validar los datos digitados
+
+    // Validar los datos digitados
     private void validar(Docente docente) throws Exception {
 
         // Validar DUI: no vacío y con formato ########-#
@@ -151,7 +152,7 @@ public class CtrlDocente {
     private void cargarTabla() {
         try {
             List<Docente> lista = dao.listar();
-            vistaPrincipal.mostrarDocentes(lista);//en la JTable
+            vistaPrincipal.mostrarDocentes(lista);// en la JTable
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

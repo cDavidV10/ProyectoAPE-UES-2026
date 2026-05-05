@@ -13,9 +13,10 @@ import vista.FormDocente;
  * @author Yonathan
  */
 public class TestFormDocente {
-    public static void main(String[] args) {  
+    public static void main(String[] args) {
         DocentePrincipalView vistaPrincipal = new DocentePrincipalView();
         CtrlDocente controlador = new CtrlDocente(vistaPrincipal);
-        vistaPrincipal.setVisible(true);
+        vistaPrincipal.revalidate();
+        vistaPrincipal.repaint();
     }
 }
