@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class Cursos {
     int idCurso;
     int capacidad;
+    String descripcion;
     String nombreCurso;
     String departamento;
     boolean estado;
@@ -21,14 +22,18 @@ public class Cursos {
 
     public Cursos() {
     }
-    
-    public Cursos(int idCurso, String nombreCurso, String departamento, boolean estado, int capacidadMax, LocalDate inicioCurso) {
+
+    public Cursos(int idCurso, int capacidad, String descripcion, String nombreCurso, String departamento, boolean estado, LocalDate inicioCurso, LocalDate cierreCurso) {
         this.idCurso = idCurso;
+        this.capacidad = capacidad;
+        this.descripcion = descripcion;
         this.nombreCurso = nombreCurso;
         this.departamento = departamento;
         this.estado = estado;
         this.inicioCurso = inicioCurso;
+        this.cierreCurso = cierreCurso;
     }
+    
 
     public int getIdCurso() {
         return idCurso;
@@ -86,22 +91,18 @@ public class Cursos {
         this.cierreCurso = cierreCurso;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "Cursos{" + "idCurso=" + idCurso + ", capacidad=" + capacidad + ", nombreCurso=" + nombreCurso + ", departamento=" + departamento + ", estado=" + estado + ", inicioCurso=" + inicioCurso + ", cierreCurso=" + cierreCurso + '}';
+        return "Cursos{" + "idCurso=" + idCurso + ", capacidad=" + capacidad + ", descripcion=" + descripcion + ", nombreCurso=" + nombreCurso + ", departamento=" + departamento + ", estado=" + estado + ", inicioCurso=" + inicioCurso + ", cierreCurso=" + cierreCurso + '}';
     }
-
-    public Object getApellido() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getApellido'");
-    }
-    
-    
-    
-    
-    
-
-    
     
     
 }

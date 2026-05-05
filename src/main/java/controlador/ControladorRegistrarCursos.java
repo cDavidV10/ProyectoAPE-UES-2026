@@ -32,6 +32,7 @@ public class ControladorRegistrarCursos {
         this.controladorTabla = controladorTabla;
 
         this.vista.getBtnGuardar().addActionListener(e -> guardar());
+        this.vista.getBtnBack().addActionListener(e -> vista.dispose());
 
         if (cursoEditar != null) {
             cargarDatos();
@@ -40,8 +41,9 @@ public class ControladorRegistrarCursos {
 
     private void cargarDatos() {
         vista.getTxtNombre().setText(cursoEditar.getNombreCurso());
-        vista.getSptCapacidad().setValue(cursoEditar.getCapacidad());
-        vista.getRbtnDisponible().setSelected(cursoEditar.isEstado());
+        vista.getAreaDescripcion().setText(cursoEditar.getDescripcion());
+        //vista.getSptCapacidad().setValue(cursoEditar.getCapacidad());
+        //vista.getRbtnDisponible().setSelected(cursoEditar.isEstado());
 
         //vista.getDateFechaInicio().setDate(java.sql.Date.valueOf(cursoEditar.getInicioCurso()));
         //vista.getDateFechaCierre().setDate(java.sql.Date.valueOf(cursoEditar.getCierreCurso()));
@@ -63,8 +65,9 @@ public class ControladorRegistrarCursos {
         try {
             Cursos c = new Cursos();
             c.setNombreCurso(vista.getTxtNombre().getText().trim());
-            c.setCapacidad((int) vista.getSptCapacidad().getValue());
-            c.setEstado(vista.getRbtnDisponible().isSelected());
+            c.setDescripcion(vista.getAreaDescripcion().getText().trim());
+            //c.setCapacidad((int) vista.getSptCapacidad().getValue());
+            //c.setEstado(vista.getRbtnDisponible().isSelected());
 
             //c.setInicioCurso(utilInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             //c.setCierreCurso(utilCierre.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());

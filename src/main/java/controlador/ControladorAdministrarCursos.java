@@ -42,8 +42,9 @@ public class ControladorAdministrarCursos {
                 modelo.addRow(new Object[]{
                     c.getIdCurso(),
                     c.getNombreCurso(),
-                    c.isEstado(),
-                    c.getCapacidad(),
+                    c.getDescripcion()
+                    //c.isEstado(),
+                    //c.getCapacidad(),
                     //c.getInicioCurso(),
                     //c.getCierreCurso()
                 });
@@ -88,9 +89,10 @@ public class ControladorAdministrarCursos {
 
         int id = (int) vista.getTblAdmin().getValueAt(fila, 0);
         String nombre = vista.getTblAdmin().getValueAt(fila, 1).toString();
+        String descripcion = vista.getTblAdmin().getValueAt(fila, 2).toString();
 
         int confirmar = JOptionPane.showConfirmDialog(vista,
-                "¿Está seguro de eliminar el curso: " + nombre + "?",
+                "¿Esta seguro de eliminar el curso: " + nombre + "?",
                 "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
         if (confirmar == JOptionPane.YES_OPTION) {
