@@ -14,7 +14,7 @@ import java.time.LocalDate;
  * @author MINEDUCYT
  */
 public class Credenciales {
-    public void registrarCredenciales(String nombre, String apellido, String dui, String tipo) throws SQLException{
+    public final void registrarCredenciales(String nombre, String apellido, String tipo) throws SQLException{
         //verifica si el que se registra tiene coincidencias en los nombres para generar el usuario
         String user = new ConsultaRegistro().buscarRegistro(tipo, nombre, apellido);
         
@@ -22,14 +22,16 @@ public class Credenciales {
         String nuevoUsuario = crearUsuario(user, nombre, apellido, tipo);
         String newPassword = crearContraseña();
         
-        if (tipo.equalsIgnoreCase("D")){
+        if (tipo.equalsIgnoreCase("Docente")){
+            System.out.println("Su usuario es: " + nuevoUsuario);
+            System.out.println("Su contraseña es: " + newPassword);
+            
+        }
+        if (tipo.equalsIgnoreCase("Estudiante")){
             System.out.println("Su usuario es: " + nuevoUsuario);
             System.out.println("Su contraseña es: " + newPassword);
         }
-        if (tipo.equalsIgnoreCase("E")){
-            System.out.println("Su usuario es: " + nuevoUsuario);
-            System.out.println("Su contraseña es: " + newPassword);
-        }
+        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, newPassword, tipo);
     }
     
     private String crearUsuario(String ultimoUser, String nombre, String apellido, String tipo) throws SQLException{
