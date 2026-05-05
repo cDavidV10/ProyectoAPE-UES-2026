@@ -15,24 +15,19 @@ import io.github.cdimascio.dotenv.Dotenv;
  * @author cdavi
  */
 public class Conexion {
+
+    private static final String URL = "jdbc:postgresql://localhost:5432/APPDB_EXPEDIENTE";
+private static final String USER = "postgres";
+private static final String PASSWORD = "8659";
+
     public static Connection getConexion() {
-        Dotenv dotenv = Dotenv.load();
-        String dbHost = dotenv.get("DB_HOST");
-        String dbUser = dotenv.get("DB_USER");
-        String dbPassword = dotenv.get("DB_PASSWORD");
-
-        try {
-            Connection conexion = DriverManager.getConnection(dbHost, dbUser, dbPassword);
-
-            if (conexion != null) {
-                System.out.println("conexion");
-
-                return conexion;
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al conectar: " + e.getMessage());
-        }
-
+        
+    try {
+        Class.forName("org.postgresql.Driver");
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    } catch (Exception e) {
+        e.printStackTrace();
         return null;
     }
+}
 }
