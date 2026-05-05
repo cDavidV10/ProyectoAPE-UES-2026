@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package conexion;
 
 import java.sql.Connection;
@@ -22,18 +18,13 @@ public class Conexion {
         String dbUser = dotenv.get("DB_USER");
         String dbPassword = dotenv.get("DB_PASSWORD");
 
+    public static Connection getConexion() {
         try {
-            Connection conexion = DriverManager.getConnection(dbHost, dbUser, dbPassword);
-
-            if (conexion != null) {
-                System.out.println("conexion");
-
-                return conexion;
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al conectar: " + e.getMessage());
+           // Class.forName("org.postgresql.Driver");
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (Exception e) {
+            System.out.println("Error de conexión: " + e.getMessage());
+            return null;
         }
-
-        return null;
     }
 }
