@@ -27,7 +27,7 @@ public class ConsultaRegistro implements ICredencialesDAO {
         
         Connection conexion = Conexion.getConexion();
         PreparedStatement ps = conexion.prepareStatement(SELECT);
-        ps.setString(1, tipo + iniciales + '%');
+        ps.setString(1, tipo.charAt(0) + iniciales + '%');
         
         ResultSet rs = ps.executeQuery();
         

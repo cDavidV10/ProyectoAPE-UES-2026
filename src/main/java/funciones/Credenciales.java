@@ -32,26 +32,32 @@ public class Credenciales {
             System.out.println("Su contraseña es: " + newPassword);
         }
         new ConsultaRegistro().registrarCredenciales(nuevoUsuario, newPassword, tipo);
+        System.out.println("USUARIO REGISTRADO");
     }
     
     private String crearUsuario(String ultimoUser, String nombre, String apellido, String tipo) throws SQLException{
         String usuario = "user";
         String anio = String.valueOf(LocalDate.now().getYear());
         
-        if (ultimoUser.equalsIgnoreCase("No hay resultado")){
-            usuario = "" + tipo.charAt(0) 
-                    + nombre.charAt(0) 
-                    + apellido.charAt(0) 
-                    + anio.charAt(2)
-                    + anio.charAt(3)
-                    + "001";
-        }else{
-            String cod = ultimoUser.substring(ultimoUser.length() - 3);
-            int sigCod = Integer.parseInt(cod) + 1;
-            String codCorrelativo = String.format("%03d", sigCod);
-            
-            usuario = ultimoUser.substring(0, ultimoUser.length() - 3) + codCorrelativo;
+        try{
+           if (ultimoUser.equalsIgnoreCase("No hay resultado")) {
+                usuario = "" + tipo.charAt(0)
+                        + nombre.charAt(0)
+                        + apellido.charAt(0)
+                        + anio.charAt(2)
+                        + anio.charAt(3)
+                        + "001";
+            } else {
+                String cod = ultimoUser.substring(ultimoUser.length() - 3);
+                int sigCod = Integer.parseInt(cod) + 1;
+                String codCorrelativo = String.format("%03d", sigCod);
+
+                usuario = ultimoUser.substring(0, ultimoUser.length() - 3) + codCorrelativo;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
+        
         return usuario;
     }
     
