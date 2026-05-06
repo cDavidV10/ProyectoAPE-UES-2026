@@ -5,6 +5,8 @@
 package controlador;
 
 import dao.DocenteDAO;
+import funciones.Credenciales;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Docente;
@@ -18,6 +20,7 @@ import vista.FormDocente;
 public class CtrlDocente {
     private DocenteDAO dao = new DocenteDAO();
     private DocentePrincipalView vistaPrincipal;
+    private Credenciales credenciales = new Credenciales();
 
     public CtrlDocente(DocentePrincipalView vistaPrincipal) {
         this.vistaPrincipal = vistaPrincipal;
@@ -67,6 +70,7 @@ public class CtrlDocente {
                     dao.insertar(docente);
 
                     JOptionPane.showMessageDialog(null, "Docente guardado correctamente");
+                    credenciales.registrarCredenciales(nombre, apellido, "Docente", dui);
                     cargarTabla(); // Actualizando la tabla
                     formDocente.dispose();
 

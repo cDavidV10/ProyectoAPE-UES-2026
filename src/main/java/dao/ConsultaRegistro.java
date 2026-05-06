@@ -23,7 +23,7 @@ public class ConsultaRegistro implements ICredencialesDAO {
     public final String buscarRegistro(String tipo, String nombre, String apellido) throws SQLException {
         String resultado = "No hay resultado";
         String iniciales = "" + nombre.charAt(0) + apellido.charAt(0);
-        SELECT = "SELECT username FROM usuario WHERE username Like ? ORDER BY user_name DESC LIMIT 1";
+        SELECT = "SELECT username FROM usuario WHERE username Like ? ORDER BY username DESC LIMIT 1";
 
         Connection conexion = Conexion.getConexion();
         PreparedStatement ps = conexion.prepareStatement(SELECT);
@@ -63,17 +63,17 @@ public class ConsultaRegistro implements ICredencialesDAO {
     public final void registrarCredenciales(String user, String contra, String tipo, String dui) throws SQLException {
 
         if (tipo.equals("Administrador")) {
-            INSERT = "INSERT INTO usuario (user_name, password, tipo, id_estudiante, id_docente, id_admind) " +
+            INSERT = "INSERT INTO usuario (username, password, tipo, id_estudiante, id_docente, id_admind) " +
                     "SELECT ?, ?, ?, null, null, a.id_admind " +
                     "FROM administrador a WHERE a.dui = ?";
 
         } else if (tipo.equals("Docente")) {
-            INSERT = "INSERT INTO usuario (user_name, password, tipo, id_estudiante, id_docente, id_admind) " +
+            INSERT = "INSERT INTO usuario (username, password, tipo, id_estudiante, id_docente, id_admind) " +
                     "SELECT ?, ?, ?, null, d.id_docente, null " +
                     "FROM docente d WHERE d.dui = ?";
 
         } else if (tipo.equals("Estudiante")) {
-            INSERT = "INSERT INTO usuario (user_name, password, tipo, id_estudiante, id_docente, id_admind) " +
+            INSERT = "INSERT INTO usuario (username, password, tipo, id_estudiante, id_docente, id_admind) " +
                     "SELECT ?, ?, ?, e.id_estudiante, null, null " +
                     "FROM estudiante e WHERE e.dui = ?";
         }

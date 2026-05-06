@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
+import funciones.Credenciales;
 import modelo.ModelRegEstu;
 
 import vista.VistaEstudiantesRegistrados;
@@ -17,6 +18,7 @@ public class ControllerRegEstu {
 
     private final VistaRegEstu vista;
     private final RegEstuDAO dao;
+    private Credenciales credenciales = new Credenciales();
 
     public ControllerRegEstu(VistaRegEstu vista) {
         this.vista = vista;
@@ -51,6 +53,7 @@ public class ControllerRegEstu {
 
             e.setCorreo(vista.txtCorreo.getText().trim());
             dao.insertar(e);
+            credenciales.registrarCredenciales(e.getNombre(), e.getApellido(), "Estudiante", e.getDui());
             JOptionPane.showMessageDialog(vista, "Estudiante registrado correctamente.");
             limpiar();
         } catch (Exception ex) {
