@@ -22,8 +22,6 @@ public class Conexion {
             Connection conexion = DriverManager.getConnection(dbHost, dbUser, dbPassword);
 
             if (conexion != null) {
-                System.out.println("conexion");
-
                 return conexion;
             }
         } catch (SQLException e) {
