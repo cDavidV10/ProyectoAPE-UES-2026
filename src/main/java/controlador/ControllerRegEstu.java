@@ -14,7 +14,7 @@ import vista.VistaEstudiantesRegistrados;
 import vista.VistaRegEstu;
 
 public class ControllerRegEstu {
-    
+
     private final VistaRegEstu vista;
     private final RegEstuDAO dao;
 
@@ -29,14 +29,14 @@ public class ControllerRegEstu {
         vista.btnRegistrar.addActionListener(e -> registrar());
 
         vista.btnLimpiar.addActionListener(e -> limpiar());
-       
+
         vista.btnCancelar.addActionListener(e -> vista.dispose());
-        
-        vista.btnRegistrados.addActionListener(e -> VistaEstudiantesRegistrados());
+
     }
 
     private void registrar() {
-        if (!validarCampos()) return;
+        if (!validarCampos())
+            return;
         try {
             ModelRegEstu e = new ModelRegEstu();
             e.setDui(vista.txtDui.getText().trim());
@@ -55,13 +55,12 @@ public class ControllerRegEstu {
             limpiar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vista,
-                "Error al registrar: " + ex.getMessage(),
-                "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error al registrar: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
+
     private void limpiar() {
-        vista.txtIdEstudiante.setText("");
         vista.txtDui.setText("");
         vista.txtNombre.setText("");
         vista.txtApellido.setText("");
@@ -69,46 +68,8 @@ public class ControllerRegEstu {
         vista.txtCorreo.setText("");
     }
 
-    private void VistaEstudiantesRegistrados() {
-        VistaEstudiantesRegistrados vistaTabla = new VistaEstudiantesRegistrados();
-
-        cargarTabla(vistaTabla);
-
-        vistaTabla.getBtnRegresar().addActionListener(e -> {
-            vistaTabla.dispose();
-            vista.setVisible(true);
-            
-        });
-
-        vista.setVisible(false);
-        vistaTabla.setVisible(true);
-    }
-
-    private void cargarTabla(VistaEstudiantesRegistrados vistaTabla) {
-        DefaultTableModel modelo = (DefaultTableModel) vistaTabla.getTblEstudiantes().getModel();
-        modelo.setRowCount(0);
-
-        try {
-            List<ModelRegEstu> lista = dao.listar();
-            for (ModelRegEstu e : lista) {
-                modelo.addRow(new Object[]{
-                    e.getIdEstudiante(),
-                    e.getNombre(),
-                    e.getApellido(),
-                    e.getDui(),
-                    e.getFechaNacimiento(),
-                    e.getCorreo()
-                });
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(vistaTabla,
-                "Error al cargar datos: " + ex.getMessage(),
-                "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
     // private void cancelar() {
-    //     vista.dispose();
+    // vista.dispose();
     // }
 
     private boolean validarCampos() {
@@ -118,8 +79,8 @@ public class ControllerRegEstu {
                 || vista.txtCorreo.getText().trim().isEmpty()
                 || vista.JdFechaNaci.getDate() == null) {
             JOptionPane.showMessageDialog(vista,
-                "Todos los campos son obligatorios.",
-                "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+                    "Todos los campos son obligatorios.",
+                    "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
