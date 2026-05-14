@@ -10,8 +10,14 @@
         <maven.compiler.release>20</maven.compiler.release>
         <exec.mainClass>com.mycompany.proyecto_ape.Proyecto_APE</exec.mainClass>
     </properties>
-
+    
     <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+        
         <!-- Dependecia de Postgresql-->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -31,6 +37,11 @@
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE240</version>
+        </dependency>        
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
         </dependency>
     </dependencies>
 </project>
