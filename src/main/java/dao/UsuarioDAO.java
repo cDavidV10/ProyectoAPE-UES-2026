@@ -18,7 +18,7 @@ import modelo.Usuario;
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
-    private static final String SELECT = "select * from usuario where user_name = ?";
+    private static final String SELECT = "select * from usuario where username = ?";
 
     @Override
     public String buscar(String username, String password) throws Exception {

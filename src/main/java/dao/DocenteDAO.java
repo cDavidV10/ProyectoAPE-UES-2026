@@ -5,6 +5,7 @@
 package dao;
 
 import conexion.Conexion;
+import interfaz.IDocenteDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,20 +20,21 @@ import modelo.Docente;
  *
  * @author Yonathan
  */
-public class DocenteDAO {
+public class DocenteDAO implements IDocenteDAO {
+
     private static final String INSERT = "INSERT INTO docente (dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT id_docente, dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico FROM docente";
-    
-    public void insertar(Docente docente) throws Exception {
-  
-        Connection conn = Conexion.getConexion();//Metodo getConexion() que tengo en mi clase conexion
-        
-        try {
-            //INSERCION
-            conn.setAutoCommit(false); //permite la insercion a la bd
-            PreparedStatement ps = conn.prepareStatement(INSERT); //Le mando el INSERT con este objeto
 
-            ps.setString(1, docente.getDui());//Voy insertando por posiciones
+    public void insertar(Docente docente) throws Exception {
+
+        Connection conn = Conexion.getConexion();// Metodo getConexion() que tengo en mi clase conexion
+
+        try {
+            // INSERCION
+            conn.setAutoCommit(false); // permite la insercion a la bd
+            PreparedStatement ps = conn.prepareStatement(INSERT); // Le mando el INSERT con este objeto
+
+            ps.setString(1, docente.getDui());// Voy insertando por posiciones
             ps.setString(2, docente.getNombre());
             ps.setString(3, docente.getApellido());
             ps.setString(4, docente.getCorreo());
@@ -41,10 +43,10 @@ public class DocenteDAO {
             ps.setString(7, docente.getTipoContrato());
             ps.setString(8, docente.getEspecialidad());
             ps.setString(9, docente.getGradoAcademico());
-            
+
             ps.executeUpdate();
             conn.commit();
-            
+
         } catch (Exception ex) {
             conn.rollback();
             throw ex;
@@ -65,16 +67,16 @@ public class DocenteDAO {
         conn.close();
         return existe;
     }
-    
+
     public List<Docente> listar() throws Exception {
-        
+
         List<Docente> lista = new ArrayList<>();
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(SELECT_ALL);
-        ResultSet rs = ps.executeQuery(); //Son Todos los registros
-        
-        while (rs.next()){
-            Docente docente = new Docente(); //Uso del constructor vacio
+        ResultSet rs = ps.executeQuery(); // Son Todos los registros
+
+        while (rs.next()) {
+            Docente docente = new Docente(); // Uso del constructor vacio
             docente.setIdDocente(rs.getInt("id_docente"));
             docente.setNombre(rs.getString("nombre"));
             docente.setDui(rs.getString("dui"));
