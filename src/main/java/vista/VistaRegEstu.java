@@ -17,6 +17,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
      */
     public VistaRegEstu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -44,9 +45,8 @@ public class VistaRegEstu extends javax.swing.JFrame {
         JdFechaNaci = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         txtDui = new javax.swing.JTextField();
-        btnRegistrados = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRegistrar.setText("REGISTRAR");
@@ -77,6 +77,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
         jLabel1.setText("FORMULARIO DE REGISTRO DE ESTUDIANTE ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("complete los campos para registrar un nuevo alumno en el sistema");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -106,9 +107,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("DUI: ");
 
-        btnRegistrados.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrados.setText("REGISTRADOS");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,8 +122,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCancelar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegistrados)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnLimpiar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -136,7 +132,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCorreo)
-                                    .addComponent(JdFechaNaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(JdFechaNaci, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
@@ -144,6 +140,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addGap(186, 186, 186)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtDui)
                                     .addComponent(txtNombre))))
@@ -153,6 +150,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -175,13 +173,12 @@ public class VistaRegEstu extends javax.swing.JFrame {
                         .addComponent(JdFechaNaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnRegistrados))
-                .addGap(19, 19, 19))
+                    .addComponent(btnCancelar))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -225,6 +222,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
+    
 
     public JButton getBtnLimpiar() {
         return btnLimpiar;
@@ -241,7 +239,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
     public com.toedter.calendar.JDateChooser JdFechaNaci;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton btnRegistrados;
     public javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
