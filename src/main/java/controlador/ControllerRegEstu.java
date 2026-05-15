@@ -1,5 +1,6 @@
 package controlador;
 
+import conexion.Conexion;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -9,7 +10,13 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
 import funciones.Credenciales;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
 import modelo.ModelRegEstu;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 import vista.VistaEstudiantesRegistrados;
 import vista.VistaRegEstu;
@@ -33,9 +40,24 @@ public class ControllerRegEstu {
         vista.btnLimpiar.addActionListener(e -> limpiar());
 
         vista.btnCancelar.addActionListener(e -> vista.dispose());
-
+        
+        vista.btnReporteEstudiantes.addActionListener(e -> {
+            abrirReporte("repEstudiante.jasper");
+        });
     }
-
+    
+        private void abrirReporte(String nombreReporte) {
+        try {
+            Connection cn = Conexion.getConexion();
+            InputStream archivo = getClass().getResourceAsStream("/reportes/" + nombreReporte);
+            JasperPrint jp = JasperFillManager.fillReport(archivo, new HashMap<>(), cn);
+            JasperViewer viewer = new JasperViewer(jp, false);
+            viewer.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al abrir reporte\n" + e);
+        }
+    }
+    
     private void registrar() {
         if (!validarCampos())
             return;
