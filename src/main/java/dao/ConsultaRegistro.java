@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package dao;
 
 import conexion.Conexion;
@@ -23,25 +24,25 @@ public class ConsultaRegistro implements ICredencialesDAO {
     public final String buscarRegistro(String tipo, String nombre, String apellido) throws SQLException {
         String resultado = "No hay resultado";
         String iniciales = "" + nombre.charAt(0) + apellido.charAt(0);
-        SELECT = "SELECT username FROM usuario WHERE username Like ? ORDER BY username DESC LIMIT 1";
 
-        Connection conexion = Conexion.getConexion();
-        PreparedStatement ps = conexion.prepareStatement(SELECT);
-        ps.setString(1, tipo.charAt(0) + iniciales + '%');
+        String SELECT = "SELECT username FROM usuario WHERE username LIKE ? ORDER BY username DESC LIMIT 1";
 
-        ResultSet rs = ps.executeQuery();
+        // try-with-resources para cerrar automáticamente conexión, ps y rs
+        try (Connection conexion = Conexion.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(SELECT)) {
 
-        if (rs.next()) {
-            resultado = rs.getString("username");
+            ps.setString(1, tipo.charAt(0) + iniciales + '%');
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    resultado = rs.getString("username");
+                }
+            }
         }
-        rs.close();
-        ps.close();
-        conexion.close();
         return resultado;
     }
-
-    @Override
-    public final int buscarRegistroUserID() throws SQLException {
+    
+    public final int buscarRegistroUserID() throws SQLException{
         int resultado = -1;
         SELECT = "SELECT id_usuario FROM usuario ORDER BY id_usuario DESC LIMIT 1";
 
@@ -58,6 +59,7 @@ public class ConsultaRegistro implements ICredencialesDAO {
         conexion.close();
         return resultado;
     }
+    
 
     @Override
     public final void registrarCredenciales(String user, String contra, String tipo, String dui) throws SQLException {
