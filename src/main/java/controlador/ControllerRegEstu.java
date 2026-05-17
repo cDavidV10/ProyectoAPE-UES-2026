@@ -42,9 +42,6 @@ public class ControllerRegEstu {
 
         vista.btnCancelar.addActionListener(e -> vista.dispose());
 
-        vista.btnReporteEstudiantes.addActionListener(e -> {
-            new AbiriReporte().abrirReporte("repEstudiante.jasper");
-        });
     }
 
     private void registrar() {
