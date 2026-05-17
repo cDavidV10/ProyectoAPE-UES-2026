@@ -59,11 +59,11 @@ public class Credenciales {
     }
 
     private String crearContraseña() {
-        String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String alfabeto = "0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(5);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             int indiceAlfabet = random.nextInt(alfabeto.length());
             sb.append(alfabeto.charAt(indiceAlfabet));
         }
