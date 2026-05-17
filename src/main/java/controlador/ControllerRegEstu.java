@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
+import funciones.AbiriReporte;
 import funciones.Credenciales;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -40,24 +41,9 @@ public class ControllerRegEstu {
         vista.btnLimpiar.addActionListener(e -> limpiar());
 
         vista.btnCancelar.addActionListener(e -> vista.dispose());
-        
-        vista.btnReporteEstudiantes.addActionListener(e -> {
-            abrirReporte("repEstudiante.jasper");
-        });
+
     }
-    
-        private void abrirReporte(String nombreReporte) {
-        try {
-            Connection cn = Conexion.getConexion();
-            InputStream archivo = getClass().getResourceAsStream("/reportes/" + nombreReporte);
-            JasperPrint jp = JasperFillManager.fillReport(archivo, new HashMap<>(), cn);
-            JasperViewer viewer = new JasperViewer(jp, false);
-            viewer.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al abrir reporte\n" + e);
-        }
-    }
-    
+
     private void registrar() {
         if (!validarCampos())
             return;

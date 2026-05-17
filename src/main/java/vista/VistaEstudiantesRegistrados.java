@@ -176,6 +176,12 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
         return tblEstudiantes;
     }
 
+    public JButton getBtnReporteEstudiante() {
+        return btnReporteEstudiante;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnReporteEstudiante;
     private javax.swing.JComboBox<String> jComboBox1;

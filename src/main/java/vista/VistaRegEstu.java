@@ -45,7 +45,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
         JdFechaNaci = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         txtDui = new javax.swing.JTextField();
-        btnReporteEstudiantes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -108,9 +107,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("DUI: ");
 
-        btnReporteEstudiantes.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        btnReporteEstudiantes.setText("REPORTE");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,8 +123,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnReporteEstudiantes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnLimpiar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRegistrar)
@@ -181,8 +175,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnReporteEstudiantes))
+                    .addComponent(btnCancelar))
                 .addGap(25, 25, 25))
         );
 
@@ -237,16 +230,12 @@ public class VistaRegEstu extends javax.swing.JFrame {
         return btnRegistrar;
     }
 
-    public JButton getBtnReporteEstudiantes() {
-        return btnReporteEstudiantes;
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public com.toedter.calendar.JDateChooser JdFechaNaci;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegistrar;
-    public javax.swing.JButton btnReporteEstudiantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
