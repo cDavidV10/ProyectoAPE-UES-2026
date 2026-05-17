@@ -11,6 +11,8 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 /**
  *
  * @author MINEDUCYT
@@ -25,10 +27,12 @@ public class Credenciales {
         // crea el usuario apartir de los resultados de la busqueda de coincidencia de
         // usuario
         String nuevoUsuario = crearUsuario(user, nombre, apellido, tipo);
-        String newPassword = crearContraseña();
+        String password = crearContraseña();
+        String bdPassword = BCrypt.withDefaults().hashToString(12,
+                password.toCharArray());
 
-        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, newPassword, tipo, dui);
-        String mensaje = String.format("Su usuario es: %s\nSu contraseña es: %s", nuevoUsuario, newPassword);
+        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, bdPassword, tipo, dui);
+        String mensaje = String.format("Su usuario es: %s\nSu contraseña es: %s", nuevoUsuario, password);
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
