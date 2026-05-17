@@ -6,6 +6,7 @@ package controlador;
 
 import conexion.Conexion;
 import dao.DocenteDAO;
+import funciones.AbiriReporte;
 import funciones.Credenciales;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -169,23 +170,11 @@ public class CtrlDocente {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     private void onClickGenerarReporte() {
         vistaPrincipal.getBtnGenerarReporte().addActionListener(e -> {
-            abrirReporte("DocentesReporte.jasper");
+            new AbiriReporte().abrirReporte("DocentesReporte.jasper");
         });
-    }
-    
-    private void abrirReporte(String nombreReporte) {
-        try {
-            Connection cn = Conexion.getConexion();
-            InputStream archivo = getClass().getResourceAsStream("/reportes/" + nombreReporte);
-            JasperPrint jp = JasperFillManager.fillReport(archivo, new HashMap<>(), cn);
-            JasperViewer viewer = new JasperViewer(jp, false);
-            viewer.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al abrir reporte\n" + e);
-        }
     }
 
 }
