@@ -108,6 +108,7 @@ public class CtrlLogin {
 
             if (result.equalsIgnoreCase("Docente")) {
                 DocenteView docenteView = new DocenteView();
+                CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario);
                 docenteView.setVisible(true);
             }
 
