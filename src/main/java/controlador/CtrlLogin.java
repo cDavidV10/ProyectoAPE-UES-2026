@@ -88,7 +88,7 @@ public class CtrlLogin {
 
     private void acceder() {
 
-        String username = this.loginView.getTxtUser().getText();
+        String username = this.loginView.getTxtUser().getText().toUpperCase();
         String password = String.valueOf(this.loginView.getTxtPassword().getPassword());
 
         try {
