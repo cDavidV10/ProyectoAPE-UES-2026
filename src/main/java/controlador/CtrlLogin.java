@@ -117,10 +117,20 @@ public class CtrlLogin {
                 JOptionPane.showMessageDialog(loginView, "Usuario y/o contraseña incorrectos");
             }
 
+            limpiarForm();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(loginView, e.getMessage());
         }
 
+    }
+
+    private void limpiarForm() {
+        loginView.getTxtUser().setText("Ingrese su nombre de usuario");
+        loginView.getTxtPassword().setText("****");
+
+        loginView.getTxtUser().setForeground(new Color(170, 170, 170));
+        loginView.getTxtPassword().setForeground(new Color(170, 170, 170));
     }
 
 }
