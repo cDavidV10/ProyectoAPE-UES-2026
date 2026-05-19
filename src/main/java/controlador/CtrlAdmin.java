@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -13,7 +14,11 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
 import funciones.Paneles;
+import funciones.UsuarioActivo;
+
+import java.awt.event.WindowEvent;
 import modelo.ModelRegEstu;
+import modelo.Usuario;
 import vista.AdminView;
 import vista.AdministrarCursos;
 import vista.DocentePrincipalView;
@@ -26,9 +31,19 @@ import vista.VistaEstudiantesRegistrados;
 public class CtrlAdmin {
     AdminView adminView;
     RegEstuDAO dao = new RegEstuDAO();
+    Usuario usuario;
 
-    public CtrlAdmin(AdminView adminView) {
+    public CtrlAdmin(AdminView adminView, Usuario usuario) {
         this.adminView = adminView;
+        this.usuario = usuario;
+
+        adminView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                new UsuarioActivo().cambiarLabelUsuario(adminView.getTxtUser(), usuario);
+            }
+
+        });
 
         adminView.getBtnDocente().addActionListener(new ActionListener() {
             @Override

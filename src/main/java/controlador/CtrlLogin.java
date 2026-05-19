@@ -5,6 +5,7 @@
 package controlador;
 
 import dao.UsuarioDAO;
+import modelo.Usuario;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -92,10 +93,11 @@ public class CtrlLogin {
 
         try {
             String result = usuarioDAO.buscar(username, password);
+            Usuario usuario = usuarioDAO.getUsuario();
 
             if (result.equalsIgnoreCase("Administrador")) {
                 AdminView adminView = new AdminView();
-                CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView);
+                CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView, usuario);
                 adminView.setVisible(true);
             }
 
