@@ -12,6 +12,8 @@ import java.sql.SQLException;
  */
 public interface ICredencialesDAO {
     String buscarRegistro(String tipo, String nombre, String apellido) throws SQLException;
-    int buscarRegistroUserID()throws SQLException;
-    void registrarCredenciales(String user, String contra, String tipo) throws SQLException;
+
+    int buscarRegistroUserID() throws SQLException;
+
+    void registrarCredenciales(String user, String contra, String tipo, String dui) throws SQLException;
 }

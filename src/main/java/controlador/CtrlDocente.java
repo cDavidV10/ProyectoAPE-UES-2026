@@ -4,10 +4,20 @@
  */
 package controlador;
 
+import conexion.Conexion;
 import dao.DocenteDAO;
+import funciones.AbiriReporte;
+import funciones.Credenciales;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Docente;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import vista.DocentePrincipalView;
 import vista.FormDocente;
 
@@ -18,6 +28,7 @@ import vista.FormDocente;
 public class CtrlDocente {
     private DocenteDAO dao = new DocenteDAO();
     private DocentePrincipalView vistaPrincipal;
+    private Credenciales credenciales = new Credenciales();
 
     public CtrlDocente(DocentePrincipalView vistaPrincipal) {
         this.vistaPrincipal = vistaPrincipal;
@@ -25,6 +36,7 @@ public class CtrlDocente {
 
         cargarTabla();
         onClickAgregar();
+        onClickGenerarReporte();
         /*
          * onClickModificar();
          * onClickEliminar();
@@ -67,6 +79,7 @@ public class CtrlDocente {
                     dao.insertar(docente);
 
                     JOptionPane.showMessageDialog(null, "Docente guardado correctamente");
+                    credenciales.registrarCredenciales(nombre, apellido, "Docente", dui);
                     cargarTabla(); // Actualizando la tabla
                     formDocente.dispose();
 
@@ -156,6 +169,12 @@ public class CtrlDocente {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+    }
+
+    private void onClickGenerarReporte() {
+        vistaPrincipal.getBtnGenerarReporte().addActionListener(e -> {
+            new AbiriReporte().abrirReporte("DocentesReporte.jasper");
+        });
     }
 
 }

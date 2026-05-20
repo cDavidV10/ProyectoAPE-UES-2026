@@ -7,7 +7,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Arrays;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import conexion.Conexion;
 import interfaz.IUsuarioDAO;
 import modelo.Usuario;
@@ -18,7 +20,7 @@ import modelo.Usuario;
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
-    private static final String SELECT = "select * from usuario where user_name = ?";
+    private static final String SELECT = "select * from usuario where username = ?";
 
     @Override
     public String buscar(String username, String password) throws Exception {
@@ -41,9 +43,14 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
 
         if (existe) {
-            if (usuario.getUsername().equalsIgnoreCase(username)
-                    && usuario.getPassword().equalsIgnoreCase(password)) {
-                return usuario.getTipo();
+            if (usuario.getUsername().equalsIgnoreCase(username)) {
+                BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(),
+                        usuario.getPassword());
+
+                if (result.verified) {
+
+                    return usuario.getTipo();
+                }
 
             }
         }

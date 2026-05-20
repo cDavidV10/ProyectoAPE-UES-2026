@@ -20,6 +20,7 @@ import vista.AdminView;
 import vista.DocenteView;
 import vista.EstudianteView;
 import vista.Login;
+import vista.VistaRegEstu;
 
 /**
  *
@@ -37,6 +38,16 @@ public class CtrlLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 acceder();
+            }
+
+        });
+
+        this.loginView.getBtnRegistro().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaRegEstu formEstudiante = new VistaRegEstu();
+                ControllerRegEstu ctrFormEstudiante = new ControllerRegEstu(formEstudiante);
+                formEstudiante.setVisible(true);
             }
 
         });
