@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import java.sql.Connection;
@@ -17,12 +13,14 @@ import modelo.Cursos;
  *
  * @author alexi
  */
-public class CursosDAO {
+public class CursosDAO  {
+
+
     //private static final String INSERT = "INSERT INTO public.curso (nombre, estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
-    private static final String INSERT = "INSERT INTO public.curso (nombre, descripcion) VALUES (?, ?)";
+    private static final String INSERT = "INSERT INTO public.curso (codigo, nombre, descripcion) VALUES (?, ?, ?)";
     private static final String SELECT_ALL = "SELECT * FROM public.curso ORDER BY id_curso";
     private static final String SELECT_ID = "SELECT * FROM public.curso WHERE id_curso = ?";
-    private static final String UPDATE = "UPDATE public.curso SET nombre = ?, descripcion = ? WHERE id_curso = ?";
+    private static final String UPDATE = "UPDATE public.curso SET codigo = ?, nombre = ?, descripcion = ? WHERE id_curso = ?";
     private static final String DELETE = "DELETE FROM public.curso WHERE id_curso = ?";
 
     public void insertar(Cursos c) throws Exception {
@@ -38,8 +36,9 @@ public class CursosDAO {
 
             conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(INSERT);
-            ps.setString(1, c.getNombreCurso());
-            ps.setString(2, c.getDescripcion());
+            ps.setString(1, c.getCodigoCurso());
+            ps.setString(2, c.getNombreCurso());
+            ps.setString(3, c.getDescripcion());
             //ps.setBoolean(2, c.isEstado());
             //ps.setInt(3, c.getCapacidad());
             //ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
@@ -60,6 +59,7 @@ public class CursosDAO {
         while (rs.next()) {
             Cursos c = new Cursos();
             c.setIdCurso(rs.getInt("id_curso"));
+            c.setCodigoCurso(rs.getString("codigo"));
             c.setNombreCurso(rs.getString("nombre"));
             c.setDescripcion(rs.getString("descripcion"));
             //c.setEstado(rs.getBoolean("estado"));
@@ -88,13 +88,14 @@ public class CursosDAO {
         try {
             conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(UPDATE);
-            ps.setString(1, c.getNombreCurso());
-            ps.setString(2, c.getDescripcion());
+            ps.setString(1, c.getCodigoCurso());
+            ps.setString(2, c.getNombreCurso());
+            ps.setString(3, c.getDescripcion());
             //ps.setBoolean(2, c.isEstado());
             //ps.setInt(3, c.getCapacidad());
             //ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
             //ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
-            ps.setInt(3, c.getIdCurso());
+            ps.setInt(4, c.getIdCurso());
 
             ps.executeUpdate();
             conn.commit();
@@ -119,6 +120,7 @@ public class CursosDAO {
         if (rs.next()) {
             c = new Cursos();
             c.setIdCurso(rs.getInt("id_curso"));
+            c.setCodigoCurso(rs.getString("codigo"));
             c.setNombreCurso(rs.getString("nombre"));
             c.setDescripcion(rs.getString("descripcion"));
             //c.setEstado(rs.getBoolean("estado"));

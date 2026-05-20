@@ -41,7 +41,8 @@ public class ControladorAdministrarCursos {
                 modelo.addRow(new Object[] {
                         c.getIdCurso(),
                         c.getNombreCurso(),
-                        c.getDescripcion()
+                        c.getDescripcion(),
+                        c.getCodigoCurso()
                         // c.isEstado(),
                         // c.getCapacidad(),
                         // c.getInicioCurso(),
