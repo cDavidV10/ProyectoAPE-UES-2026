@@ -12,6 +12,7 @@ import modelo.Cursos;
  * @author alexi
  */
 public interface ICursosDAO {
+    
 
     void insertar(Cursos c) throws Exception;
 
