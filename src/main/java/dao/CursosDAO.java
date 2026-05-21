@@ -18,12 +18,13 @@ import modelo.Cursos;
  * @author alexi
  */
 public class CursosDAO {
-    //private static final String INSERT = "INSERT INTO public.curso (nombre, estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
-    private static final String INSERT = "INSERT INTO public.curso (nombre, descripcion) VALUES (?, ?)";
-    private static final String SELECT_ALL = "SELECT * FROM public.curso ORDER BY id_curso";
-    private static final String SELECT_ID = "SELECT * FROM public.curso WHERE id_curso = ?";
-    private static final String UPDATE = "UPDATE public.curso SET nombre = ?, descripcion = ? WHERE id_curso = ?";
-    private static final String DELETE = "DELETE FROM public.curso WHERE id_curso = ?";
+    // private static final String INSERT = "INSERT INTO public.curso (nombre,
+    // estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO curso (codigo, nombre, descripcion) VALUES (?,?, ?)";
+    private static final String SELECT_ALL = "SELECT * FROM curso ORDER BY id_curso";
+    private static final String SELECT_ID = "SELECT * FROM curso WHERE id_curso = ?";
+    private static final String UPDATE = "UPDATE curso SET nombre = ?, descripcion = ? WHERE id_curso = ?";
+    private static final String DELETE = "DELETE FROM curso WHERE id_curso = ?";
 
     public void insertar(Cursos c) throws Exception {
 
@@ -38,12 +39,9 @@ public class CursosDAO {
 
             conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(INSERT);
-            ps.setString(1, c.getNombreCurso());
-            ps.setString(2, c.getDescripcion());
-            //ps.setBoolean(2, c.isEstado());
-            //ps.setInt(3, c.getCapacidad());
-            //ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
-            //ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
+            ps.setString(1, c.getCodigo());
+            ps.setString(2, c.getNombreCurso());
+            ps.setString(3, c.getDescripcion());
 
             ps.executeUpdate();
             conn.commit();
@@ -60,12 +58,9 @@ public class CursosDAO {
         while (rs.next()) {
             Cursos c = new Cursos();
             c.setIdCurso(rs.getInt("id_curso"));
+            c.setCodigo(rs.getString("codigo"));
             c.setNombreCurso(rs.getString("nombre"));
             c.setDescripcion(rs.getString("descripcion"));
-            //c.setEstado(rs.getBoolean("estado"));
-            //c.setCapacidad(rs.getInt("capacidad"));
-            //c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
-            //c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
             lista.add(c);
         }
         conn.close();
@@ -90,10 +85,6 @@ public class CursosDAO {
             PreparedStatement ps = conn.prepareStatement(UPDATE);
             ps.setString(1, c.getNombreCurso());
             ps.setString(2, c.getDescripcion());
-            //ps.setBoolean(2, c.isEstado());
-            //ps.setInt(3, c.getCapacidad());
-            //ps.setDate(4, java.sql.Date.valueOf(c.getInicioCurso()));
-            //ps.setDate(5, java.sql.Date.valueOf(c.getCierreCurso()));
             ps.setInt(3, c.getIdCurso());
 
             ps.executeUpdate();
@@ -105,15 +96,14 @@ public class CursosDAO {
             conn.close();
         }
     }
-    
+
     public Cursos buscar(int idCurso) throws Exception {
         Cursos c = null;
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(
-                "SELECT * FROM public.curso WHERE id_curso = ?"
-        );
+                "SELECT * FROM public.curso WHERE id_curso = ?");
         ps.setInt(1, idCurso);
-        //ps.setString(2, descripcion);
+        // ps.setString(2, descripcion);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
@@ -121,10 +111,10 @@ public class CursosDAO {
             c.setIdCurso(rs.getInt("id_curso"));
             c.setNombreCurso(rs.getString("nombre"));
             c.setDescripcion(rs.getString("descripcion"));
-            //c.setEstado(rs.getBoolean("estado"));
-            //c.setCapacidad(rs.getInt("capacidad"));
-            //c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
-            //c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
+            // c.setEstado(rs.getBoolean("estado"));
+            // c.setCapacidad(rs.getInt("capacidad"));
+            // c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
+            // c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
         }
 
         conn.close();
