@@ -23,7 +23,27 @@ public class Correos {
 
                          <p>Esperamos que sigas aprendiendo con nosotros</p>
                               """, nombre, apellido, user, password);
+        enviarCorreo(correo, body);
 
+    }
+
+    public void correoCredencialesDocentes(String nombre, String apellido, String user, String password,
+            String correo) {
+        String body = String.format(
+                """
+                        <p> Hola <strong>%s %s</strong> nos alegra que hayas decidio formar parte de nuestro equipo</p>
+
+                         <p>Tus credenciales para acceder al sistema son las siguientes</p>
+                         <p>Usuario: <strong>%s</strong></p>
+                         <p>Contraseña: <strong>%s</strong></p>
+
+                         <p>Esperamos que sigas creciendo con nosotros</p>
+                              """, nombre, apellido, user, password);
+        enviarCorreo(correo, body);
+
+    }
+
+    private void enviarCorreo(String correo, String body) {
         Resend resend = new Resend(resendKey);
 
         CreateEmailOptions params = CreateEmailOptions.builder()
