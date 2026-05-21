@@ -138,7 +138,7 @@ public class VistaRegEstu extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel8))
-                                .addGap(186, 186, 186)
+                                .addGap(179, 179, 179)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -221,7 +221,6 @@ public class VistaRegEstu extends javax.swing.JFrame {
         return btnCancelar;
     }
     
-
     public JButton getBtnLimpiar() {
         return btnLimpiar;
     }
@@ -229,7 +228,9 @@ public class VistaRegEstu extends javax.swing.JFrame {
     public JButton getBtnRegistrar() {
         return btnRegistrar;
     }
-
+    
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public com.toedter.calendar.JDateChooser JdFechaNaci;
