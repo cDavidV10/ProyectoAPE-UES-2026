@@ -53,27 +53,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
             });
         }
     }
-
-    // Para obtener el docente seleccionado
-    public Docente getDocenteSeleccionado() {
-        int fila = tablaDocentes.getSelectedRow();
-        if (fila == -1)
-            return null;
-
-        Docente d = new Docente();
-        d.setIdDocente((int) modelo.getValueAt(fila, 0));
-        d.setDui((String) modelo.getValueAt(fila, 1));
-        d.setNombre((String) modelo.getValueAt(fila, 2));
-        d.setApellido((String) modelo.getValueAt(fila, 3));
-        d.setCorreo((String) modelo.getValueAt(fila, 4));
-        d.setTelefono((String) modelo.getValueAt(fila, 5));
-        d.setFechaNacimiento((java.util.Date) modelo.getValueAt(fila, 6));
-        d.setTipoContrato((String) modelo.getValueAt(fila, 7));
-        d.setEspecialidad((String) modelo.getValueAt(fila, 8));
-        d.setGradoAcademico((String) modelo.getValueAt(fila, 9));
-        return d;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,20 +120,10 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         btnNuevoDocente.setBackground(new java.awt.Color(204, 255, 204));
         btnNuevoDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNuevoDocente.setText("+Nuevo docente");
-        btnNuevoDocente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoDocenteActionPerformed(evt);
-            }
-        });
 
         btnGenerarReporte.setBackground(new java.awt.Color(153, 204, 255));
         btnGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGenerarReporte.setText("Generar Reporte");
-        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarReporteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,14 +152,6 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarReporteActionPerformed
-
-    private void btnNuevoDocenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNuevoDocenteActionPerformed
-
-    }// GEN-LAST:event_btnNuevoDocenteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -203,26 +165,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
          * For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DocentePrincipalView.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DocentePrincipalView.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DocentePrincipalView.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DocentePrincipalView.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        }
+        
         // </editor-fold>
 
         /* Create and display the form */
@@ -262,7 +205,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
     public void setBtnGenerarReporte(JButton btnGenerarReporte) {
         this.btnGenerarReporte = btnGenerarReporte;
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnNuevoDocente;
