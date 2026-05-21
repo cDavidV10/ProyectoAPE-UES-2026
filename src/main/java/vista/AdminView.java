@@ -11,6 +11,7 @@ import controlador.CtrlDocente;
 import funciones.Paneles;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -38,293 +39,204 @@ public class AdminView extends javax.swing.JFrame {
          */
         @SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated
-        // Code">//GEN-BEGIN:initComponents
-        private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-                jPanel1 = new javax.swing.JPanel();
-                jPanel2 = new javax.swing.JPanel();
-                jSeparator1 = new javax.swing.JSeparator();
-                jLabel1 = new javax.swing.JLabel();
-                jLabel2 = new javax.swing.JLabel();
-                btnDocente = new javax.swing.JButton();
-                jSeparator2 = new javax.swing.JSeparator();
-                btnCurso = new javax.swing.JButton();
-                jSeparator3 = new javax.swing.JSeparator();
-                btnInscripcion = new javax.swing.JButton();
-                jSeparator4 = new javax.swing.JSeparator();
-                btnEstudiante = new javax.swing.JButton();
-                jSeparator5 = new javax.swing.JSeparator();
-                jButton1 = new javax.swing.JButton();
-                jSeparator6 = new javax.swing.JSeparator();
-                jLabel3 = new javax.swing.JLabel();
-                jLabel4 = new javax.swing.JLabel();
-                bgPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnDocente = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        btnCurso = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        btnInscripcion = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        btnEstudiante = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        txtUser = new javax.swing.JLabel();
+        bgPanel = new javax.swing.JPanel();
 
-                setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-                setPreferredSize(new java.awt.Dimension(1280, 720));
-                setResizable(false);
-                getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-                jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                jPanel2.setBackground(new java.awt.Color(0, 42, 120));
-                jPanel2.setPreferredSize(new java.awt.Dimension(250, 720));
+        jPanel2.setBackground(new java.awt.Color(0, 42, 120));
+        jPanel2.setPreferredSize(new java.awt.Dimension(250, 720));
 
-                jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-                jSeparator1.setPreferredSize(new java.awt.Dimension(250, 10));
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setPreferredSize(new java.awt.Dimension(250, 10));
 
-                jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jLabel1.setForeground(new java.awt.Color(248, 250, 252));
-                jLabel1.setText("SISTEMA ACADEMICO");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(248, 250, 252));
+        jLabel1.setText("SISTEMA ACADEMICO");
 
-                jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                jLabel2.setForeground(new java.awt.Color(248, 250, 252));
-                jLabel2.setText("Administrador");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(248, 250, 252));
+        jLabel2.setText("Administrador");
 
-                btnDocente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                btnDocente.setText("Personal Docente");
-                btnDocente.setPreferredSize(new java.awt.Dimension(200, 30));
-                btnDocente.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnDocenteActionPerformed(evt);
-                        }
-                });
+        btnDocente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnDocente.setText("Personal Docente");
+        btnDocente.setPreferredSize(new java.awt.Dimension(200, 30));
+        btnDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocenteActionPerformed(evt);
+            }
+        });
 
-                jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-                jSeparator2.setPreferredSize(new java.awt.Dimension(250, 10));
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(250, 10));
 
-                btnCurso.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                btnCurso.setText("Manejo de cursos");
-                btnCurso.setPreferredSize(new java.awt.Dimension(200, 25));
-                btnCurso.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnCursoActionPerformed(evt);
-                        }
-                });
+        btnCurso.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnCurso.setText("Manejo de cursos");
+        btnCurso.setPreferredSize(new java.awt.Dimension(200, 25));
+        btnCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCursoActionPerformed(evt);
+            }
+        });
 
-                jSeparator3.setPreferredSize(new java.awt.Dimension(250, 10));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(250, 10));
 
-                btnInscripcion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                btnInscripcion.setText("Inscripcion");
-                btnInscripcion.setPreferredSize(new java.awt.Dimension(200, 30));
-                btnInscripcion.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnInscripcionActionPerformed(evt);
-                        }
-                });
+        btnInscripcion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnInscripcion.setText("Inscripcion");
+        btnInscripcion.setPreferredSize(new java.awt.Dimension(200, 30));
+        btnInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscripcionActionPerformed(evt);
+            }
+        });
 
-                btnEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                btnEstudiante.setText("Datos Estudiante");
+        btnEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnEstudiante.setText("Datos Estudiante");
 
-                jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
 
-                jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                jButton1.setText("Credenciales");
-                jButton1.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jButton1ActionPerformed(evt);
-                        }
-                });
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jButton1.setText("Credenciales");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-                jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
 
-                jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                jLabel3.setForeground(new java.awt.Color(248, 250, 252));
-                jLabel3.setText("Usuario Activo");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(248, 250, 252));
+        jLabel3.setText("Usuario Activo");
 
-                jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-                jLabel4.setForeground(new java.awt.Color(248, 250, 252));
-                jLabel4.setText("Admind");
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(248, 250, 252));
+        txtUser.setText("Cambiar");
 
-                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-                jPanel2.setLayout(jPanel2Layout);
-                jPanel2Layout.setHorizontalGroup(
-                                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(jSeparator3,
-                                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                0, Short.MAX_VALUE)
-                                                                                .addComponent(jSeparator5)
-                                                                                .addComponent(jSeparator2,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                0,
-                                                                                                Short.MAX_VALUE)
-                                                                                .addGroup(jPanel2Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGroup(jPanel2Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addGap(24, 24, 24)
-                                                                                                                                .addComponent(jLabel1))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addGap(46, 46, 46)
-                                                                                                                                .addComponent(jLabel2,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                111,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addContainerGap()
-                                                                                                                                .addComponent(btnCurso,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                225,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addContainerGap()
-                                                                                                                                .addComponent(jButton1,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                225,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addContainerGap()
-                                                                                                                                .addComponent(btnInscripcion,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                225,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                                .addGap(0, 0, Short.MAX_VALUE))
-                                                                                .addGroup(jPanel2Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addContainerGap()
-                                                                                                .addGroup(jPanel2Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addComponent(jSeparator4,
-                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                .addComponent(jSeparator6,
-                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                .addComponent(btnDocente,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                225,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                .addComponent(btnEstudiante,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                225,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                                .createSequentialGroup()
-                                                                                                                                                                .addGap(6, 6, 6)
-                                                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                                .addComponent(jLabel4,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                200,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                .addComponent(jLabel3,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                200,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                                                                                .addGap(0, 0, Short.MAX_VALUE)))))
-                                                                .addContainerGap()));
-                jPanel2Layout.setVerticalGroup(
-                                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(26, 26, 26)
-                                                                .addComponent(jLabel1)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jLabel2)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jSeparator1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                13,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnCurso,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                50,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jSeparator2,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                10,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnInscripcion,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                50,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jSeparator3,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                10,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnDocente,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                50,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(12, 12, 12)
-                                                                .addComponent(jSeparator4,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                10,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnEstudiante,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                50,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jSeparator5,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                12,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jButton1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                50,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(87, 87, 87)
-                                                                .addComponent(jSeparator6,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                12,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jLabel3)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jLabel4)
-                                                                .addContainerGap(49, Short.MAX_VALUE)));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jSeparator5)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtUser)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
 
-                jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-                javax.swing.GroupLayout bgPanelLayout = new javax.swing.GroupLayout(bgPanel);
-                bgPanel.setLayout(bgPanelLayout);
-                bgPanelLayout.setHorizontalGroup(
-                                bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 1060, Short.MAX_VALUE));
-                bgPanelLayout.setVerticalGroup(
-                                bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 0, Short.MAX_VALUE));
+        javax.swing.GroupLayout bgPanelLayout = new javax.swing.GroupLayout(bgPanel);
+        bgPanel.setLayout(bgPanelLayout);
+        bgPanelLayout.setHorizontalGroup(
+            bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1060, Short.MAX_VALUE)
+        );
+        bgPanelLayout.setVerticalGroup(
+            bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-                jPanel1.add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 0, 1060, 720));
+        jPanel1.add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 0, 1060, 720));
 
-                getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-                pack();
-        }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
         private void btnDocenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDocenteActionPerformed
                 // TODO add your handling code here:
@@ -386,6 +298,12 @@ public class AdminView extends javax.swing.JFrame {
                 });
         }
 
+    public JLabel getTxtUser() {
+        return txtUser;
+    }
+
+        
+        
         public JButton getBtnCurso() {
                 return btnCurso;
         }
@@ -406,24 +324,24 @@ public class AdminView extends javax.swing.JFrame {
                 return bgPanel;
         }
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JPanel bgPanel;
-        private javax.swing.JButton btnCurso;
-        private javax.swing.JButton btnDocente;
-        private javax.swing.JButton btnEstudiante;
-        private javax.swing.JButton btnInscripcion;
-        private javax.swing.JButton jButton1;
-        private javax.swing.JLabel jLabel1;
-        private javax.swing.JLabel jLabel2;
-        private javax.swing.JLabel jLabel3;
-        private javax.swing.JLabel jLabel4;
-        private javax.swing.JPanel jPanel1;
-        private javax.swing.JPanel jPanel2;
-        private javax.swing.JSeparator jSeparator1;
-        private javax.swing.JSeparator jSeparator2;
-        private javax.swing.JSeparator jSeparator3;
-        private javax.swing.JSeparator jSeparator4;
-        private javax.swing.JSeparator jSeparator5;
-        private javax.swing.JSeparator jSeparator6;
-        // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bgPanel;
+    private javax.swing.JButton btnCurso;
+    private javax.swing.JButton btnDocente;
+    private javax.swing.JButton btnEstudiante;
+    private javax.swing.JButton btnInscripcion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel txtUser;
+    // End of variables declaration//GEN-END:variables
 }

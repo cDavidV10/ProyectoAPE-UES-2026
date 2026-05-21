@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import conexion.Conexion;
 import interfaz.IUsuarioDAO;
 import modelo.Usuario;
@@ -17,13 +18,13 @@ import modelo.Usuario;
  * @author cdavi
  */
 public class UsuarioDAO implements IUsuarioDAO {
-
+    private Usuario usuario = new Usuario();
     private static final String SELECT = "select * from usuario where username = ?";
 
     @Override
     public String buscar(String username, String password) throws Exception {
         Connection conexion = Conexion.getConexion();
-        Usuario usuario = new Usuario();
+
         boolean existe = false;
 
         PreparedStatement ps = conexion.prepareStatement(SELECT);
@@ -41,15 +42,23 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
 
         if (existe) {
-            if (usuario.getUsername().equalsIgnoreCase(username)
-                    && usuario.getPassword().equalsIgnoreCase(password)) {
-                return usuario.getTipo();
+            if (usuario.getUsername().equalsIgnoreCase(username)) {
+                BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(),
+                        usuario.getPassword());
 
+                if (result.verified) {
+
+                    return usuario.getTipo();
+                }
             }
         }
 
         conexion.close();
         return "No";
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
 }
