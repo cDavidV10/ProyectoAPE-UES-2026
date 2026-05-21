@@ -1,8 +1,5 @@
 package controlador;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cursos;
@@ -40,12 +37,9 @@ public class ControladorAdministrarCursos {
             for (Cursos c : dao.listar()) {
                 modelo.addRow(new Object[] {
                         c.getIdCurso(),
+                        c.getCodigo(),
                         c.getNombreCurso(),
                         c.getDescripcion()
-                        // c.isEstado(),
-                        // c.getCapacidad(),
-                        // c.getInicioCurso(),
-                        // c.getCierreCurso()
                 });
             }
         } catch (Exception e) {

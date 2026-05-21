@@ -77,19 +77,19 @@ public class AdministrarCursos extends javax.swing.JPanel {
 
         tblAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Asignatura", "Descripcion"
+                "ID", "Codigo", "Nombre", "Descripcion"
             }
         ));
         jScrollPane1.setViewportView(tblAdmin);
         if (tblAdmin.getColumnModel().getColumnCount() > 0) {
             tblAdmin.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tblAdmin.getColumnModel().getColumn(2).setPreferredWidth(400);
+            tblAdmin.getColumnModel().getColumn(3).setPreferredWidth(400);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 163, 953, 345));
