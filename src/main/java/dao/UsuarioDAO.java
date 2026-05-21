@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import conexion.Conexion;
 import interfaz.IUsuarioDAO;
 import modelo.Usuario;
@@ -41,10 +42,14 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
 
         if (existe) {
-            if (usuario.getUsername().equalsIgnoreCase(username)
-                    && usuario.getPassword().equalsIgnoreCase(password)) {
-                return usuario.getTipo();
+            if (usuario.getUsername().equalsIgnoreCase(username)) {
+                BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(),
+                        usuario.getPassword());
 
+                if (result.verified) {
+
+                    return usuario.getTipo();
+                }
             }
         }
 

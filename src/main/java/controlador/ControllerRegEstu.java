@@ -53,7 +53,7 @@ public class ControllerRegEstu {
 
             e.setCorreo(vista.txtCorreo.getText().trim());
             dao.insertar(e);
-            credenciales.registrarCredenciales(e.getNombre(), e.getApellido(), "Estudiante", e.getDui());
+            credenciales.registrarCredenciales(e.getNombre(), e.getApellido(), "Estudiante", e.getDui(), e.getCorreo());
             JOptionPane.showMessageDialog(vista, "Estudiante registrado correctamente.");
             limpiar();
         } catch (Exception ex) {
