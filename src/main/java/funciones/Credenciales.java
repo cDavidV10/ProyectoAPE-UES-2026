@@ -36,6 +36,11 @@ public class Credenciales {
         if (tipo.equalsIgnoreCase("Estudiante")) {
             new Correos().correoCredencialesEstudiante(nombre, apellido, nuevoUsuario, password, correo);
         }
+
+        if (tipo.equalsIgnoreCase("Docente")) {
+            new Correos().correoCredencialesDocentes(nombre, apellido, nuevoUsuario, password, correo);
+        }
+
         JOptionPane.showMessageDialog(null, "Usuario y contraseña creados correctamente");
     }
 
