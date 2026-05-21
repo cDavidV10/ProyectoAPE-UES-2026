@@ -42,7 +42,6 @@ public class ControladorRegistrarCursos {
 
     private void cargarDatos() {
         vista.getTxtNombre().setText(cursoEditar.getNombreCurso());
-        vista.getTxtCodigo().setText(cursoEditar.getCodigoCurso());
         vista.getAreaDescripcion().setText(cursoEditar.getDescripcion());
         // vista.getSptCapacidad().setValue(cursoEditar.getCapacidad());
         // vista.getRbtnDisponible().setSelected(cursoEditar.isEstado());
@@ -67,7 +66,6 @@ public class ControladorRegistrarCursos {
         try {
             Cursos c = new Cursos();
             c.setNombreCurso(vista.getTxtNombre().getText().trim());
-            c.setCodigoCurso(vista.getTxtCodigo().getText().trim());
             c.setDescripcion(vista.getAreaDescripcion().getText().trim());
             // c.setCapacidad((int) vista.getSptCapacidad().getValue());
             // c.setEstado(vista.getRbtnDisponible().isSelected());

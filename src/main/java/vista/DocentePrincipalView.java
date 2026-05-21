@@ -90,7 +90,6 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNuevoDocente = new javax.swing.JButton();
-        btnGenerarReporte = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1030, 700));
@@ -135,6 +134,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Mantenimiento de Docentes");
 
         btnNuevoDocente.setBackground(new java.awt.Color(204, 255, 204));
@@ -146,15 +146,6 @@ public class DocentePrincipalView extends javax.swing.JPanel {
             }
         });
 
-        btnGenerarReporte.setBackground(new java.awt.Color(153, 204, 255));
-        btnGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnGenerarReporte.setText("Generar Reporte");
-        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarReporteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -162,9 +153,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
-                .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -174,17 +163,12 @@ public class DocentePrincipalView extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnNuevoDocenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNuevoDocenteActionPerformed
 
@@ -255,16 +239,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         return tableDocentes;
     }
 
-    public JButton getBtnGenerarReporte() {
-        return btnGenerarReporte;
-    }
-
-    public void setBtnGenerarReporte(JButton btnGenerarReporte) {
-        this.btnGenerarReporte = btnGenerarReporte;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnNuevoDocente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

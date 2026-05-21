@@ -1,6 +1,5 @@
 package controlador;
 
-import conexion.Conexion;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -9,15 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
-import funciones.AbiriReporte;
 import funciones.Credenciales;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.util.HashMap;
 import modelo.ModelRegEstu;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
 
 import vista.VistaEstudiantesRegistrados;
 import vista.VistaRegEstu;

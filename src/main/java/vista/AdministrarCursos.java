@@ -77,13 +77,13 @@ public class AdministrarCursos extends javax.swing.JPanel {
 
         tblAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Asignatura", "Descripcion", "Codigo"
+                "ID", "Asignatura", "Descripcion"
             }
         ));
         jScrollPane1.setViewportView(tblAdmin);

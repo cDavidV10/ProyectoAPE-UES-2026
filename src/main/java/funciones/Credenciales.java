@@ -11,8 +11,6 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
-
 /**
  *
  * @author MINEDUCYT
@@ -27,12 +25,10 @@ public class Credenciales {
         // crea el usuario apartir de los resultados de la busqueda de coincidencia de
         // usuario
         String nuevoUsuario = crearUsuario(user, nombre, apellido, tipo);
-        String password = crearContraseña();
-        String bdPassword = BCrypt.withDefaults().hashToString(12,
-                password.toCharArray());
+        String newPassword = crearContraseña();
 
-        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, bdPassword, tipo, dui);
-        String mensaje = String.format("Su usuario es: %s\nSu contraseña es: %s", nuevoUsuario, password);
+        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, newPassword, tipo, dui);
+        String mensaje = String.format("Su usuario es: %s\nSu contraseña es: %s", nuevoUsuario, newPassword);
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
@@ -63,11 +59,11 @@ public class Credenciales {
     }
 
     private String crearContraseña() {
-        String alfabeto = "0123456789";
+        String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(5);
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             int indiceAlfabet = random.nextInt(alfabeto.length());
             sb.append(alfabeto.charAt(indiceAlfabet));
         }

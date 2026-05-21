@@ -58,7 +58,6 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 VistaEstudiantesRegistrados estudiantesRegistrados = new VistaEstudiantesRegistrados();
-                CtrlRegistroEstudiantes ctrlEstudiantes = new CtrlRegistroEstudiantes(estudiantesRegistrados);
                 cargarTabla(estudiantesRegistrados);
                 new Paneles().insertarPaneles(estudiantesRegistrados, adminView.getBgPanel());
             }
