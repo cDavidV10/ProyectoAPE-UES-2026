@@ -70,7 +70,7 @@ public class CtrlDocente {
                     dao.insertar(docente);
 
                     JOptionPane.showMessageDialog(null, "Docente guardado correctamente");
-                    credenciales.registrarCredenciales(nombre, apellido, "Docente", dui);
+                    credenciales.registrarCredenciales(nombre, apellido, "Docente", dui, correo);
                     cargarTabla(); // Actualizando la tabla
                     formDocente.dispose();
 
