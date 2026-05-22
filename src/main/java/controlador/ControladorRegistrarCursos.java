@@ -4,14 +4,11 @@
  */
 package controlador;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cursos;
 import dao.CursosDAO;
-import vista.AdministrarCursos;
 import vista.RegistrarCursos;
 
 /**
@@ -41,13 +38,9 @@ public class ControladorRegistrarCursos {
     }
 
     private void cargarDatos() {
+        vista.getTxtCodigo().setText(cursoEditar.getCodigo());
         vista.getTxtNombre().setText(cursoEditar.getNombreCurso());
         vista.getAreaDescripcion().setText(cursoEditar.getDescripcion());
-        // vista.getSptCapacidad().setValue(cursoEditar.getCapacidad());
-        // vista.getRbtnDisponible().setSelected(cursoEditar.isEstado());
-
-        // vista.getDateFechaInicio().setDate(java.sql.Date.valueOf(cursoEditar.getInicioCurso()));
-        // vista.getDateFechaCierre().setDate(java.sql.Date.valueOf(cursoEditar.getCierreCurso()));
 
         vista.getBtnGuardar().setText("Actualizar");
     }
@@ -65,13 +58,9 @@ public class ControladorRegistrarCursos {
 
         try {
             Cursos c = new Cursos();
+            c.setCodigo(vista.getTxtCodigo().getText().trim());
             c.setNombreCurso(vista.getTxtNombre().getText().trim());
             c.setDescripcion(vista.getAreaDescripcion().getText().trim());
-            // c.setCapacidad((int) vista.getSptCapacidad().getValue());
-            // c.setEstado(vista.getRbtnDisponible().isSelected());
-
-            // c.setInicioCurso(utilInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            // c.setCierreCurso(utilCierre.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
             if (cursoEditar != null) {
                 c.setIdCurso(cursoEditar.getIdCurso());
