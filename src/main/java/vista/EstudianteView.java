@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author cdavi
@@ -39,10 +41,9 @@ public class EstudianteView extends javax.swing.JFrame {
         btnNotas = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        txtUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -100,9 +101,9 @@ public class EstudianteView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(248, 250, 252));
         jLabel3.setText("Usuario Activo");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(248, 250, 252));
-        jLabel4.setText("EVR26001");
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(248, 250, 252));
+        txtUser.setText("EVR26001");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,7 +139,7 @@ public class EstudianteView extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
@@ -167,7 +168,7 @@ public class EstudianteView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(txtUser)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -237,6 +238,12 @@ public class EstudianteView extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getTxtUser() {
+        return txtUser;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCredenciales;
     private javax.swing.JButton btnGestion;
@@ -244,12 +251,12 @@ public class EstudianteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel txtUser;
     // End of variables declaration//GEN-END:variables
 }

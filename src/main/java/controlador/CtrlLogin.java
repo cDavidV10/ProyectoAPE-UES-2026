@@ -5,6 +5,7 @@
 package controlador;
 
 import dao.UsuarioDAO;
+import modelo.Usuario;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -87,25 +88,28 @@ public class CtrlLogin {
 
     private void acceder() {
 
-        String username = this.loginView.getTxtUser().getText();
+        String username = this.loginView.getTxtUser().getText().toUpperCase();
         String password = String.valueOf(this.loginView.getTxtPassword().getPassword());
 
         try {
             String result = usuarioDAO.buscar(username, password);
+            Usuario usuario = usuarioDAO.getUsuario();
 
             if (result.equalsIgnoreCase("Administrador")) {
                 AdminView adminView = new AdminView();
-                CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView);
+                CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView, usuario);
                 adminView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
                 EstudianteView estudianteView = new EstudianteView();
+                CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario);
                 estudianteView.setVisible(true);
             }
 
             if (result.equalsIgnoreCase("Docente")) {
                 DocenteView docenteView = new DocenteView();
+                CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario);
                 docenteView.setVisible(true);
             }
 
@@ -113,10 +117,20 @@ public class CtrlLogin {
                 JOptionPane.showMessageDialog(loginView, "Usuario y/o contraseña incorrectos");
             }
 
+            limpiarForm();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(loginView, e.getMessage());
         }
 
+    }
+
+    private void limpiarForm() {
+        loginView.getTxtUser().setText("Ingrese su nombre de usuario");
+        loginView.getTxtPassword().setText("****");
+
+        loginView.getTxtUser().setForeground(new Color(170, 170, 170));
+        loginView.getTxtPassword().setForeground(new Color(170, 170, 170));
     }
 
 }

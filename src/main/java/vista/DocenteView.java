@@ -4,6 +4,11 @@
  */
 package vista;
 
+import funciones.Paneles;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author cdavi
@@ -16,6 +21,10 @@ public class DocenteView extends javax.swing.JFrame {
     public DocenteView() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        DocenteCursosAsignados docenteCursosAsign = new DocenteCursosAsignados();
+        //cargarTabla(estudiantesRegistrados);
+        new Paneles().insertarPaneles(docenteCursosAsign, jPanelDocente);
     }
 
     /**
@@ -35,10 +44,10 @@ public class DocenteView extends javax.swing.JFrame {
         btnCurso = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        txtUser = new javax.swing.JLabel();
+        jPanelDocente = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -59,7 +68,7 @@ public class DocenteView extends javax.swing.JFrame {
         jLabel2.setText("Docente");
 
         btnCurso.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnCurso.setText("Manejo de notas");
+        btnCurso.setText("Cursos Asignados");
         btnCurso.setPreferredSize(new java.awt.Dimension(200, 25));
         btnCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,9 +82,9 @@ public class DocenteView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(248, 250, 252));
         jLabel3.setText("Usuario Activo");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(248, 250, 252));
-        jLabel4.setText("DML26001");
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(248, 250, 252));
+        txtUser.setText("DML26001");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,7 +112,7 @@ public class DocenteView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
@@ -124,8 +133,19 @@ public class DocenteView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(txtUser)
                 .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelDocenteLayout = new javax.swing.GroupLayout(jPanelDocente);
+        jPanelDocente.setLayout(jPanelDocenteLayout);
+        jPanelDocenteLayout.setHorizontalGroup(
+            jPanelDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 995, Short.MAX_VALUE)
+        );
+        jPanelDocenteLayout.setVerticalGroup(
+            jPanelDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -134,14 +154,17 @@ public class DocenteView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1313, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 293, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,15 +209,38 @@ public class DocenteView extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getTxtUser() {
+        return txtUser;
+    }
+
+    public JButton getBtnCurso() {
+        return btnCurso;
+    }
+
+    public void setBtnCurso(JButton btnCurso) {
+        this.btnCurso = btnCurso;
+    }
+
+    public JPanel getjPanelDocente() {
+        return jPanelDocente;
+    }
+
+    public void setjPanelDocente(JPanel jPanelDocente) {
+        this.jPanelDocente = jPanelDocente;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelDocente;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel txtUser;
     // End of variables declaration//GEN-END:variables
 }

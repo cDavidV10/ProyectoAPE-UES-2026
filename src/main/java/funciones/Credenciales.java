@@ -11,12 +11,14 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 /**
  *
  * @author MINEDUCYT
  */
 public class Credenciales {
-    public final void registrarCredenciales(String nombre, String apellido, String tipo, String dui)
+    public final void registrarCredenciales(String nombre, String apellido, String tipo, String dui, String correo)
             throws SQLException {
         // verifica si el que se registra tiene coincidencias en los nombres para
         // generar el usuario
@@ -25,11 +27,21 @@ public class Credenciales {
         // crea el usuario apartir de los resultados de la busqueda de coincidencia de
         // usuario
         String nuevoUsuario = crearUsuario(user, nombre, apellido, tipo);
-        String newPassword = crearContraseña();
+        String password = crearContraseña();
+        String bdPassword = BCrypt.withDefaults().hashToString(12,
+                password.toCharArray());
 
-        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, newPassword, tipo, dui);
-        String mensaje = String.format("Su usuario es: %s\nSu contraseña es: %s", nuevoUsuario, newPassword);
-        JOptionPane.showMessageDialog(null, mensaje);
+        new ConsultaRegistro().registrarCredenciales(nuevoUsuario, bdPassword, tipo, dui);
+
+        if (tipo.equalsIgnoreCase("Estudiante")) {
+            new Correos().correoCredencialesEstudiante(nombre, apellido, nuevoUsuario, password, correo);
+        }
+
+        if (tipo.equalsIgnoreCase("Docente")) {
+            new Correos().correoCredencialesDocentes(nombre, apellido, nuevoUsuario, password, correo);
+        }
+
+        JOptionPane.showMessageDialog(null, "Usuario y contraseña creados correctamente");
     }
 
     private String crearUsuario(String ultimoUser, String nombre, String apellido, String tipo) throws SQLException {
@@ -59,11 +71,11 @@ public class Credenciales {
     }
 
     private String crearContraseña() {
-        String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String alfabeto = "0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(5);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             int indiceAlfabet = random.nextInt(alfabeto.length());
             sb.append(alfabeto.charAt(indiceAlfabet));
         }
