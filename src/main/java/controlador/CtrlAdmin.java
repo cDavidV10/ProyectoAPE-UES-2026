@@ -90,9 +90,9 @@ public class CtrlAdmin {
             for (Estudiante e : lista) {
                 modelo.addRow(new Object[] {
                         e.getIdEstudiante(),
+                        e.getDui(),
                         e.getNombre(),
                         e.getApellido(),
-                        e.getDui(),
                         e.getFechaNacimiento(),
                         e.getCorreo()
                 });
