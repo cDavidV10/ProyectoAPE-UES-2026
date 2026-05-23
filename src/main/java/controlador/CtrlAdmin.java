@@ -17,7 +17,7 @@ import funciones.Paneles;
 import funciones.UsuarioActivo;
 
 import java.awt.event.WindowEvent;
-import modelo.ModelRegEstu;
+import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
 import vista.AdministrarCursos;
@@ -86,8 +86,8 @@ public class CtrlAdmin {
         modelo.setRowCount(0);
 
         try {
-            List<ModelRegEstu> lista = dao.listar();
-            for (ModelRegEstu e : lista) {
+            List<Estudiante> lista = dao.listar();
+            for (Estudiante e : lista) {
                 modelo.addRow(new Object[] {
                         e.getIdEstudiante(),
                         e.getNombre(),
