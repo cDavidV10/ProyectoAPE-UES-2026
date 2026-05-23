@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,30 +12,25 @@ import java.util.Date;
  * @author Yonathan
  */
 public class InicioCurso {
-    private int idInicioCurso;
     private Date fechaApertura;
     private Date fechaCierre;
     private String cupoMaximo;
+    // ? Clases Relacionadas
+    private Curso cursos;
+    private Docente docente;
+    private ArrayList<Horario> horario;
+    private ArrayList<Inscripcion> inscripciones;
 
     public InicioCurso() {
     }
 
-    public InicioCurso(Integer idInicioCurso, Date fechaApertura, Date fechaCierre, String cupoMaximo) {
-        this.idInicioCurso = idInicioCurso;
+    public InicioCurso(Date fechaApertura, Date fechaCierre, String cupoMaximo) {
         this.fechaApertura = fechaApertura;
         this.fechaCierre = fechaCierre;
         this.cupoMaximo = cupoMaximo;
     }
-    
-    //SETTER Y GETTER
 
-    public Integer getIdInicioCurso() {
-        return idInicioCurso;
-    }
-
-    public void setIdInicioCurso(Integer idInicioCurso) {
-        this.idInicioCurso = idInicioCurso;
-    }
+    // SETTER Y GETTER
 
     public Date getFechaApertura() {
         return fechaApertura;
@@ -59,7 +55,37 @@ public class InicioCurso {
     public void setCupoMaximo(String cupoMaximo) {
         this.cupoMaximo = cupoMaximo;
     }
-    
-    
+
+    public Curso getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(Curso cursos) {
+        this.cursos = cursos;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
+
+    public ArrayList<Horario> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(ArrayList<Horario> horario) {
+        this.horario = horario;
+    }
+
+    public ArrayList<Inscripcion> getInscripciones() {
+        return inscripciones;
+    }
+
+    public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
+        this.inscripciones = inscripciones;
+    }
 
 }
