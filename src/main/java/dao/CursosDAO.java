@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conexion.Conexion;
-import modelo.Cursos;
+import modelo.Curso;
 
 /**
  *
@@ -26,7 +26,7 @@ public class CursosDAO {
     private static final String UPDATE = "UPDATE curso SET nombre = ?, descripcion = ? WHERE id_curso = ?";
     private static final String DELETE = "DELETE FROM curso WHERE id_curso = ?";
 
-    public void insertar(Cursos c) throws Exception {
+    public void insertar(Curso c) throws Exception {
 
         try {
             Connection conn = Conexion.getConexion();
@@ -50,13 +50,13 @@ public class CursosDAO {
         }
     }
 
-    public List<Cursos> listar() throws Exception {
-        List<Cursos> lista = new ArrayList<>();
+    public List<Curso> listar() throws Exception {
+        List<Curso> lista = new ArrayList<>();
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(SELECT_ALL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            Cursos c = new Cursos();
+            Curso c = new Curso();
             c.setIdCurso(rs.getInt("id_curso"));
             c.setCodigo(rs.getString("codigo"));
             c.setNombreCurso(rs.getString("nombre"));
@@ -78,7 +78,7 @@ public class CursosDAO {
         }
     }
 
-    public void actualizar(Cursos c) throws Exception {
+    public void actualizar(Curso c) throws Exception {
         Connection conn = Conexion.getConexion();
         try {
             conn.setAutoCommit(false);
@@ -97,8 +97,8 @@ public class CursosDAO {
         }
     }
 
-    public Cursos buscar(int idCurso) throws Exception {
-        Cursos c = null;
+    public Curso buscar(int idCurso) throws Exception {
+        Curso c = null;
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(
                 "SELECT * FROM public.curso WHERE id_curso = ?");
@@ -107,7 +107,7 @@ public class CursosDAO {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            c = new Cursos();
+            c = new Curso();
             c.setIdCurso(rs.getInt("id_curso"));
             c.setNombreCurso(rs.getString("nombre"));
             c.setDescripcion(rs.getString("descripcion"));
