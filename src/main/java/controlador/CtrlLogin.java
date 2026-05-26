@@ -97,20 +97,23 @@ public class CtrlLogin {
 
             if (result.equalsIgnoreCase("Administrador")) {
                 AdminView adminView = new AdminView();
-                CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView, usuario);
+                CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView, usuario, loginView);
                 adminView.setVisible(true);
+                loginView.dispose();
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
                 EstudianteView estudianteView = new EstudianteView();
                 CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario);
                 estudianteView.setVisible(true);
+                loginView.dispose();
             }
 
             if (result.equalsIgnoreCase("Docente")) {
                 DocenteView docenteView = new DocenteView();
                 CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario);
                 docenteView.setVisible(true);
+                loginView.dispose();
             }
 
             if (result.equalsIgnoreCase("No")) {

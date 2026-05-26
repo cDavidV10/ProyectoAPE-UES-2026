@@ -22,6 +22,7 @@ import modelo.Usuario;
 import vista.AdminView;
 import vista.AdministrarCursos;
 import vista.DocentePrincipalView;
+import vista.Login;
 import vista.VistaEstudiantesRegistrados;
 
 /**
@@ -30,12 +31,14 @@ import vista.VistaEstudiantesRegistrados;
  */
 public class CtrlAdmin {
     AdminView adminView;
+    private Login login;
     RegEstuDAO dao = new RegEstuDAO();
     Usuario usuario;
 
-    public CtrlAdmin(AdminView adminView, Usuario usuario) {
+    public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
         this.usuario = usuario;
+        this.login = login;
 
         adminView.addWindowListener(new WindowAdapter() {
             @Override
@@ -77,6 +80,13 @@ public class CtrlAdmin {
                 new Paneles().insertarPaneles(estudiantesRegistrados, adminView.getBgPanel());
             }
 
+        });
+
+        this.adminView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                login.setVisible(true);
+            }
         });
 
     }
