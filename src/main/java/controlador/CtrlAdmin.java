@@ -30,10 +30,10 @@ import vista.VistaEstudiantesRegistrados;
  * @author cdavi
  */
 public class CtrlAdmin {
-    AdminView adminView;
+    private AdminView adminView;
     private Login login;
-    RegEstuDAO dao = new RegEstuDAO();
-    Usuario usuario;
+    private RegEstuDAO dao = new RegEstuDAO();
+    private Usuario usuario;
 
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;

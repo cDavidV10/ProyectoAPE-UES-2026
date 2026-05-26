@@ -7,8 +7,8 @@ import modelo.Usuario;
 import vista.DocenteView;
 
 public class CtrlDocenteView {
-    DocenteView docenteView;
-    Usuario usuario;
+    private DocenteView docenteView;
+    private Usuario usuario;
 
     public CtrlDocenteView(DocenteView docenteView, Usuario usuario) {
         this.docenteView = docenteView;
