@@ -64,17 +64,17 @@ public class ConsultaRegistro implements ICredencialesDAO {
 
         if (tipo.equals("Administrador")) {
             INSERT = "INSERT INTO usuario (username, password, tipo, id_estudiante, id_docente, id_admind) " +
-                    "SELECT ?, ?, ?, null, null, a.id_admind " +
+                    "SELECT ?, ?, ?::tipos, null, null, a.id_admind " +
                     "FROM administrador a WHERE a.dui = ?";
 
         } else if (tipo.equals("Docente")) {
             INSERT = "INSERT INTO usuario (username, password, tipo, id_estudiante, id_docente, id_admind) " +
-                    "SELECT ?, ?, ?, null, d.id_docente, null " +
+                    "SELECT ?, ?, ?::tipos, null, d.id_docente, null " +
                     "FROM docente d WHERE d.dui = ?";
 
         } else if (tipo.equals("Estudiante")) {
             INSERT = "INSERT INTO usuario (username, password, tipo, id_estudiante, id_docente, id_admind) " +
-                    "SELECT ?, ?, ?, e.id_estudiante, null, null " +
+                    "SELECT ?, ?, ?::tipos, e.id_estudiante, null, null " +
                     "FROM estudiante e WHERE e.dui = ?";
         }
 
