@@ -8,7 +8,7 @@ import java.util.List;
 
 import conexion.Conexion;
 import interfaz.IEstudianteDAO;
-import modelo.ModelRegEstu;
+import modelo.Estudiante;
 
 public class RegEstuDAO implements IEstudianteDAO{
     
@@ -37,7 +37,7 @@ private static final String INSERT =
         return id;
     }
 
-    public void insertar(ModelRegEstu e) throws Exception {
+    public void insertar(Estudiante e) throws Exception {
         Connection conn = Conexion.getConexion();
         try {
             conn.setAutoCommit(false);
@@ -57,7 +57,7 @@ private static final String INSERT =
         }
     }
 
-    public void actualizar(ModelRegEstu e) throws Exception {
+    public void actualizar(Estudiante e) throws Exception {
         Connection conn = Conexion.getConexion();
         try {
             conn.setAutoCommit(false);
@@ -94,13 +94,13 @@ private static final String INSERT =
         }
     }
 
-    public List<ModelRegEstu> listar() throws Exception {
-        List<ModelRegEstu> lista = new ArrayList<>();
+    public List<Estudiante> listar() throws Exception {
+        List<Estudiante> lista = new ArrayList<>();
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(SELECT_ALL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            ModelRegEstu e = new ModelRegEstu();
+            Estudiante e = new Estudiante();
             e.setIdEstudiante(rs.getInt("id_estudiante"));
             e.setDui(rs.getString("dui"));
             e.setNombre(rs.getString("nombre"));
@@ -113,14 +113,14 @@ private static final String INSERT =
         return lista;
     }
 
-    public ModelRegEstu buscar(int idEstudiante) throws Exception {
+    public Estudiante buscar(int idEstudiante) throws Exception {
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(SELECT_ID);
         ps.setInt(1, idEstudiante);
         ResultSet rs = ps.executeQuery();
-        ModelRegEstu e = null;
+        Estudiante e = null;
         if (rs.next()) {
-            e = new ModelRegEstu();
+            e = new Estudiante();
             e.setIdEstudiante(rs.getInt("id_estudiante"));
             e.setDui(rs.getString("dui"));
             e.setNombre(rs.getString("nombre"));

@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.RegEstuDAO;
 import funciones.Credenciales;
-import modelo.ModelRegEstu;
+import modelo.Estudiante;
 
 import vista.VistaEstudiantesRegistrados;
 import vista.VistaRegEstu;
@@ -40,7 +40,7 @@ public class ControllerRegEstu {
         if (!validarCampos())
             return;
         try {
-            ModelRegEstu e = new ModelRegEstu();
+            Estudiante e = new Estudiante();
             e.setDui(vista.txtDui.getText().trim());
             e.setNombre(vista.txtNombre.getText().trim());
             e.setApellido(vista.txtApellido.getText().trim());

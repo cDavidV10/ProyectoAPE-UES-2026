@@ -34,7 +34,7 @@ public class CtrlDocente {
          * onClickBuscar();
          */
     }
-    
+
     public void onClickAgregar() {
         vistaPrincipal.getBtnNuevoDocente().addActionListener(e -> {
 
@@ -58,8 +58,8 @@ public class CtrlDocente {
 
                     // Crear objeto Docente
                     Docente docente = new Docente(0, dui, nombre, apellido, correo, telefono, fechaSeleccionada,
-                    tipoContrato, especialidad, gradoAcademico);
-                    
+                            tipoContrato, especialidad, gradoAcademico);
+
                     // Validar y guardar
                     validar(docente);
 
@@ -70,7 +70,8 @@ public class CtrlDocente {
                     dao.insertar(docente);
 
                     JOptionPane.showMessageDialog(null, "Docente guardado correctamente");
-                    credenciales.registrarCredenciales(nombre, apellido, "Docente", dui, correo);
+                    credenciales.registrarCredenciales(docente.getNombre(), docente.getApellido(), "Docente",
+                            docente.getDui(), docente.getCorreo());
                     cargarTabla(); // Actualizando la tabla
                     formDocente.dispose();
 
