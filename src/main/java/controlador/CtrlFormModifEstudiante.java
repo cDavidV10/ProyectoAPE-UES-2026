@@ -5,6 +5,10 @@
 package controlador;
 
 import dao.EstudianteDAO;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import javax.swing.JOptionPane;
 import modelo.Estudiante;
 import vista.VistaFormModifEstudiante;
@@ -16,39 +20,55 @@ import vista.VistaFormModifEstudiante;
 public class CtrlFormModifEstudiante {
     private VistaFormModifEstudiante viewEstudiante;
     private Estudiante estudModif;
-    
+
     public CtrlFormModifEstudiante(VistaFormModifEstudiante vieew) {
         viewEstudiante = vieew;
-        
-        viewEstudiante.getBtnGuardar().addActionListener(e ->{
+
+        viewEstudiante.getBtnGuardar().addActionListener(e -> {
             guardarDatosE();
         });
         viewEstudiante.getBtnCancelar().addActionListener(e -> {
             viewEstudiante.setVisible(false);
         });
     }
-    
+
     public void traerDatosE(Estudiante d) {
         estudModif = d;
         viewEstudiante.setTxtDui(d.getDui());
         viewEstudiante.setTxtNombres(d.getNombre());
         viewEstudiante.setTxtApellidos(d.getApellido());
-        viewEstudiante.setJdFechaNaci(new java.sql.Date(d.getFechaNacimiento().getTime()));
+        java.util.Date dateChooser = viewEstudiante.getJdFechaNaci().getDate();
+
+        if (dateChooser != null) {
+            LocalDate fecha = dateChooser.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+        }
+
         viewEstudiante.setTxtCorreo(d.getCorreo());
     }
-    
-    private void guardarDatosE(){
+
+    private void guardarDatosE() {
         boolean modificado;
         java.util.Date fechaNacimiento;
-        
-        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de modificar los datos?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if (respuesta == JOptionPane.YES_OPTION){
+
+        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de modificar los datos?", "Confirmar",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
             try {
                 estudModif.setNombre(viewEstudiante.getTxtNombres().getText());
                 estudModif.setApellido(viewEstudiante.getTxtApellidos().getText());
-                fechaNacimiento = viewEstudiante.getJdFechaNaci().getDate();
-                estudModif.setFechaNacimiento(new java.util.Date(fechaNacimiento.getTime()));
+
+                java.util.Date dateChooser = viewEstudiante.getJdFechaNaci().getDate();
+
+                if (dateChooser != null) {
+                    LocalDate fecha = dateChooser.toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate();
+                    estudModif.setFechaNacimiento(fecha);
+                }
+
                 estudModif.setCorreo(viewEstudiante.getTxtCorreo().getText());
 
                 modificado = new EstudianteDAO().modificarDatos(estudModif);

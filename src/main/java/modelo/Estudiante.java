@@ -2,10 +2,7 @@
 package modelo;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
 
 public class Estudiante {
     private int idEstudiante;
@@ -14,17 +11,12 @@ public class Estudiante {
     private String apellido;
     private LocalDate fechaNacimiento;
     private String correo;
-<<<<<<< HEAD
-
-    public Estudiante() {}
-=======
     // ? Clases Relacionadas
     private Usuario usuario;
     private ArrayList<Inscripcion> inscripciones;
 
     public Estudiante() {
     }
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
 
     public Estudiante(int idEstudiante, String dui, String nombre,
             String apellido, LocalDate fechaNacimiento, String correo) {
@@ -36,25 +28,6 @@ public class Estudiante {
         this.correo = correo;
     }
 
-<<<<<<< HEAD
-    public int getIdEstudiante() { return idEstudiante; }
-    public void setIdEstudiante(int idEstudiante) { this.idEstudiante = idEstudiante; }
-
-    public String getDui() { return dui; }
-    public void setDui(String dui) { this.dui = dui; }
-
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
-
-    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
-    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
-
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
-=======
     public int getIdEstudiante() {
         return idEstudiante;
     }
@@ -118,7 +91,6 @@ public class Estudiante {
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
 
     @Override
     public String toString() {

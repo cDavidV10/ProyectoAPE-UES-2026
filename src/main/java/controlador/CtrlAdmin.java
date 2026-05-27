@@ -22,11 +22,8 @@ import modelo.Usuario;
 import vista.AdminView;
 import vista.AdministrarCursos;
 import vista.DocentePrincipalView;
-<<<<<<< HEAD
 import vista.VistaCredenciales;
-=======
 import vista.Login;
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
 import vista.VistaEstudiantesRegistrados;
 
 /**
@@ -34,17 +31,11 @@ import vista.VistaEstudiantesRegistrados;
  * @author cdavi
  */
 public class CtrlAdmin {
-<<<<<<< HEAD
 
     AdminView adminView;
     EstudianteDAO dao = new EstudianteDAO();
     Usuario usuario;
-=======
-    private AdminView adminView;
-    private Login login;
-    private RegEstuDAO dao = new RegEstuDAO();
-    private Usuario usuario;
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
+    Login login;
 
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
@@ -93,8 +84,7 @@ public class CtrlAdmin {
 
         });
 
-<<<<<<< HEAD
-        adminView.getBtnCredencialess().addActionListener(new ActionListener(){
+        adminView.getBtnCredencialess().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 VistaCredenciales credenciales = new VistaCredenciales();
@@ -102,15 +92,6 @@ public class CtrlAdmin {
                 new Paneles().insertarPaneles(credenciales, adminView.getBgPanel());
             }
         });
-=======
-        this.adminView.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                login.setVisible(true);
-            }
-        });
-
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
     }
 
     private void cargarTabla(VistaEstudiantesRegistrados vistaTabla) {
@@ -121,15 +102,6 @@ public class CtrlAdmin {
         try {
             List<Estudiante> lista = dao.listar();
             for (Estudiante e : lista) {
-<<<<<<< HEAD
-                modelo.addRow(new Object[]{
-                    e.getIdEstudiante(),
-                    e.getNombre(),
-                    e.getApellido(),
-                    e.getDui(),
-                    e.getFechaNacimiento(),
-                    e.getCorreo()
-=======
                 modelo.addRow(new Object[] {
                         e.getIdEstudiante(),
                         e.getDui(),
@@ -137,7 +109,6 @@ public class CtrlAdmin {
                         e.getApellido(),
                         e.getFechaNacimiento(),
                         e.getCorreo()
->>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
                 });
             }
         } catch (Exception ex) {
