@@ -7,7 +7,6 @@ package dao;
 import conexion.Conexion;
 import interfaz.IDocenteDAO;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -26,7 +25,7 @@ public class DocenteDAO implements IDocenteDAO {
     private static final String INSERT = "INSERT INTO docente (dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT id_docente, dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico FROM docente";
 
-    public void insertar(Docente docente) throws Exception {
+     public void insertar(Docente docente) throws Exception {
 
         Connection conn = Conexion.getConexion();// Metodo getConexion() que tengo en mi clase conexion
 
@@ -95,4 +94,65 @@ public class DocenteDAO implements IDocenteDAO {
         return lista;
     }
 
+    public Object buscarRegistro(String buscar) {
+        final String SELECT = "Select * from docente where dui = ?";
+        Docente encontrado = null;
+        try {
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(SELECT);
+            ps.setString(1, buscar);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                encontrado = new Docente();
+                encontrado.setIdDocente(rs.getInt("id_docente"));
+                encontrado.setNombre(rs.getString("nombre"));
+                encontrado.setDui(rs.getString("dui"));
+                encontrado.setNombre(rs.getString("nombre"));
+                encontrado.setApellido(rs.getString("apellido"));
+                encontrado.setCorreo(rs.getString("correo"));
+                encontrado.setTelefono(rs.getString("telefono"));
+                encontrado.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+                encontrado.setTipoContrato(rs.getString("tipo_contrato"));
+                encontrado.setEspecialidad(rs.getString("especialidad"));
+                encontrado.setGradoAcademico(rs.getString("grado_academico"));
+            }else{
+                return 0;
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error-Docente");
+        }
+        return encontrado;
+    }
+
+    public boolean modificarDatos(Docente docentAModif) {
+        final String UPDATE = "UPDATE docente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, tipo_contrato = ?, especialidad = ?, grado_academico = ? WHERE id_docente = ?";
+
+        try {
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(UPDATE);
+            ps.setString(1, docentAModif.getNombre());
+            ps.setString(2, docentAModif.getApellido());
+            ps.setString(3, docentAModif.getCorreo());
+            ps.setString(4, docentAModif.getTelefono());
+            ps.setObject(5, docentAModif.getFechaNacimiento());
+            ps.setString(6, docentAModif.getTipoContrato());
+            ps.setString(7, docentAModif.getEspecialidad());
+            ps.setString(8, docentAModif.getGradoAcademico());
+            ps.setInt(9, docentAModif.getIdDocente());
+
+            int filaAfectada = ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+            return filaAfectada > 0;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Algo salio mal en la modificacion-Docente");
+            return false;
+        }
+    }
 }

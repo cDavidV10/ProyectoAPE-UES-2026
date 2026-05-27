@@ -6,9 +6,28 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.time.LocalDate;
 import conexion.Conexion;
 import interfaz.IEstudianteDAO;
+<<<<<<< HEAD:src/main/java/dao/EstudianteDAO.java
+import javax.swing.JOptionPane;
+import modelo.Estudiante;
+
+public class EstudianteDAO implements IEstudianteDAO{
+    
+private static final String INSERT =
+        "INSERT INTO estudiante (dui, nombre, apellido, fecha_nacimiento, correo) VALUES (?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL =
+        "SELECT * FROM estudiante ORDER BY id_estudiante";
+    private static final String SELECT_ID =
+        "SELECT * FROM estudiante WHERE id_estudiante = ?";
+    private static final String UPDATE =
+        "UPDATE estudiante SET dui = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
+    private static final String DELETE =
+        "DELETE FROM estudiante WHERE id_estudiante = ?";
+    private static final String SELECT_MAX_ID =
+        "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
+=======
 import modelo.Estudiante;
 
 public class RegEstuDAO implements IEstudianteDAO {
@@ -19,6 +38,7 @@ public class RegEstuDAO implements IEstudianteDAO {
     private static final String UPDATE = "UPDATE estudiante SET dui = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
     private static final String DELETE = "DELETE FROM estudiante WHERE id_estudiante = ?";
     private static final String SELECT_MAX_ID = "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
+>>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20:src/main/java/dao/RegEstuDAO.java
 
     public int generarId() throws Exception {
         Connection conn = Conexion.getConexion();
@@ -126,5 +146,57 @@ public class RegEstuDAO implements IEstudianteDAO {
         conn.close();
         return e;
     }
-
+    
+    public Object buscarRegistro(String buscar){
+        final String SELECT = "SELECT * FROM estudiante WHERE dui = ?";
+        Estudiante encontrado = null;
+        try{
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(SELECT);
+            ps.setString(1, buscar);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                encontrado = new Estudiante();
+                encontrado.setDui(rs.getString("dui"));
+                encontrado.setNombre(rs.getString("nombre"));
+                encontrado.setApellido(rs.getString("apellido"));
+                encontrado.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+                encontrado.setCorreo(rs.getString("correo"));
+                encontrado.setIdEstudiante(rs.getInt("id_estudiante"));
+            }
+            
+            rs.close();
+            ps.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocurrio un error-Estudiante");
+            return 0;
+        }
+        return encontrado;
+    }
+    
+    public boolean modificarDatos(Estudiante estudAModif){
+        final String UPDATE = "UPDATE estudiante SET nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
+        
+        try{
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(UPDATE);
+            ps.setString(1, estudAModif.getNombre());
+            ps.setString(2, estudAModif.getApellido());
+            ps.setObject(3, estudAModif.getFechaNacimiento());
+            ps.setString(4, estudAModif.getCorreo());
+            ps.setInt(5, estudAModif.getIdEstudiante());
+            
+            int filaAfectada = ps.executeUpdate();
+            
+            ps.close();
+            conn.close();
+            return filaAfectada > 0;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Algo salio mal en la modificacion-Estudiante");
+            return false;
+        }
+    }
 }

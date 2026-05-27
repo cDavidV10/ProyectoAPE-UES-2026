@@ -24,7 +24,7 @@ public class DocenteCursosDAO implements IDocenteCursosDAO {
 
     @Override
     public List<Object[]> listarCursosxDocente(int idDocente) throws Exception {
-                List<Object[]> lista = new ArrayList<>();
+        List<Object[]> lista = new ArrayList<>();
 
         try (Connection conn = Conexion.getConexion(); 
             PreparedStatement ps = conn.prepareStatement(SELECT)) {

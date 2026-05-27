@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import dao.RegEstuDAO;
+import dao.EstudianteDAO;
 import funciones.Credenciales;
 import modelo.Estudiante;
 
@@ -18,12 +18,12 @@ import vista.VistaRegEstu;
 public class ControllerRegEstu {
 
     private final VistaRegEstu vista;
-    private final RegEstuDAO dao;
+    private final EstudianteDAO dao;
     private Credenciales credenciales = new Credenciales();
 
     public ControllerRegEstu(VistaRegEstu vista) {
         this.vista = vista;
-        this.dao = new RegEstuDAO();
+        this.dao = new EstudianteDAO();
         iniciarEventos();
     }
 
