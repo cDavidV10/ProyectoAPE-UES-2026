@@ -8,7 +8,7 @@ import dao.DocenteCursosDAO;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import vista.DocenteCursoDetalleView;
 import vista.DocenteCursosAsignados;
 
 /**
@@ -54,11 +54,10 @@ public class ControladorDocenteE {
             String cupo = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 5);
 
             // vista de detalles
-            /*
-            CursoDetalleView detalleView = new CursoDetalleView();
-            detalleView.mostrarDetalle(codigo, nombre, descripcion, apertura, cierre, cupo);
+            DocenteCursoDetalleView detalleView = new DocenteCursoDetalleView();
+            //detalleView.mostrarDetalle(codigo, nombre, descripcion, apertura, cierre, cupo);
             detalleView.setVisible(true);
-            */
+     
         });
 
         // Botón Regresar
