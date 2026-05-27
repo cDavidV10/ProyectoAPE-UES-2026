@@ -1,6 +1,7 @@
 package controlador;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,11 +46,14 @@ public class ControllerRegEstu {
             e.setNombre(vista.txtNombre.getText().trim());
             e.setApellido(vista.txtApellido.getText().trim());
 
-            // Convertir fecha del JDateChooser a java.sql.Date
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(vista.JdFechaNaci.getDate());
-            Date fecha = new Date(cal.getTimeInMillis());
-            e.setFechaNacimiento(fecha);
+            java.util.Date dateChooser = vista.JdFechaNaci.getDate();
+
+            if (dateChooser != null) {
+                LocalDate fecha = dateChooser.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+                e.setFechaNacimiento(fecha); // Ahora tu setter recibe LocalDate
+            }
 
             e.setCorreo(vista.txtCorreo.getText().trim());
             dao.insertar(e);
