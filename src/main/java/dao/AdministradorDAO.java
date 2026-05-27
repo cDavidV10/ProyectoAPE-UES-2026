@@ -5,32 +5,38 @@
 package dao;
 
 import interfaz.IAdministradorDAO;
+import modelo.Administrador;
+
 import java.util.ArrayList;
 
 /**
  *
  * @author MINEDUCYT
  */
-public class AdministradorDAO implements IAdministradorDAO{
+public class AdministradorDAO implements IAdministradorDAO {
 
     @Override
-    public boolean crearRegistro(Object a) throws Object {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean crearRegistro(Administrador a) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'crearRegistro'");
     }
 
     @Override
-    public boolean modificarRegistro(Object a) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean modificarRegistro(Administrador a) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'modificarRegistro'");
     }
 
     @Override
     public ArrayList listarRegistros() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarRegistros'");
     }
 
     @Override
-    public boolean desactivarRegistro(Object a) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean desactivarRegistro(Administrador a) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'desactivarRegistro'");
     }
-    
+
 }
