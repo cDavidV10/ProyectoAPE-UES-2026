@@ -4,7 +4,8 @@
  */
 package modelo;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,15 +18,19 @@ public class Docente {
     private String apellido;
     private String correo;
     private String telefono;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String tipoContrato;
     private String especialidad;
     private String gradoAcademico;
+    // ? Clases Relacionadas
+    private Usuario usuario;
+    private ArrayList<InicioCurso> inicioCursos;
 
     public Docente() {
     }
 
-    public Docente(int idDocente, String dui, String nombre, String apellido, String correo, String telefono, Date fechaNacimiento, String tipoContrato, String especialidad, String gradoAcademico) {
+    public Docente(int idDocente, String dui, String nombre, String apellido, String correo, String telefono,
+            LocalDate fechaNacimiento, String tipoContrato, String especialidad, String gradoAcademico) {
         this.idDocente = idDocente;
         this.dui = dui;
         this.nombre = nombre;
@@ -38,8 +43,8 @@ public class Docente {
         this.gradoAcademico = gradoAcademico;
     }
 
-    //GETTER
-    
+    // GETTER
+
     public int getIdDocente() {
         return idDocente;
     }
@@ -64,7 +69,7 @@ public class Docente {
         return telefono;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -79,8 +84,8 @@ public class Docente {
     public String getGradoAcademico() {
         return gradoAcademico;
     }
-    
-    //SETTER
+
+    // SETTER
 
     public void setIdDocente(int idDocente) {
         this.idDocente = idDocente;
@@ -106,7 +111,7 @@ public class Docente {
         this.telefono = telefono;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -121,6 +126,22 @@ public class Docente {
     public void setGradoAcademico(String gradoAcademico) {
         this.gradoAcademico = gradoAcademico;
     }
-    
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public ArrayList<InicioCurso> getInicioCursos() {
+        return inicioCursos;
+    }
+
+    public void setInicioCursos(ArrayList<InicioCurso> inicioCursos) {
+        this.inicioCursos = inicioCursos;
+    }
+
     
 }

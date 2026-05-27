@@ -1,20 +1,20 @@
 
 package modelo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-public class ModelRegEstu {
+public class Estudiante {
     private int idEstudiante;
     private String dui;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String correo;
 
-    public ModelRegEstu() {}
+    public Estudiante() {}
 
-    public ModelRegEstu(int idEstudiante, String dui, String nombre,
-            String apellido, Date fechaNacimiento, String correo) {
+    public Estudiante(int idEstudiante, String dui, String nombre,
+            String apellido, LocalDate fechaNacimiento, String correo) {
         this.idEstudiante = idEstudiante;
         this.dui = dui;
         this.nombre = nombre;
@@ -35,8 +35,8 @@ public class ModelRegEstu {
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
 
-    public Date getFechaNacimiento() { return fechaNacimiento; }
-    public void setFechaNacimiento(Date fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
+    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
+    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
 
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }

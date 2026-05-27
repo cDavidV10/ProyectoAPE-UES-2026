@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.time.LocalDate;
 import conexion.Conexion;
 import interfaz.IEstudianteDAO;
-import modelo.ModelRegEstu;
+import javax.swing.JOptionPane;
+import modelo.Estudiante;
 
-public class RegEstuDAO implements IEstudianteDAO{
+public class EstudianteDAO implements IEstudianteDAO{
     
 private static final String INSERT =
         "INSERT INTO estudiante (dui, nombre, apellido, fecha_nacimiento, correo) VALUES (?, ?, ?, ?, ?)";
@@ -37,7 +38,7 @@ private static final String INSERT =
         return id;
     }
 
-    public void insertar(ModelRegEstu e) throws Exception {
+    public void insertar(Estudiante e) throws Exception {
         Connection conn = Conexion.getConexion();
         try {
             conn.setAutoCommit(false);
@@ -45,7 +46,7 @@ private static final String INSERT =
             ps.setString(1, e.getDui());
             ps.setString(2, e.getNombre());
             ps.setString(3, e.getApellido());
-            ps.setDate(4, e.getFechaNacimiento());
+            ps.setObject(4, e.getFechaNacimiento());
             ps.setString(5, e.getCorreo());
             ps.executeUpdate();
             conn.commit();
@@ -57,7 +58,7 @@ private static final String INSERT =
         }
     }
 
-    public void actualizar(ModelRegEstu e) throws Exception {
+    public void actualizar(Estudiante e) throws Exception {
         Connection conn = Conexion.getConexion();
         try {
             conn.setAutoCommit(false);
@@ -65,7 +66,7 @@ private static final String INSERT =
             ps.setString(1, e.getDui());
             ps.setString(2, e.getNombre());
             ps.setString(3, e.getApellido());
-            ps.setDate(4, e.getFechaNacimiento());
+            ps.setObject(4, e.getFechaNacimiento());
             ps.setString(5, e.getCorreo());
             ps.setInt(6, e.getIdEstudiante());
             ps.executeUpdate();
@@ -94,18 +95,18 @@ private static final String INSERT =
         }
     }
 
-    public List<ModelRegEstu> listar() throws Exception {
-        List<ModelRegEstu> lista = new ArrayList<>();
+    public List<Estudiante> listar() throws Exception {
+        List<Estudiante> lista = new ArrayList<>();
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(SELECT_ALL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            ModelRegEstu e = new ModelRegEstu();
+            Estudiante e = new Estudiante();
             e.setIdEstudiante(rs.getInt("id_estudiante"));
             e.setDui(rs.getString("dui"));
             e.setNombre(rs.getString("nombre"));
             e.setApellido(rs.getString("apellido"));
-            e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+            e.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
             e.setCorreo(rs.getString("correo"));
             lista.add(e);
         }
@@ -113,23 +114,75 @@ private static final String INSERT =
         return lista;
     }
 
-    public ModelRegEstu buscar(int idEstudiante) throws Exception {
+    public Estudiante buscar(int idEstudiante) throws Exception {
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(SELECT_ID);
         ps.setInt(1, idEstudiante);
         ResultSet rs = ps.executeQuery();
-        ModelRegEstu e = null;
+        Estudiante e = null;
         if (rs.next()) {
-            e = new ModelRegEstu();
+            e = new Estudiante();
             e.setIdEstudiante(rs.getInt("id_estudiante"));
             e.setDui(rs.getString("dui"));
             e.setNombre(rs.getString("nombre"));
             e.setApellido(rs.getString("apellido"));
-            e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+            e.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
             e.setCorreo(rs.getString("correo"));
         }
         conn.close();
         return e;
     }
-
+    
+    public Object buscarRegistro(String buscar){
+        final String SELECT = "SELECT * FROM estudiante WHERE dui = ?";
+        Estudiante encontrado = null;
+        try{
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(SELECT);
+            ps.setString(1, buscar);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                encontrado = new Estudiante();
+                encontrado.setDui(rs.getString("dui"));
+                encontrado.setNombre(rs.getString("nombre"));
+                encontrado.setApellido(rs.getString("apellido"));
+                encontrado.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+                encontrado.setCorreo(rs.getString("correo"));
+                encontrado.setIdEstudiante(rs.getInt("id_estudiante"));
+            }
+            
+            rs.close();
+            ps.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocurrio un error-Estudiante");
+            return 0;
+        }
+        return encontrado;
+    }
+    
+    public boolean modificarDatos(Estudiante estudAModif){
+        final String UPDATE = "UPDATE estudiante SET nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
+        
+        try{
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(UPDATE);
+            ps.setString(1, estudAModif.getNombre());
+            ps.setString(2, estudAModif.getApellido());
+            ps.setObject(3, estudAModif.getFechaNacimiento());
+            ps.setString(4, estudAModif.getCorreo());
+            ps.setInt(5, estudAModif.getIdEstudiante());
+            
+            int filaAfectada = ps.executeUpdate();
+            
+            ps.close();
+            conn.close();
+            return filaAfectada > 0;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Algo salio mal en la modificacion-Estudiante");
+            return false;
+        }
+    }
 }
