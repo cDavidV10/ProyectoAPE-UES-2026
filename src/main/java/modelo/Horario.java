@@ -1,12 +1,12 @@
 package modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Horario {
     private int id;
     private String dia;
-    private Date horaInicio;
-    private Date horaFinal;
+    private LocalDate horaInicio;
+    private LocalDate horaFinal;
     // ? Clases Relaciondas
     private InicioCurso inicioCurso;
     private Aula aula;
@@ -14,7 +14,7 @@ public class Horario {
     public Horario() {
     }
 
-    public Horario(int id, String dia, Date horaInicio, Date horaFinal) {
+    public Horario(int id, String dia, LocalDate horaInicio, LocalDate horaFinal) {
         this.id = id;
         this.dia = dia;
         this.horaInicio = horaInicio;
@@ -37,19 +37,19 @@ public class Horario {
         this.dia = dia;
     }
 
-    public Date getHoraInicio() {
+    public LocalDate getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Date horaInicio) {
+    public void setHoraInicio(LocalDate horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Date getHoraFinal() {
+    public LocalDate getHoraFinal() {
         return horaFinal;
     }
 
-    public void setHoraFinal(Date horaFinal) {
+    public void setHoraFinal(LocalDate horaFinal) {
         this.horaFinal = horaFinal;
     }
 
@@ -68,7 +68,5 @@ public class Horario {
     public void setAula(Aula aula) {
         this.aula = aula;
     }
-    
-    
 
 }

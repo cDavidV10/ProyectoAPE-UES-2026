@@ -7,6 +7,8 @@ package controlador;
 import dao.DocenteDAO;
 import funciones.Credenciales;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Docente;
@@ -51,7 +53,12 @@ public class CtrlDocente {
                     String apellido = formDocente.getTxtApellido().getText().trim();
                     String correo = formDocente.getTxtCorreo().getText().trim();
                     String telefono = formDocente.getTxtTelefono().getText().trim();
-                    java.util.Date fechaSeleccionada = (java.util.Date) formDocente.getSpnFechaNacimiento().getValue();
+
+                    java.util.Date utilDate = (java.util.Date) formDocente.getSpnFechaNacimiento().getValue();
+
+                    LocalDate fechaSeleccionada = utilDate.toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate();
                     String tipoContrato = formDocente.getCbTipoContrato().getSelectedItem().toString();
                     String especialidad = formDocente.getCbEspecialidad().getSelectedItem().toString();
                     String gradoAcademico = formDocente.getCbGradoAcademico().getSelectedItem().toString();
@@ -134,7 +141,7 @@ public class CtrlDocente {
         if (docente.getFechaNacimiento() == null) {
             throw new Exception("Fecha de nacimiento requerida");
         }
-        if (docente.getFechaNacimiento().after(new java.util.Date())) {
+        if (docente.getFechaNacimiento().isAfter(LocalDate.now())) {
             throw new Exception("Fecha de nacimiento inválida (no puede ser futura)");
         }
 

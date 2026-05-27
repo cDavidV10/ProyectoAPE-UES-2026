@@ -5,15 +5,15 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
  * @author Yonathan
  */
 public class InicioCurso {
-    private Date fechaApertura;
-    private Date fechaCierre;
+    private LocalDate fechaApertura;
+    private LocalDate fechaCierre;
     private String cupoMaximo;
     // ? Clases Relacionadas
     private Curso cursos;
@@ -24,7 +24,7 @@ public class InicioCurso {
     public InicioCurso() {
     }
 
-    public InicioCurso(Date fechaApertura, Date fechaCierre, String cupoMaximo) {
+    public InicioCurso(LocalDate fechaApertura, LocalDate fechaCierre, String cupoMaximo) {
         this.fechaApertura = fechaApertura;
         this.fechaCierre = fechaCierre;
         this.cupoMaximo = cupoMaximo;
@@ -32,19 +32,19 @@ public class InicioCurso {
 
     // SETTER Y GETTER
 
-    public Date getFechaApertura() {
+    public LocalDate getFechaApertura() {
         return fechaApertura;
     }
 
-    public void setFechaApertura(Date fechaApertura) {
+    public void setFechaApertura(LocalDate fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 
-    public Date getFechaCierre() {
+    public LocalDate getFechaCierre() {
         return fechaCierre;
     }
 
-    public void setFechaCierre(Date fechaCierre) {
+    public void setFechaCierre(LocalDate fechaCierre) {
         this.fechaCierre = fechaCierre;
     }
 

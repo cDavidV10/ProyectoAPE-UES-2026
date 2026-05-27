@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,20 +11,14 @@ import conexion.Conexion;
 import interfaz.IEstudianteDAO;
 import modelo.Estudiante;
 
-public class RegEstuDAO implements IEstudianteDAO{
-    
-private static final String INSERT =
-        "INSERT INTO estudiante (dui, nombre, apellido, fecha_nacimiento, correo) VALUES (?, ?, ?, ?, ?)";
-    private static final String SELECT_ALL =
-        "SELECT * FROM estudiante ORDER BY id_estudiante";
-    private static final String SELECT_ID =
-        "SELECT * FROM estudiante WHERE id_estudiante = ?";
-    private static final String UPDATE =
-        "UPDATE estudiante SET dui = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
-    private static final String DELETE =
-        "DELETE FROM estudiante WHERE id_estudiante = ?";
-    private static final String SELECT_MAX_ID =
-        "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
+public class RegEstuDAO implements IEstudianteDAO {
+
+    private static final String INSERT = "INSERT INTO estudiante (dui, nombre, apellido, fecha_nacimiento, correo) VALUES (?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL = "SELECT * FROM estudiante ORDER BY id_estudiante";
+    private static final String SELECT_ID = "SELECT * FROM estudiante WHERE id_estudiante = ?";
+    private static final String UPDATE = "UPDATE estudiante SET dui = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
+    private static final String DELETE = "DELETE FROM estudiante WHERE id_estudiante = ?";
+    private static final String SELECT_MAX_ID = "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
 
     public int generarId() throws Exception {
         Connection conn = Conexion.getConexion();
@@ -45,7 +40,7 @@ private static final String INSERT =
             ps.setString(1, e.getDui());
             ps.setString(2, e.getNombre());
             ps.setString(3, e.getApellido());
-            ps.setDate(4, e.getFechaNacimiento());
+            ps.setObject(4, e.getFechaNacimiento());
             ps.setString(5, e.getCorreo());
             ps.executeUpdate();
             conn.commit();
@@ -65,7 +60,7 @@ private static final String INSERT =
             ps.setString(1, e.getDui());
             ps.setString(2, e.getNombre());
             ps.setString(3, e.getApellido());
-            ps.setDate(4, e.getFechaNacimiento());
+            ps.setObject(4, e.getFechaNacimiento());
             ps.setString(5, e.getCorreo());
             ps.setInt(6, e.getIdEstudiante());
             ps.executeUpdate();
@@ -105,7 +100,7 @@ private static final String INSERT =
             e.setDui(rs.getString("dui"));
             e.setNombre(rs.getString("nombre"));
             e.setApellido(rs.getString("apellido"));
-            e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+            e.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
             e.setCorreo(rs.getString("correo"));
             lista.add(e);
         }
@@ -125,7 +120,7 @@ private static final String INSERT =
             e.setDui(rs.getString("dui"));
             e.setNombre(rs.getString("nombre"));
             e.setApellido(rs.getString("apellido"));
-            e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+            e.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
             e.setCorreo(rs.getString("correo"));
         }
         conn.close();

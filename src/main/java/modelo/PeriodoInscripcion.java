@@ -1,12 +1,12 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PeriodoInscripcion {
     private int id;
-    private Date fechaApertura;
-    private Date fechaCierre;
+    private LocalDate fechaApertura;
+    private LocalDate fechaCierre;
     // ? Clases Relacionadas
     private Administrador administrador;
     private ArrayList<Inscripcion> inscripciones;
@@ -14,7 +14,7 @@ public class PeriodoInscripcion {
     public PeriodoInscripcion() {
     }
 
-    public PeriodoInscripcion(int id, Date fechaApertura, Date fechaCierre) {
+    public PeriodoInscripcion(int id, LocalDate fechaApertura, LocalDate fechaCierre) {
         this.id = id;
         this.fechaApertura = fechaApertura;
         this.fechaCierre = fechaCierre;
@@ -28,19 +28,19 @@ public class PeriodoInscripcion {
         this.id = id;
     }
 
-    public Date getFechaApertura() {
+    public LocalDate getFechaApertura() {
         return fechaApertura;
     }
 
-    public void setFechaApertura(Date fechaApertura) {
+    public void setFechaApertura(LocalDate fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 
-    public Date getFechaCierre() {
+    public LocalDate getFechaCierre() {
         return fechaCierre;
     }
 
-    public void setFechaCierre(Date fechaCierre) {
+    public void setFechaCierre(LocalDate fechaCierre) {
         this.fechaCierre = fechaCierre;
     }
 
@@ -59,6 +59,5 @@ public class PeriodoInscripcion {
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
-    
-    
+
 }
