@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -39,7 +40,7 @@ public class DocenteDAO implements IDocenteDAO {
             ps.setString(3, docente.getApellido());
             ps.setString(4, docente.getCorreo());
             ps.setString(5, docente.getTelefono());
-            ps.setDate(6, new java.sql.Date(docente.getFechaNacimiento().getTime()));
+            ps.setObject(6, docente.getFechaNacimiento());
             ps.setString(7, docente.getTipoContrato());
             ps.setString(8, docente.getEspecialidad());
             ps.setString(9, docente.getGradoAcademico());
@@ -84,7 +85,7 @@ public class DocenteDAO implements IDocenteDAO {
             docente.setApellido(rs.getString("apellido"));
             docente.setCorreo(rs.getString("correo"));
             docente.setTelefono(rs.getString("telefono"));
-            docente.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+            docente.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
             docente.setTipoContrato(rs.getString("tipo_contrato"));
             docente.setEspecialidad(rs.getString("especialidad"));
             docente.setGradoAcademico(rs.getString("grado_academico"));
