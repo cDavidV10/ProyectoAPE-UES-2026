@@ -13,6 +13,10 @@ public class Usuario {
     private String username;
     private String password;
     private String tipo;
+    // ? Clases Relacionadas
+    private Administrador administrador;
+    private Estudiante estudiante;
+    private Docente docente;
 
     public Usuario() {
     }
@@ -56,5 +60,28 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
+
 }

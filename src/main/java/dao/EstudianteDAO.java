@@ -3,11 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 import conexion.Conexion;
 import interfaz.IEstudianteDAO;
+<<<<<<< HEAD:src/main/java/dao/EstudianteDAO.java
 import javax.swing.JOptionPane;
 import modelo.Estudiante;
 
@@ -25,6 +27,18 @@ private static final String INSERT =
         "DELETE FROM estudiante WHERE id_estudiante = ?";
     private static final String SELECT_MAX_ID =
         "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
+=======
+import modelo.Estudiante;
+
+public class RegEstuDAO implements IEstudianteDAO {
+
+    private static final String INSERT = "INSERT INTO estudiante (dui, nombre, apellido, fecha_nacimiento, correo) VALUES (?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL = "SELECT * FROM estudiante ORDER BY id_estudiante";
+    private static final String SELECT_ID = "SELECT * FROM estudiante WHERE id_estudiante = ?";
+    private static final String UPDATE = "UPDATE estudiante SET dui = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
+    private static final String DELETE = "DELETE FROM estudiante WHERE id_estudiante = ?";
+    private static final String SELECT_MAX_ID = "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
+>>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20:src/main/java/dao/RegEstuDAO.java
 
     public int generarId() throws Exception {
         Connection conn = Conexion.getConexion();

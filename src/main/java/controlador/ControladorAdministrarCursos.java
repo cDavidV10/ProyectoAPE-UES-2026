@@ -2,7 +2,7 @@ package controlador;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Cursos;
+import modelo.Curso;
 import dao.CursosDAO;
 import vista.AdministrarCursos;
 import vista.RegistrarCursos;
@@ -34,7 +34,7 @@ public class ControladorAdministrarCursos {
     private void cargarTabla() {
         try {
             modelo.setRowCount(0);
-            for (Cursos c : dao.listar()) {
+            for (Curso c : dao.listar()) {
                 modelo.addRow(new Object[] {
                         c.getIdCurso(),
                         c.getCodigo(),
@@ -47,7 +47,7 @@ public class ControladorAdministrarCursos {
         }
     }
 
-    private void abrirFormulario(Cursos curso) {
+    private void abrirFormulario(Curso curso) {
         RegistrarCursos form = new RegistrarCursos();
         new ControladorRegistrarCursos(form, curso, this);
         form.setVisible(true);
@@ -63,7 +63,7 @@ public class ControladorAdministrarCursos {
 
         try {
             int id = (int) vista.getTblAdmin().getValueAt(fila, 0);
-            Cursos c = dao.buscar(id);
+            Curso c = dao.buscar(id);
 
             abrirFormulario(c);
 

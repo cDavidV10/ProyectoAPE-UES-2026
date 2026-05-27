@@ -6,7 +6,7 @@ package dao;
 
 import conexion.Conexion;
 import java.util.List;
-import modelo.Cursos;
+import modelo.Curso;
 import interfaz.IDocenteCursosDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -4,22 +4,24 @@
  */
 package modelo;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author alexi
  */
-public class Cursos {
-    int idCurso;
-    String Codigo;
-    String nombreCurso;
-    String descripcion;
+public class Curso {
+    private int idCurso;
+    private String Codigo;
+    private String nombreCurso;
+    private String descripcion;
+    // ? Clases Relacionadas
+    private ArrayList<InicioCurso> InicioCurso;
 
-    public Cursos() {
+    public Curso() {
     }
 
-    public Cursos(int idCurso, String codigo, String nombreCurso, String descripcion) {
+    public Curso(int idCurso, String codigo, String nombreCurso, String descripcion) {
         this.idCurso = idCurso;
         this.nombreCurso = nombreCurso;
         this.descripcion = descripcion;
@@ -55,6 +57,14 @@ public class Cursos {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public ArrayList<InicioCurso> getInicioCurso() {
+        return InicioCurso;
+    }
+
+    public void setInicioCurso(ArrayList<InicioCurso> InicioCurso) {
+        this.InicioCurso = InicioCurso;
     }
 
     @Override

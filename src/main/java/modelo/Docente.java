@@ -4,8 +4,13 @@
  */
 package modelo;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.time.LocalDate;
+=======
+import java.time.LocalDate;
+import java.util.ArrayList;
+>>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
 
 /**
  *
@@ -143,5 +148,9 @@ public class Docente {
         this.inicioCursos = inicioCursos;
     }
 
+<<<<<<< HEAD
     
 }
+=======
+}
+>>>>>>> f156827ddc6fd0f375e5e482803344a079ee6f20
