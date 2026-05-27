@@ -1,7 +1,7 @@
 
 package modelo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Estudiante {
@@ -9,7 +9,7 @@ public class Estudiante {
     private String dui;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String correo;
     // ? Clases Relacionadas
     private Usuario usuario;
@@ -19,7 +19,7 @@ public class Estudiante {
     }
 
     public Estudiante(int idEstudiante, String dui, String nombre,
-            String apellido, Date fechaNacimiento, String correo) {
+            String apellido, LocalDate fechaNacimiento, String correo) {
         this.idEstudiante = idEstudiante;
         this.dui = dui;
         this.nombre = nombre;
@@ -60,11 +60,11 @@ public class Estudiante {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -91,10 +91,6 @@ public class Estudiante {
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
-
-    
-    
-    
 
     @Override
     public String toString() {

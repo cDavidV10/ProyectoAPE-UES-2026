@@ -1,11 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Inscripcion {
     private int id;
-    private Date fechaInscripcion;
+    private LocalDate fechaInscripcion;
     private String estado;
     // ? Clases Relacionadas
     private Estudiante estudiante;
@@ -16,7 +16,7 @@ public class Inscripcion {
     public Inscripcion() {
     }
 
-    public Inscripcion(int id, Date fechaInscripcion, String estado) {
+    public Inscripcion(int id, LocalDate fechaInscripcion, String estado) {
         this.id = id;
         this.fechaInscripcion = fechaInscripcion;
         this.estado = estado;
@@ -30,11 +30,11 @@ public class Inscripcion {
         this.id = id;
     }
 
-    public Date getFechaInscripcion() {
+    public LocalDate getFechaInscripcion() {
         return fechaInscripcion;
     }
 
-    public void setFechaInscripcion(Date fechaInscripcion) {
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
 
@@ -78,5 +78,4 @@ public class Inscripcion {
         this.evaluaciones = evaluaciones;
     }
 
-    
 }

@@ -1,12 +1,12 @@
 package modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Evaluacion {
     private int id;
     private String tipo;
     private String descripcion;
-    private Date fechaRegistro;
+    private LocalDate fechaRegistro;
     private float nota;
     private int porcentaje;
     // ? Clases Relacionadas
@@ -15,7 +15,7 @@ public class Evaluacion {
     public Evaluacion() {
     }
 
-    public Evaluacion(int id, String tipo, Date fechaRegistro, float nota, int porcentaje) {
+    public Evaluacion(int id, String tipo, LocalDate fechaRegistro, float nota, int porcentaje) {
         this.id = id;
         this.tipo = tipo;
         this.fechaRegistro = fechaRegistro;
@@ -47,11 +47,11 @@ public class Evaluacion {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
@@ -78,6 +78,5 @@ public class Evaluacion {
     public void setInscripcion(Inscripcion inscripcion) {
         this.inscripcion = inscripcion;
     }
-    
-    
+
 }
