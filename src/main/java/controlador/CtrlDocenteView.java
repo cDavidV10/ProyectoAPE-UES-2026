@@ -42,7 +42,7 @@ public class CtrlDocenteView {
                 // Crear el controlador pasando el idDocente
                 new CtrlDocenteVerCursosAsignados(dao, docenteCursosAsign, idDocente);
 
-                new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getjPanelDocente());
+                new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getBgPanel());
             }
         });
 

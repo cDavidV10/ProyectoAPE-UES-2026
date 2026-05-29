@@ -27,7 +27,6 @@ import vista.VistaRegEstu;
 public class CtrlLogin {
     private Login loginView;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
-    
 
     public CtrlLogin(Login loginView) {
         this.loginView = loginView;
@@ -91,8 +90,8 @@ public class CtrlLogin {
 
         try {
             String result = usuarioDAO.buscar(username, password);
-            Usuario usuario = usuarioDAO.getUsuario();    
-            
+            Usuario usuario = usuarioDAO.getUsuario();
+
             if (result.equalsIgnoreCase("Administrador")) {
                 AdminView adminView = new AdminView();
                 CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView, usuario, loginView);
@@ -107,19 +106,20 @@ public class CtrlLogin {
                 loginView.dispose();
             }
 
-            if (result.equalsIgnoreCase("Docente")) {    
-                
+            if (result.equalsIgnoreCase("Docente")) {
+
                 DocenteDAO docenteDAO = new DocenteDAO();
 
                 modelo.Docente docente = docenteDAO.buscarIdPorUsuario(username);
 
                 // Guardar el id en el usuario
                 usuario.setDocente(docente);
-    
-                vista.DocenteView docenteView = new DocenteView();
+
+                DocenteView docenteView = new DocenteView();
                 CtrlDocente ctrlDocenteView = new CtrlDocente(docenteView, usuario);
 
-                //CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
+                // CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario,
+                // loginView);
                 docenteView.setVisible(true);
                 loginView.dispose();
             }

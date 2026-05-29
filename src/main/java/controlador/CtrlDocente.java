@@ -32,9 +32,9 @@ public class CtrlDocente {
                 new UsuarioActivo().cambiarLabelUsuario(docenteView.getTxtUser(), usuario);
 
                 // Limpia el panel al inicio
-                docenteView.getjPanelDocente().removeAll();
-                docenteView.getjPanelDocente().revalidate();
-                docenteView.getjPanelDocente().repaint();
+                docenteView.getBgPanel().removeAll();
+                docenteView.getBgPanel().revalidate();
+                docenteView.getBgPanel().repaint();
             }
         });
 
@@ -49,7 +49,7 @@ public class CtrlDocente {
 
                 // Crear el controlador pasando el dui
                 new CtrlDocenteVerCursosAsignados(dao, docenteCursosAsign, idDocente);
-                new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getjPanelDocente());
+                new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getBgPanel());
             }
         });
     }
