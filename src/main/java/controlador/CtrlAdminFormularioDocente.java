@@ -64,9 +64,8 @@ public class CtrlAdminFormularioDocente {
                 String especialidad = vistaForm.getCbEspecialidad().getSelectedItem().toString();
                 String gradoAcademico = vistaForm.getCbGradoAcademico().getSelectedItem().toString();
 
-                Docente docente = new Docente(0, dui, nombre, apellido, correo, telefono,
-                        fechaSeleccionada, tipoContrato, especialidad, gradoAcademico);
-
+                Docente docente = new Docente(0, dui, nombre, apellido, correo, 
+                    telefono, fechaNacimiento, tipoContrato, especialidad, gradoAcademico);
                 // Validar y guardar
                 validar(docente);
                 
@@ -142,7 +141,7 @@ public class CtrlAdminFormularioDocente {
         if (docente.getFechaNacimiento() == null) {
             throw new Exception("Fecha de nacimiento requerida");
         }
-        if (docente.getFechaNacimiento().after(new java.util.Date())) {
+        if (docente.getFechaNacimiento().isAfter(LocalDate.now())) {
             throw new Exception("Fecha de nacimiento inválida (no puede ser futura)");
         }
 

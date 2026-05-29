@@ -11,6 +11,7 @@ import interfaz.IDocenteCursosDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import modelo.InicioCurso;
 
@@ -39,8 +40,8 @@ public class DocenteCursosDAO implements IDocenteCursosDAO {
 
                 // Crear objeto InicioCurso
                 InicioCurso inicio = new InicioCurso();
-                inicio.setFechaApertura(rs.getDate("fecha_apertura"));
-                inicio.setFechaCierre(rs.getDate("fecha_cierre"));
+                inicio.setFechaApertura(rs.getObject("fecha_apertura", LocalDate.class));
+                inicio.setFechaCierre(rs.getObject("fecha_cierre", LocalDate.class));
                 inicio.setCupoMaximo(rs.getString("cupo_maximo"));
 
                 // Relacionar con el curso
