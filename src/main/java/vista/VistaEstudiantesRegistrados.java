@@ -37,6 +37,7 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
         tblEstudiantes = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         btnModifDatos = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1030, 700));
 
@@ -96,6 +97,8 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
             }
         });
 
+        btnReporte.setText("Abrir Reporte");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,6 +108,8 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnReporte)
+                        .addGap(72, 72, 72)
                         .addComponent(btnModifDatos)
                         .addGap(118, 118, 118)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,7 +125,8 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModifDatos))
+                    .addComponent(btnModifDatos)
+                    .addComponent(btnReporte))
                 .addContainerGap(296, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -185,8 +191,19 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
         return tblEstudiantes;
     }
 
+    public JButton getBtnModifDatos() {
+        return btnModifDatos;
+    }
+
+    public JButton getBtnReporte() {
+        return btnReporte;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModifDatos;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

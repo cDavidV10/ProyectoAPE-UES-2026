@@ -4,8 +4,8 @@
  */
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Docente {
     private String apellido;
     private String correo;
     private String telefono;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String tipoContrato;
     private String especialidad;
     private String gradoAcademico;
@@ -30,7 +30,7 @@ public class Docente {
     }
 
     public Docente(int idDocente, String dui, String nombre, String apellido, String correo, String telefono,
-            Date fechaNacimiento, String tipoContrato, String especialidad, String gradoAcademico) {
+            LocalDate fechaNacimiento, String tipoContrato, String especialidad, String gradoAcademico) {
         this.idDocente = idDocente;
         this.dui = dui;
         this.nombre = nombre;
@@ -69,7 +69,7 @@ public class Docente {
         return telefono;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -111,7 +111,7 @@ public class Docente {
         this.telefono = telefono;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -143,5 +143,4 @@ public class Docente {
         this.inicioCursos = inicioCursos;
     }
 
-    
 }

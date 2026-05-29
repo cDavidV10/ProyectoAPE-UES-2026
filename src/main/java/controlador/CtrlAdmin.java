@@ -12,7 +12,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import dao.RegEstuDAO;
+import dao.EstudianteDAO;
+import funciones.AbiriReporte;
 import funciones.Paneles;
 import funciones.UsuarioActivo;
 
@@ -21,6 +22,8 @@ import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
 import vista.AdministrarCursos;
+import vista.Login;
+import vista.VistaCredenciales;
 import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
 
@@ -29,13 +32,16 @@ import vista.VistaEstudiantesRegistrados;
  * @author cdavi
  */
 public class CtrlAdmin {
-    AdminView adminView;
-    RegEstuDAO dao = new RegEstuDAO();
-    Usuario usuario;
 
-    public CtrlAdmin(AdminView adminView, Usuario usuario) {
+    AdminView adminView;
+    EstudianteDAO dao = new EstudianteDAO();
+    Usuario usuario;
+    Login login;
+
+    public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
         this.usuario = usuario;
+        this.login = login;
 
         adminView.addWindowListener(new WindowAdapter() {
             @Override
@@ -79,11 +85,27 @@ public class CtrlAdmin {
 
         });
 
+        adminView.getBtnCredencialess().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaCredenciales credenciales = new VistaCredenciales();
+                new CtrlCredenciales(credenciales);
+                new Paneles().insertarPaneles(credenciales, adminView.getBgPanel());
+            }
+        });
+
+        this.adminView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                login.setVisible(true);
+            }
+        });
     }
 
     private void cargarTabla(VistaEstudiantesRegistrados vistaTabla) {
         DefaultTableModel modelo = (DefaultTableModel) vistaTabla.getTblEstudiantes().getModel();
         modelo.setRowCount(0);
+        vistaTabla.getBtnModifDatos().setEnabled(true);
 
         try {
             List<Estudiante> lista = dao.listar();
@@ -97,6 +119,10 @@ public class CtrlAdmin {
                         e.getCorreo()
                 });
             }
+
+            vistaTabla.getBtnReporte().addActionListener(e -> {
+                new AbiriReporte().abrirReporte("repEstudiante.jasper");
+            });
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vistaTabla,
                     "Error al cargar datos: " + ex.getMessage(),

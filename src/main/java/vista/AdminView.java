@@ -55,10 +55,10 @@ public class AdminView extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         btnEstudiante = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         txtUser = new javax.swing.JLabel();
+        btnCredencialess = new javax.swing.JButton();
         bgPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -116,16 +116,13 @@ public class AdminView extends javax.swing.JFrame {
 
         btnEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnEstudiante.setText("Datos Estudiante");
-
-        jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton1.setText("Credenciales");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEstudianteActionPerformed(evt);
             }
         });
+
+        jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
 
         jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -136,6 +133,13 @@ public class AdminView extends javax.swing.JFrame {
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtUser.setForeground(new java.awt.Color(248, 250, 252));
         txtUser.setText("Cambiar");
+
+        btnCredencialess.setText("Credenciales");
+        btnCredencialess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCredencialessActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,9 +164,6 @@ public class AdminView extends javax.swing.JFrame {
                                 .addComponent(btnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(btnInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -181,6 +182,10 @@ public class AdminView extends javax.swing.JFrame {
                                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCredencialess, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,8 +213,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addComponent(btnCredencialess, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -228,7 +233,7 @@ public class AdminView extends javax.swing.JFrame {
         );
         bgPanelLayout.setVerticalGroup(
             bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         jPanel1.add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 0, 1060, 720));
@@ -238,6 +243,13 @@ public class AdminView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEstudianteActionPerformed
+
+        private void btnCredencialessActionPerformed(java.awt.event.ActionEvent evt){
+            
+        }
         private void btnDocenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDocenteActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_btnDocenteActionPerformed
@@ -250,9 +262,6 @@ public class AdminView extends javax.swing.JFrame {
                 // TODO add your handling code here:
         }// GEN-LAST:event_btnInscripcionActionPerformed
 
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_jButton1ActionPerformed
 
         /**
          * @param args the command line arguments
@@ -324,13 +333,19 @@ public class AdminView extends javax.swing.JFrame {
                 return bgPanel;
         }
 
+    public JButton getBtnCredencialess() {
+        return btnCredencialess;
+    }
+    
+        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
+    private javax.swing.JButton btnCredencialess;
     private javax.swing.JButton btnCurso;
     private javax.swing.JButton btnDocente;
     private javax.swing.JButton btnEstudiante;
     private javax.swing.JButton btnInscripcion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

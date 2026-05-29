@@ -1,13 +1,14 @@
 package controlador;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import dao.RegEstuDAO;
+import dao.EstudianteDAO;
 import funciones.Credenciales;
 import modelo.Estudiante;
 
@@ -17,12 +18,12 @@ import vista.VistaRegEstu;
 public class ControllerRegEstu {
 
     private final VistaRegEstu vista;
-    private final RegEstuDAO dao;
+    private final EstudianteDAO dao;
     private Credenciales credenciales = new Credenciales();
 
     public ControllerRegEstu(VistaRegEstu vista) {
         this.vista = vista;
-        this.dao = new RegEstuDAO();
+        this.dao = new EstudianteDAO();
         iniciarEventos();
     }
 
@@ -45,11 +46,14 @@ public class ControllerRegEstu {
             e.setNombre(vista.txtNombre.getText().trim());
             e.setApellido(vista.txtApellido.getText().trim());
 
-            // Convertir fecha del JDateChooser a java.sql.Date
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(vista.JdFechaNaci.getDate());
-            Date fecha = new Date(cal.getTimeInMillis());
-            e.setFechaNacimiento(fecha);
+            java.util.Date dateChooser = vista.JdFechaNaci.getDate();
+
+            if (dateChooser != null) {
+                LocalDate fecha = dateChooser.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+                e.setFechaNacimiento(fecha); // Ahora tu setter recibe LocalDate
+            }
 
             e.setCorreo(vista.txtCorreo.getText().trim());
             dao.insertar(e);
