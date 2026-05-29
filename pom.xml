@@ -57,5 +57,11 @@
             <version>4.13.0</version>
             <scope>compile</scope>
         </dependency>
+        <!-- Dependecia de Jasper-->
+         <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>7.0.6</version>
+        </dependency>
     </dependencies>
 </project>

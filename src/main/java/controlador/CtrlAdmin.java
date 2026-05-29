@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.EstudianteDAO;
+import funciones.AbiriReporte;
 import funciones.Paneles;
 import funciones.UsuarioActivo;
 
@@ -118,6 +119,10 @@ public class CtrlAdmin {
                         e.getCorreo()
                 });
             }
+
+            vistaTabla.getBtnReporte().addActionListener(e -> {
+                new AbiriReporte().abrirReporte("repEstudiante.jasper");
+            });
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vistaTabla,
                     "Error al cargar datos: " + ex.getMessage(),
