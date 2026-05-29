@@ -2,18 +2,12 @@ package controlador;
 
 import dao.DocenteCursosDAO;
 import dao.DocenteDAO;
-<<<<<<< HEAD
-import funciones.AbiriReporte;
-import funciones.Credenciales;
-
-=======
 import funciones.Paneles;
 import funciones.UsuarioActivo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
->>>>>>> develop
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
@@ -32,28 +26,27 @@ public class CtrlDocente {
         this.docenteView = docenteView;
         this.usuario = usuario;
 
-        
         docenteView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                new UsuarioActivo().cambiarLabelUsuario(docenteView.getTxtUser(), usuario);  
-                
-                // Limpia el panel al inicio 
+                new UsuarioActivo().cambiarLabelUsuario(docenteView.getTxtUser(), usuario);
+
+                // Limpia el panel al inicio
                 docenteView.getjPanelDocente().removeAll();
                 docenteView.getjPanelDocente().revalidate();
                 docenteView.getjPanelDocente().repaint();
             }
         });
-        
+
         docenteView.getBtnCurso().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                DocenteVerCursosAsignados docenteCursosAsign= new DocenteVerCursosAsignados();
+
+                DocenteVerCursosAsignados docenteCursosAsign = new DocenteVerCursosAsignados();
                 DocenteCursosDAO dao = new DocenteCursosDAO();
-                
+
                 int idDocente = usuario.getDocente().getIdDocente();
-                
+
                 // Crear el controlador pasando el dui
                 new CtrlDocenteVerCursosAsignados(dao, docenteCursosAsign, idDocente);
                 new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getjPanelDocente());
@@ -61,7 +54,6 @@ public class CtrlDocente {
         });
     }
 
-   
     // Validar los datos digitados
-   
+
 }
