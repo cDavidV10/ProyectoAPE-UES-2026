@@ -5,6 +5,7 @@
 package controlador;
 
 import dao.DocenteDAO;
+import funciones.AbiriReporte;
 import funciones.Credenciales;
 
 import java.time.LocalDate;
@@ -35,6 +36,10 @@ public class CtrlDocente {
          * onClickEliminar();
          * onClickBuscar();
          */
+
+        vistaPrincipal.getBtnReporte().addActionListener(e -> {
+            new AbiriReporte().abrirReporte("DocentesReporte.jasper");
+        });
     }
 
     public void onClickAgregar() {

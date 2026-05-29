@@ -70,6 +70,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNuevoDocente = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1030, 700));
@@ -128,21 +129,32 @@ public class DocentePrincipalView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(762, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(845, Short.MAX_VALUE)
+                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(14, 14, 14)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(33, Short.MAX_VALUE)
+                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(12, 12, 12)))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, -1));
+
+        btnReporte.setBackground(new java.awt.Color(204, 255, 204));
+        btnReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReporte.setText("Abiri Reporte");
+        add(btnReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 169, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoDocenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNuevoDocenteActionPerformed
@@ -184,7 +196,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
     }
 
     public JButton getBtnNuevoDocente() {
-        return btnNuevoDocente;
+        return btnReporte;
     }
 
     public JScrollPane getjScrollPane1() {
@@ -195,8 +207,15 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         return tableDocentes;
     }
 
+    public JButton getBtnReporte() {
+        return btnReporte;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevoDocente;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
