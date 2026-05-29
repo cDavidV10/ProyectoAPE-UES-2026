@@ -9,15 +9,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import modelo.Usuario;
 import vista.DocenteVerCursosAsignados;
-import vista.Docente;
+import vista.DocenteView;
 import vista.Login;
 
 public class CtrlDocenteView {
-    private Docente docenteView;
+    private DocenteView docenteView;
     private Usuario usuario;
     private Login login;
 
-    public CtrlDocenteView(Docente docenteView, Usuario usuario, Login login) {
+    public CtrlDocenteView(DocenteView docenteView, Usuario usuario, Login login) {
         this.docenteView = docenteView;
         this.usuario = usuario;
         this.login = login;

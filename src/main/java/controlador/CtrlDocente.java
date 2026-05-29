@@ -15,14 +15,14 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import modelo.Usuario;
-import vista.Docente;
+import vista.DocenteView;
 import vista.DocenteVerCursosAsignados;
 
 public class CtrlDocente {
-    Docente docenteView;
+    DocenteView docenteView;
     Usuario usuario;
 
-    public CtrlDocente(Docente docenteView, Usuario usuario) {
+    public CtrlDocente(DocenteView docenteView, Usuario usuario) {
         this.docenteView = docenteView;
         this.usuario = usuario;
 
