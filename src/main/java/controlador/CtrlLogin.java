@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 import vista.AdminView;
-import vista.Docente;
+import vista.DocenteView;
 import vista.EstudianteView;
 import vista.Login;
 import vista.VistaRegEstu;
@@ -116,7 +116,7 @@ public class CtrlLogin {
                 // Guardar el id en el usuario
                 usuario.setDocente(docente);
     
-                vista.Docente docenteView = new Docente();
+                vista.DocenteView docenteView = new DocenteView();
                 CtrlDocente ctrlDocenteView = new CtrlDocente(docenteView, usuario);
 
                 //CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
