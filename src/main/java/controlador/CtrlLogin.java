@@ -104,14 +104,14 @@ public class CtrlLogin {
 
             if (result.equalsIgnoreCase("Estudiante")) {
                 EstudianteView estudianteView = new EstudianteView();
-                CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario);
+                CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario, loginView);
                 estudianteView.setVisible(true);
                 loginView.dispose();
             }
 
             if (result.equalsIgnoreCase("Docente")) {
                 DocenteView docenteView = new DocenteView();
-                CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario);
+                CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
                 docenteView.setVisible(true);
                 loginView.dispose();
             }

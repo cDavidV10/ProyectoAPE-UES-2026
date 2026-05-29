@@ -92,6 +92,13 @@ public class CtrlAdmin {
                 new Paneles().insertarPaneles(credenciales, adminView.getBgPanel());
             }
         });
+
+        this.adminView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                login.setVisible(true);
+            }
+        });
     }
 
     private void cargarTabla(VistaEstudiantesRegistrados vistaTabla) {

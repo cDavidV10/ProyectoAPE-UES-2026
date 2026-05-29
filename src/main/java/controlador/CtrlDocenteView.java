@@ -10,14 +10,17 @@ import java.awt.event.WindowEvent;
 import modelo.Usuario;
 import vista.DocenteCursosAsignados;
 import vista.DocenteView;
+import vista.Login;
 
 public class CtrlDocenteView {
     private DocenteView docenteView;
     private Usuario usuario;
+    private Login login;
 
-    public CtrlDocenteView(DocenteView docenteView, Usuario usuario) {
+    public CtrlDocenteView(DocenteView docenteView, Usuario usuario, Login login) {
         this.docenteView = docenteView;
         this.usuario = usuario;
+        this.login = login;
 
         docenteView.addWindowListener(new WindowAdapter() {
             @Override
@@ -25,13 +28,13 @@ public class CtrlDocenteView {
                 new UsuarioActivo().cambiarLabelUsuario(docenteView.getTxtUser(), usuario);
             }
         });
-        
+
         docenteView.getBtnCurso().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DocenteCursosAsignados docenteCursosAsign= new DocenteCursosAsignados();
-                
+                DocenteCursosAsignados docenteCursosAsign = new DocenteCursosAsignados();
+
                 // Crear el DAO
                 DocenteCursosDAO dao = new DocenteCursosDAO();
                 // Obteniendo el id del usuario activo
@@ -40,6 +43,13 @@ public class CtrlDocenteView {
                 new ControladorDocenteE(dao, docenteCursosAsign, idDocente);
 
                 new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getjPanelDocente());
+            }
+        });
+
+        this.docenteView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                login.setVisible(true);
             }
         });
     }
