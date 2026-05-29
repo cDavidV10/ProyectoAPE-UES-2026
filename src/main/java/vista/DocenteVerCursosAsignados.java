@@ -14,23 +14,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Yonathan
  */
-public class DocenteCursosAsignados extends javax.swing.JPanel {
+public class DocenteVerCursosAsignados extends javax.swing.JPanel {
 
     /**
      * Creates new form DocenteCursosAsignados
      */
-    public DocenteCursosAsignados() {
+    public DocenteVerCursosAsignados() {
         initComponents();
     }
 
-    public void mostrarCursos(List<Object[]> cursos) {
-        DefaultTableModel modelo = (DefaultTableModel) tablaDocentesCursosAsignados.getModel();
-        modelo.setRowCount(0); // limpiar
-        for (Object[] fila : cursos) {
-            modelo.addRow(fila);
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

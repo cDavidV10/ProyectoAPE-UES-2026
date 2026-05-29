@@ -8,12 +8,12 @@ package vista;
  *
  * @author Yonathan
  */
-public class DocenteCursoDetalleView extends javax.swing.JPanel {
+public class DocenteVerCursoDetalle extends javax.swing.JPanel {
 
     /**
      * Creates new form DocenteCursoDetalleView
      */
-    public DocenteCursoDetalleView() {
+    public DocenteVerCursoDetalle() {
         initComponents();
     }
 
