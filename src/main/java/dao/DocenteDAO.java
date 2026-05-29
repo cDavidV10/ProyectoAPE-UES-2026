@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import modelo.Docente;
 
 //CAMBIAR LOS DATOS Y SEGUIR
@@ -21,18 +23,20 @@ import modelo.Docente;
  * @author Yonathan
  */
 public class DocenteDAO implements IDocenteDAO {
-
+    Docente docente = null; //Objetp identificador para sus cursos
     private static final String INSERT = "INSERT INTO docente (dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT id_docente, dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico FROM docente";
-
-     public void insertar(Docente docente) throws Exception {
+    private static final String DELETE_REGISTRO = "DELETE FROM docente WHERE dui = ?";
+    private static final String SELECT_DOCENTE_XUSER = "SELECT d.* FROM docente d INNER JOIN usuario u ON d.id_docente = u.id_docente WHERE u.username = ?";
+    
+    public void insertar(Docente docente) throws Exception {
 
         Connection conn = Conexion.getConexion();// Metodo getConexion() que tengo en mi clase conexion
 
         try {
             // INSERCION
             conn.setAutoCommit(false); // permite la insercion a la bd
-            PreparedStatement ps = conn.prepareStatement(INSERT); // Le mando el INSERT con este objeto
+            PreparedStatement ps = conn.prepareStatement(INSERT); 
 
             ps.setString(1, docente.getDui());// Voy insertando por posiciones
             ps.setString(2, docente.getNombre());
@@ -92,6 +96,37 @@ public class DocenteDAO implements IDocenteDAO {
         }
         conn.close();
         return lista;
+    }
+
+    @Override
+    public void eliminar(String dui) throws Exception {
+        Connection conn = Conexion.getConexion();
+        PreparedStatement ps = conn.prepareStatement(DELETE_REGISTRO);
+        ps.setString(1, dui); 
+        ps.executeUpdate(); //Para ejecutar importante
+        conn.close();
+    }
+
+    @Override
+    public Docente buscarIdPorUsuario(String username) throws Exception {    
+        try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(SELECT_DOCENTE_XUSER)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                docente = new Docente();
+                docente.setIdDocente(rs.getInt("id_docente"));
+                docente.setDui(rs.getString("dui"));
+                docente.setNombre(rs.getString("nombre"));
+                docente.setApellido(rs.getString("apellido"));
+                docente.setCorreo(rs.getString("correo"));
+                docente.setTelefono(rs.getString("telefono"));
+                docente.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+                docente.setTipoContrato(rs.getString("tipo_contrato"));
+                docente.setEspecialidad(rs.getString("especialidad"));
+                docente.setGradoAcademico(rs.getString("grado_academico"));
+            }
+        }
+        return docente;
     }
 
     public Object buscarRegistro(String buscar) {

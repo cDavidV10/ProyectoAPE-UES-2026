@@ -22,9 +22,9 @@ import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
 import vista.AdministrarCursos;
-import vista.DocentePrincipalView;
-import vista.VistaCredenciales;
 import vista.Login;
+import vista.VistaCredenciales;
+import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
 
 /**
@@ -55,9 +55,9 @@ public class CtrlAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DocentePrincipalView vistaPrincipal = new DocentePrincipalView();
+                AdminDocente vistaPrincipal = new AdminDocente();
 
-                CtrlDocente controlador = new CtrlDocente(vistaPrincipal);
+                CtrlAdminDocente controlador = new CtrlAdminDocente(vistaPrincipal);
                 new Paneles().insertarPaneles(vistaPrincipal, adminView.getBgPanel());
             }
 

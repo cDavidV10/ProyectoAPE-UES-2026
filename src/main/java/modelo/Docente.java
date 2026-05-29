@@ -22,7 +22,7 @@ public class Docente {
     private String tipoContrato;
     private String especialidad;
     private String gradoAcademico;
-    // ? Clases Relacionadas
+    
     private Usuario usuario;
     private ArrayList<InicioCurso> inicioCursos;
 

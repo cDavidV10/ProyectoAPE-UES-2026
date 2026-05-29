@@ -15,7 +15,6 @@ public class Curso {
     private String Codigo;
     private String nombreCurso;
     private String descripcion;
-    // ? Clases Relacionadas
     private ArrayList<InicioCurso> InicioCurso;
 
     public Curso() {
