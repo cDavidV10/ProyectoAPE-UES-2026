@@ -16,14 +16,14 @@ import modelo.Docente;
  *
  * @author Yonathan
  */
-public class DocentePrincipalView extends javax.swing.JPanel {
+public class AdminDocente extends javax.swing.JPanel {
     private JTable tablaDocentes;
     private DefaultTableModel modelo;
 
     /**
      * Creates new form DocentePrincipalView
      */
-    public DocentePrincipalView() {
+    public AdminDocente() {
         initComponents();
 
         // Para Configurar el modelo de la tabla con las columnas
@@ -32,26 +32,6 @@ public class DocentePrincipalView extends javax.swing.JPanel {
                         "Especialidad", "Grado Académico" },
                 0);
         tableDocentes.setModel(modelo);
-    }
-
-    // Mostrar los docentes en la JTable
-    public void mostrarDocentes(List<Docente> lista) {
-        modelo.setRowCount(0); // limpia la tabla antes de cargar
-
-        for (Docente d : lista) {
-            modelo.addRow(new Object[] {
-                    d.getIdDocente(),
-                    d.getDui(),
-                    d.getNombre(),
-                    d.getApellido(),
-                    d.getCorreo(),
-                    d.getTelefono(),
-                    d.getFechaNacimiento(),
-                    d.getTipoContrato(),
-                    d.getEspecialidad(),
-                    d.getGradoAcademico()
-            });
-        }
     }
     
     /**
@@ -70,6 +50,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNuevoDocente = new javax.swing.JButton();
+        btnEliminarDocente = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1030, 700));
@@ -114,12 +95,14 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Mantenimiento de Docentes");
 
         btnNuevoDocente.setBackground(new java.awt.Color(204, 255, 204));
         btnNuevoDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNuevoDocente.setText("+Nuevo docente");
+
+        btnEliminarDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminarDocente.setText("Eliminar docente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,7 +111,9 @@ public class DocentePrincipalView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+                .addComponent(btnEliminarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -138,7 +123,8 @@ public class DocentePrincipalView extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -168,7 +154,7 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DocentePrincipalView().setVisible(true);
+                new AdminDocente().setVisible(true);
             }
         });
     }
@@ -195,7 +181,12 @@ public class DocentePrincipalView extends javax.swing.JPanel {
         return tableDocentes;
     }
 
+    public JButton getBtnEliminarDocente() {
+        return btnEliminarDocente;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarDocente;
     private javax.swing.JButton btnNuevoDocente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
