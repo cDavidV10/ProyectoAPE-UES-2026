@@ -2,12 +2,18 @@ package controlador;
 
 import dao.DocenteCursosDAO;
 import dao.DocenteDAO;
+<<<<<<< HEAD
+import funciones.AbiriReporte;
+import funciones.Credenciales;
+
+=======
 import funciones.Paneles;
 import funciones.UsuarioActivo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+>>>>>>> develop
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
