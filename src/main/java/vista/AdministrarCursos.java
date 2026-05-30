@@ -12,7 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import modelo.Cursos;
+import modelo.Curso;
 import dao.CursosDAO;
 
 /**

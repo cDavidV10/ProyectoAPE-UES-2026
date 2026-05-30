@@ -7,12 +7,14 @@ package dao;
 import conexion.Conexion;
 import interfaz.IDocenteDAO;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import modelo.Docente;
 
 //CAMBIAR LOS DATOS Y SEGUIR
@@ -21,10 +23,12 @@ import modelo.Docente;
  * @author Yonathan
  */
 public class DocenteDAO implements IDocenteDAO {
-
+    Docente docente = null; //Objetp identificador para sus cursos
     private static final String INSERT = "INSERT INTO docente (dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT id_docente, dui, nombre, apellido, correo, telefono, fecha_nacimiento, tipo_contrato, especialidad, grado_academico FROM docente";
-
+    private static final String DELETE_REGISTRO = "DELETE FROM docente WHERE dui = ?";
+    private static final String SELECT_DOCENTE_XUSER = "SELECT d.* FROM docente d INNER JOIN usuario u ON d.id_docente = u.id_docente WHERE u.username = ?";
+    
     public void insertar(Docente docente) throws Exception {
 
         Connection conn = Conexion.getConexion();// Metodo getConexion() que tengo en mi clase conexion
@@ -32,14 +36,14 @@ public class DocenteDAO implements IDocenteDAO {
         try {
             // INSERCION
             conn.setAutoCommit(false); // permite la insercion a la bd
-            PreparedStatement ps = conn.prepareStatement(INSERT); // Le mando el INSERT con este objeto
+            PreparedStatement ps = conn.prepareStatement(INSERT); 
 
             ps.setString(1, docente.getDui());// Voy insertando por posiciones
             ps.setString(2, docente.getNombre());
             ps.setString(3, docente.getApellido());
             ps.setString(4, docente.getCorreo());
             ps.setString(5, docente.getTelefono());
-            ps.setDate(6, new java.sql.Date(docente.getFechaNacimiento().getTime()));
+            ps.setObject(6, docente.getFechaNacimiento());
             ps.setString(7, docente.getTipoContrato());
             ps.setString(8, docente.getEspecialidad());
             ps.setString(9, docente.getGradoAcademico());
@@ -84,7 +88,7 @@ public class DocenteDAO implements IDocenteDAO {
             docente.setApellido(rs.getString("apellido"));
             docente.setCorreo(rs.getString("correo"));
             docente.setTelefono(rs.getString("telefono"));
-            docente.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+            docente.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
             docente.setTipoContrato(rs.getString("tipo_contrato"));
             docente.setEspecialidad(rs.getString("especialidad"));
             docente.setGradoAcademico(rs.getString("grado_academico"));
@@ -94,4 +98,96 @@ public class DocenteDAO implements IDocenteDAO {
         return lista;
     }
 
+    @Override
+    public void eliminar(String dui) throws Exception {
+        Connection conn = Conexion.getConexion();
+        PreparedStatement ps = conn.prepareStatement(DELETE_REGISTRO);
+        ps.setString(1, dui); 
+        ps.executeUpdate(); //Para ejecutar importante
+        conn.close();
+    }
+
+    @Override
+    public Docente buscarIdPorUsuario(String username) throws Exception {    
+        try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(SELECT_DOCENTE_XUSER)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                docente = new Docente();
+                docente.setIdDocente(rs.getInt("id_docente"));
+                docente.setDui(rs.getString("dui"));
+                docente.setNombre(rs.getString("nombre"));
+                docente.setApellido(rs.getString("apellido"));
+                docente.setCorreo(rs.getString("correo"));
+                docente.setTelefono(rs.getString("telefono"));
+                docente.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+                docente.setTipoContrato(rs.getString("tipo_contrato"));
+                docente.setEspecialidad(rs.getString("especialidad"));
+                docente.setGradoAcademico(rs.getString("grado_academico"));
+            }
+        }
+        return docente;
+    }
+
+    public Object buscarRegistro(String buscar) {
+        final String SELECT = "Select * from docente where dui = ?";
+        Docente encontrado = null;
+        try {
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(SELECT);
+            ps.setString(1, buscar);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                encontrado = new Docente();
+                encontrado.setIdDocente(rs.getInt("id_docente"));
+                encontrado.setNombre(rs.getString("nombre"));
+                encontrado.setDui(rs.getString("dui"));
+                encontrado.setNombre(rs.getString("nombre"));
+                encontrado.setApellido(rs.getString("apellido"));
+                encontrado.setCorreo(rs.getString("correo"));
+                encontrado.setTelefono(rs.getString("telefono"));
+                encontrado.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+                encontrado.setTipoContrato(rs.getString("tipo_contrato"));
+                encontrado.setEspecialidad(rs.getString("especialidad"));
+                encontrado.setGradoAcademico(rs.getString("grado_academico"));
+            }else{
+                return 0;
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error-Docente");
+        }
+        return encontrado;
+    }
+
+    public boolean modificarDatos(Docente docentAModif) {
+        final String UPDATE = "UPDATE docente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, tipo_contrato = ?, especialidad = ?, grado_academico = ? WHERE id_docente = ?";
+
+        try {
+            Connection conn = Conexion.getConexion();
+            PreparedStatement ps = conn.prepareStatement(UPDATE);
+            ps.setString(1, docentAModif.getNombre());
+            ps.setString(2, docentAModif.getApellido());
+            ps.setString(3, docentAModif.getCorreo());
+            ps.setString(4, docentAModif.getTelefono());
+            ps.setObject(5, docentAModif.getFechaNacimiento());
+            ps.setString(6, docentAModif.getTipoContrato());
+            ps.setString(7, docentAModif.getEspecialidad());
+            ps.setString(8, docentAModif.getGradoAcademico());
+            ps.setInt(9, docentAModif.getIdDocente());
+
+            int filaAfectada = ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+            return filaAfectada > 0;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Algo salio mal en la modificacion-Docente");
+            return false;
+        }
+    }
 }

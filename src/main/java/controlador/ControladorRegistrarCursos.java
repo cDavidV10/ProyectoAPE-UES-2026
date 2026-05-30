@@ -7,7 +7,7 @@ package controlador;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Cursos;
+import modelo.Curso;
 import dao.CursosDAO;
 import vista.RegistrarCursos;
 
@@ -20,10 +20,10 @@ public class ControladorRegistrarCursos {
 
     private RegistrarCursos vista;
     private CursosDAO dao = new CursosDAO();
-    private Cursos cursoEditar;
+    private Curso cursoEditar;
     private ControladorAdministrarCursos controladorTabla;
 
-    public ControladorRegistrarCursos(RegistrarCursos vista, Cursos cursoEditar,
+    public ControladorRegistrarCursos(RegistrarCursos vista, Curso cursoEditar,
             ControladorAdministrarCursos controladorTabla) {
         this.vista = vista;
         this.cursoEditar = cursoEditar;
@@ -57,7 +57,7 @@ public class ControladorRegistrarCursos {
          */
 
         try {
-            Cursos c = new Cursos();
+            Curso c = new Curso();
             c.setCodigo(vista.getTxtCodigo().getText().trim());
             c.setNombreCurso(vista.getTxtNombre().getText().trim());
             c.setDescripcion(vista.getAreaDescripcion().getText().trim());

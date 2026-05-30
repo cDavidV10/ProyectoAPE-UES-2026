@@ -9,31 +9,51 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vista.DocenteCursosAsignados;
+import modelo.InicioCurso;
+import vista.DocenteVerCursoDetalle;
+import vista.DocenteVerCursosAsignados;
 
 /**
  *
  * @author Yonathan
  */
-public class ControladorDocenteE {
+public class CtrlDocenteVerCursosAsignados {
     private DocenteCursosDAO dao;
-    private DocenteCursosAsignados vista;
+    private DocenteVerCursosAsignados vista;
     private int idDocente;
-
-    public ControladorDocenteE(DocenteCursosDAO dao, DocenteCursosAsignados vista, int idDocente) {
+    
+    public CtrlDocenteVerCursosAsignados(DocenteCursosDAO dao, DocenteVerCursosAsignados vista, int idDocente) {
         this.dao = dao;
         this.vista = vista;
         this.idDocente = idDocente;
+
         cargarCursos(idDocente);
         onClickVerDetalles();
     }
 
-    private void cargarCursos(int idDocente) {
+    private void cargarCursos(int idDocente) {    
         try {
-            List<Object[]> cursos = dao.listarCursosxDocente(idDocente);
-            vista.mostrarCursos(cursos);
+            List<InicioCurso> cursos = dao.listarCursosxDocente(idDocente);
+            mostrarCursos(cursos); 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar cursos: " + ex.getMessage());
+        }
+
+    }
+    
+    public void mostrarCursos(List<InicioCurso> cursos) {
+        DefaultTableModel model = (DefaultTableModel) vista.getTablaDocentesCursosAsignados().getModel();
+        model.setRowCount(0); // limpiar
+
+        for (InicioCurso ic : cursos) {
+            model.addRow(new Object[]{
+                ic.getCursos().getCodigo(),
+                ic.getCursos().getNombreCurso(),
+                ic.getCursos().getDescripcion(),
+                ic.getFechaApertura(),
+                ic.getFechaCierre(),
+                ic.getCupoMaximo()
+            });
         }
     }
 
@@ -54,11 +74,10 @@ public class ControladorDocenteE {
             String cupo = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 5);
 
             // vista de detalles
-            /*
-            CursoDetalleView detalleView = new CursoDetalleView();
-            detalleView.mostrarDetalle(codigo, nombre, descripcion, apertura, cierre, cupo);
+            DocenteVerCursoDetalle detalleView = new DocenteVerCursoDetalle();
+            //detalleView.mostrarDetalle(codigo, nombre, descripcion, apertura, cierre, cupo);
             detalleView.setVisible(true);
-            */
+     
         });
 
         // Botón Regresar

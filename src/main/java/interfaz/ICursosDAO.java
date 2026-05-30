@@ -5,7 +5,7 @@
 package interfaz;
 
 import java.util.List;
-import modelo.Cursos;
+import modelo.Curso;
 
 /**
  *
@@ -13,13 +13,13 @@ import modelo.Cursos;
  */
 public interface ICursosDAO {
 
-    void insertar(Cursos c) throws Exception;
+    void insertar(Curso c) throws Exception;
 
-    void actualizar(Cursos c) throws Exception;
+    void actualizar(Curso c) throws Exception;
 
     void eliminar(int idCurso) throws Exception;
 
-    List<Cursos> listar() throws Exception;
+    List<Curso> listar() throws Exception;
 
-    Cursos buscar(int idCurso) throws Exception;
+    Curso buscar(int idCurso) throws Exception;
 }

@@ -1,20 +1,20 @@
 package interfaz;
 
 import java.util.List;
-import modelo.ModelRegEstu;
+import modelo.Estudiante;
 
 
 public interface IEstudianteDAO {
     
-    void insertar(ModelRegEstu e) throws Exception;
+    void insertar(Estudiante e) throws Exception;
     
-    void actualizar(ModelRegEstu e) throws Exception;
+    void actualizar(Estudiante e) throws Exception;
     
     void eliminar(int idEstudiante) throws Exception;
     
-    List<ModelRegEstu> listar() throws Exception;
+    List<Estudiante> listar() throws Exception;
     
-    ModelRegEstu buscar(int idEstudiante) throws Exception;
+    Estudiante buscar(int idEstudiante) throws Exception;
     
     
 }
