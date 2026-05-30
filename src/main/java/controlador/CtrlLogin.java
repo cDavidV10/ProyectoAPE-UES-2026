@@ -5,6 +5,7 @@
 package controlador;
 
 import dao.DocenteDAO;
+import dao.EstudianteDAO;
 import dao.UsuarioDAO;
 import modelo.Usuario;
 import java.awt.Color;
@@ -100,8 +101,16 @@ public class CtrlLogin {
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
+                // EstudianteDAO estudianteDAO = new EstudianteDAO();
+                // modelo.Estudiante estudiante = (modelo.Estudiante)
+                // estudianteDAO.buscarRegistro(username);
+
+                // guarda id dedel estudiante en el usuario
+                // usuario.setEstudiante(estudiante);
+
                 EstudianteView estudianteView = new EstudianteView();
                 CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario, loginView);
+
                 estudianteView.setVisible(true);
                 loginView.dispose();
             }
