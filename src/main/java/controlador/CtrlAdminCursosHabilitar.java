@@ -42,6 +42,13 @@ public class CtrlAdminCursosHabilitar {
         this.vistaHabilitar.getBtnHorario().addActionListener(e -> {
             AgregarHorarioView agregarHorarioView = new AgregarHorarioView(vistaTabla, false);
             CtrlAdminAgregarHorario ctrlAgregarHorario = new CtrlAdminAgregarHorario(agregarHorarioView);
+
+            agregarHorarioView.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    cargarCombos();
+                }
+            });
             agregarHorarioView.setVisible(true);
         });
 
