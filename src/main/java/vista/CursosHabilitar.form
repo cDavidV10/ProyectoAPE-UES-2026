@@ -26,17 +26,25 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="72" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cmbCurso" min="-2" pref="210" max="-2" attributes="0"/>
-                  <Component id="cmbDocente" min="-2" pref="210" max="-2" attributes="0"/>
-                  <Component id="cmbHorario" min="-2" pref="210" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="1" min="-2" pref="172" max="-2" attributes="0"/>
-                  <Component id="btnCancelar" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="cmbCurso" min="-2" pref="210" max="-2" attributes="0"/>
+                          <Component id="cmbDocente" min="-2" pref="210" max="-2" attributes="0"/>
+                          <Component id="cmbHorario" min="-2" pref="210" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="1" min="-2" pref="172" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnHorario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -94,6 +102,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHorario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="148" max="32767" attributes="0"/>
           </Group>
@@ -190,6 +199,11 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;modelo.Horario&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnHorario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar Hora"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

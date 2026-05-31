@@ -17,9 +17,9 @@ import modelo.Curso;
 import modelo.Docente;
 import modelo.Horario;
 import modelo.InicioCurso;
+import vista.AgregarHorarioView;
 import vista.CursosHabilitar;
 import vista.CursosTablaHabilitados;
-
 
 /**
  *
@@ -36,19 +36,32 @@ public class CtrlAdminCursosHabilitar {
         this.vistaHabilitar = vistaHabilitar;
         this.vistaTabla = vistaTabla;
         this.modelo = (DefaultTableModel) vistaTabla.getTblHabilitados().getModel();
-        
+
         cargarCombos();
-        
+
+        this.vistaHabilitar.getBtnHorario().addActionListener(e -> {
+            AgregarHorarioView agregarHorarioView = new AgregarHorarioView(vistaTabla, false);
+            CtrlAdminAgregarHorario ctrlAgregarHorario = new CtrlAdminAgregarHorario(agregarHorarioView);
+
+            agregarHorarioView.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    cargarCombos();
+                }
+            });
+            agregarHorarioView.setVisible(true);
+        });
+
         this.vistaHabilitar.getBtnAgregar().addActionListener(e -> guardar());
         this.vistaHabilitar.getBtnCancelar().addActionListener(e -> vistaHabilitar.dispose());
     }
-    
+
     private void guardar() {
         try {
-            if (vistaHabilitar.getCmbCurso().getSelectedIndex() == -1 || 
-                vistaHabilitar.getCmbDocente().getSelectedIndex() == -1 || 
-                vistaHabilitar.getCmbHorario().getSelectedIndex() == -1) {
-                
+            if (vistaHabilitar.getCmbCurso().getSelectedIndex() == -1 ||
+                    vistaHabilitar.getCmbDocente().getSelectedIndex() == -1 ||
+                    vistaHabilitar.getCmbHorario().getSelectedIndex() == -1) {
+
                 JOptionPane.showMessageDialog(vistaHabilitar, "Por favor, seleccione un curso, docente y horario.");
                 return;
             }
@@ -61,24 +74,26 @@ public class CtrlAdminCursosHabilitar {
 
             ci.setCursos(cursoSel);
             ci.setDocente(docenteSel);
-            
+
             ArrayList<Horario> listaHorarios = new ArrayList<>();
             listaHorarios.add(horarioSel);
             ci.setHorario(listaHorarios);
 
-            ci.setFechaApertura(vistaHabilitar.getFechaInicio().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());        
-            ci.setFechaCierre(vistaHabilitar.getFechaCierre().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            
+            ci.setFechaApertura(
+                    vistaHabilitar.getFechaInicio().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            ci.setFechaCierre(
+                    vistaHabilitar.getFechaCierre().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
             ci.setCupoMaximo(String.valueOf(vistaHabilitar.getSpinCupo().getValue()));
-            
+
             dao.insertar(ci);
             JOptionPane.showMessageDialog(vistaHabilitar, "Curso guardado con éxito");
-            
-        } catch(Exception e) {
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(vistaHabilitar, "Error: " + e.getMessage());
         }
     }
-    
+
     private void cargarCombos() {
         try {
             vistaHabilitar.getCmbCurso().removeAllItems();
