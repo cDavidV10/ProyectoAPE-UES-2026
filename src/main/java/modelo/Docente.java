@@ -142,5 +142,10 @@ public class Docente {
     public void setInicioCursos(ArrayList<InicioCurso> inicioCursos) {
         this.inicioCursos = inicioCursos;
     }
-
+    
+    @Override
+    public String toString() {
+        return this.nombre + " " + this.apellido;
+    }
 }
+
