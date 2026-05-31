@@ -20,7 +20,7 @@ public class InicioCurso {
     private Curso cursos;
     private Docente docente;
     private ArrayList<Horario> horario;
-    private ArrayList<Inscripcion> inscripciones;
+    private PeriodoInscripcion periodoInscripcion;
 
     public InicioCurso() {
     }
@@ -92,12 +92,13 @@ public class InicioCurso {
         this.horario = horario;
     }
 
-    public ArrayList<Inscripcion> getInscripciones() {
-        return inscripciones;
+    public PeriodoInscripcion getPeriodoInscripcion() {
+        return periodoInscripcion;
     }
 
-    public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
-        this.inscripciones = inscripciones;
+    public void setPeriodoInscripcion(PeriodoInscripcion periodoInscripcion) {
+        this.periodoInscripcion = periodoInscripcion;
     }
 
+    
 }

@@ -1,4 +1,3 @@
-
 package controlador;
 
 import javax.swing.JOptionPane;
@@ -7,7 +6,8 @@ import modelo.Curso;
 import dao.CursosDAO;
 import vista.CursosHabilitar;
 import vista.CursosTablaTodos;
-import vista.CursosRegistrar;
+import vista.RegistrarCursos;
+import vista.RegistrarCursos;
 import vista.CursosTablaHabilitados;
 
 /**
@@ -22,7 +22,7 @@ public class CtrlAdminCursosRegistrar {
     private DefaultTableModel modelo;
     private CursosDAO dao = new CursosDAO();
 
-    public CtrlAdminCursosRegistrar(CursosRegistrar vistaRegistro, CursosTablaTodos vistaTabla) {
+    public CtrlAdminCursosRegistrar(RegistrarCursos vistaRegistro, CursosTablaTodos vistaTabla) {
     this.vista = vistaTabla; 
     
     // le agregue datos a la vista pq me estaba dando problema de q NULO
@@ -69,8 +69,8 @@ public class CtrlAdminCursosRegistrar {
     }
 
     private void abrirFormulario(Curso curso) {
-        CursosRegistrar form = new CursosRegistrar();
-        new CtrlAdminCursosTablaTodos(form, curso, this);
+        RegistrarCursos form = new RegistrarCursos();
+        new CtrlAdminCursosRegistrar(form, this.vista);
         form.setVisible(true);
     }
 

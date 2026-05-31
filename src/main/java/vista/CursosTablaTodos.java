@@ -23,7 +23,7 @@ public class CursosTablaTodos extends javax.swing.JPanel {
 
     private dao.CursosDAO dao;
     private javax.swing.table.DefaultTableModel modelo;
-    private vista.CursosTablaTodos vista;
+    private CursosTablaTodos vista;
 
     public CursosTablaTodos() {
 

@@ -21,11 +21,15 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
-import vista.CursosRegistrar;
+import vista.RegistrarCursos;
 import vista.CursosTablaTodos;
-import vista.DocentePrincipalView;
+//import vista.DocentePrincipalView;
+//import vista.CursosTablaTodos;
 import vista.VistaCredenciales;
 import vista.Login;
+import vista.RegistrarCursos;
+import vista.VistaCredenciales;
+import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
 
 /**
@@ -56,9 +60,9 @@ public class CtrlAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DocentePrincipalView vistaPrincipal = new DocentePrincipalView();
+                AdminDocente vistaPrincipal = new AdminDocente();
 
-                CtrlDocente controlador = new CtrlDocente(vistaPrincipal);
+                CtrlAdminDocente controlador = new CtrlAdminDocente(vistaPrincipal);
                 new Paneles().insertarPaneles(vistaPrincipal, adminView.getBgPanel());
             }
 
@@ -69,7 +73,7 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 CursosTablaTodos administrarCursos = new CursosTablaTodos();
-                CursosRegistrar form = new CursosRegistrar();
+                RegistrarCursos form = new RegistrarCursos();
                 CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form,administrarCursos);
                 new Paneles().insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
@@ -123,7 +127,7 @@ public class CtrlAdmin {
             }
 
             vistaTabla.getBtnReporte().addActionListener(e -> {
-                new AbiriReporte().abrirReporte("repEstudiante.jasper");
+                new AbiriReporte().abrirReporte("ReporteEstudiante.jasper");
             });
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vistaTabla,

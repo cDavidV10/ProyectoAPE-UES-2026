@@ -4,17 +4,14 @@
  */
 package controlador;
 
+import dao.DocenteDAO;
 import dao.UsuarioDAO;
 import modelo.Usuario;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.JOptionPane;
 
 import vista.AdminView;
@@ -103,15 +100,34 @@ public class CtrlLogin {
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
+                // EstudianteDAO estudianteDAO = new EstudianteDAO();
+                // modelo.Estudiante estudiante = (modelo.Estudiante)
+                // estudianteDAO.buscarRegistro(username);
+
+                // guarda id dedel estudiante en el usuario
+                // usuario.setEstudiante(estudiante);
+
                 EstudianteView estudianteView = new EstudianteView();
                 CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario, loginView);
+
                 estudianteView.setVisible(true);
                 loginView.dispose();
             }
 
             if (result.equalsIgnoreCase("Docente")) {
+
+                DocenteDAO docenteDAO = new DocenteDAO();
+
+                modelo.Docente docente = docenteDAO.buscarIdPorUsuario(username);
+
+                // Guardar el id en el usuario
+                usuario.setDocente(docente);
+
                 DocenteView docenteView = new DocenteView();
                 CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
+
+                // CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario,
+                // loginView);
                 docenteView.setVisible(true);
                 loginView.dispose();
             }

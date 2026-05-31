@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import modelo.Usuario;
-import vista.DocenteCursosAsignados;
+import vista.DocenteVerCursosAsignados;
 import vista.DocenteView;
 import vista.Login;
 
@@ -33,16 +33,16 @@ public class CtrlDocenteView {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DocenteCursosAsignados docenteCursosAsign = new DocenteCursosAsignados();
+                DocenteVerCursosAsignados docenteCursosAsign = new DocenteVerCursosAsignados();
 
                 // Crear el DAO
                 DocenteCursosDAO dao = new DocenteCursosDAO();
                 // Obteniendo el id del usuario activo
                 int idDocente = usuario.getId();
                 // Crear el controlador pasando el idDocente
-                new ControladorDocenteE(dao, docenteCursosAsign, idDocente);
+                new CtrlDocenteVerCursosAsignados(dao, docenteCursosAsign, idDocente);
 
-                new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getjPanelDocente());
+                new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getBgPanel());
             }
         });
 

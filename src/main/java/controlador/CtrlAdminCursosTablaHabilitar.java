@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 //import modelo.Curso;
 import modelo.InicioCurso;
 import vista.CursosHabilitar;
-import vista.CursosRegistrar;
 import vista.CursosTablaHabilitados;
 
 /**
