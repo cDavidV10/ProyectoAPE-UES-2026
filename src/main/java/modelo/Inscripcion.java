@@ -9,7 +9,6 @@ public class Inscripcion {
     private String estado;
     // ? Clases Relacionadas
     private Estudiante estudiante;
-    private InicioCurso inicioCurso;
     private PeriodoInscripcion periodoInscripcion;
     private ArrayList<Evaluacion> evaluaciones;
 
@@ -52,14 +51,6 @@ public class Inscripcion {
 
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
-    }
-
-    public InicioCurso getInicioCurso() {
-        return inicioCurso;
-    }
-
-    public void setInicioCurso(InicioCurso inicioCurso) {
-        this.inicioCurso = inicioCurso;
     }
 
     public PeriodoInscripcion getPeriodoInscripcion() {

@@ -10,6 +10,7 @@ public class PeriodoInscripcion {
     // ? Clases Relacionadas
     private Administrador administrador;
     private ArrayList<Inscripcion> inscripciones;
+    private InicioCurso inicioCurso;
 
     public PeriodoInscripcion() {
     }
@@ -59,5 +60,15 @@ public class PeriodoInscripcion {
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
+
+    public InicioCurso getInicioCurso() {
+        return inicioCurso;
+    }
+
+    public void setInicioCurso(InicioCurso inicioCurso) {
+        this.inicioCurso = inicioCurso;
+    }
+    
+    
 
 }
