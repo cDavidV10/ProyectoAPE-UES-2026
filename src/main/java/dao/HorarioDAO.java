@@ -55,7 +55,7 @@ public class HorarioDAO implements IHorarioDAO {
     public List<Horario> listar() throws Exception {
         List<Horario> lista = new ArrayList<>();
         Connection conn = Conexion.getConexion();
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM horario");
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM horario order by dia");
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
