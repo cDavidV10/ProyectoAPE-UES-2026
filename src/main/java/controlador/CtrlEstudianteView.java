@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 
 import dao.CursosDisponiblesDAO;
 import modelo.Usuario;
+import vista.AdministrarCursos;
 import vista.CursosDisponiblesView;
 import vista.EstudianteView;
 import vista.Login;
@@ -17,12 +18,19 @@ public class CtrlEstudianteView {
     private Usuario usuario;
     private Login login;
     private Paneles paneles;
+    private CursosDisponiblesView cursosDisponiblesView;
+    private CtrlCursosDisponibles ctrlCursosDisponibles;
 
     public CtrlEstudianteView(EstudianteView estudianteView, Usuario usuario, Login login) {
         this.estudianteView = estudianteView;
         this.usuario = usuario;
         this.login = login;
         this.paneles = new Paneles();
+        this.cursosDisponiblesView = new CursosDisponiblesView();
+
+        ctrlCursosDisponibles = new CtrlCursosDisponibles(cursosDisponiblesView,
+                usuario.getEstudiante().getIdEstudiante());
+        paneles.insertarPaneles(cursosDisponiblesView, this.estudianteView.getBgContent());
 
         estudianteView.addWindowListener(new WindowAdapter() {
             @Override
@@ -44,12 +52,10 @@ public class CtrlEstudianteView {
     }
 
     private void abrirCursosDisponibles() {
-        int idEstudiante = usuario.getEstudiante().getIdEstudiante();
 
-        CursosDisponiblesView cursosView = new CursosDisponiblesView();
-        CursosDisponiblesDAO cursosDAO = new CursosDisponiblesDAO();
-        new CtrlCursosDisponibles(cursosDAO, cursosView, idEstudiante);
-        paneles.insertarPaneles(cursosView, this.estudianteView.getBgContent());
+        ctrlCursosDisponibles = new CtrlCursosDisponibles(cursosDisponiblesView,
+                usuario.getEstudiante().getIdEstudiante());
+        paneles.insertarPaneles(cursosDisponiblesView, this.estudianteView.getBgContent());
 
     }
 
