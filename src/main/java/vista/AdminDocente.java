@@ -51,6 +51,7 @@ public class AdminDocente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnNuevoDocente = new javax.swing.JButton();
         btnEliminarDocente = new javax.swing.JButton();
+        btnMostrarReporte = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1030, 700));
@@ -104,6 +105,9 @@ public class AdminDocente extends javax.swing.JPanel {
         btnEliminarDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarDocente.setText("Eliminar docente");
 
+        btnMostrarReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMostrarReporte.setText("Mostrar Reporte");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -111,7 +115,9 @@ public class AdminDocente extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addComponent(btnMostrarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEliminarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,7 +130,8 @@ public class AdminDocente extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnNuevoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -187,6 +194,7 @@ public class AdminDocente extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarDocente;
+    private javax.swing.JButton btnMostrarReporte;
     private javax.swing.JButton btnNuevoDocente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
