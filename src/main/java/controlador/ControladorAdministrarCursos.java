@@ -1,55 +1,34 @@
-
 package controlador;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Curso;
 import dao.CursosDAO;
-import vista.CursosHabilitar;
 import vista.CursosTablaTodos;
 import vista.CursosRegistrar;
-import vista.CursosTablaHabilitados;
 
 /**
  *
  * @author alexi
  */
 
-public class CtrlAdminCursosRegistrar {
+public class ControladorAdministrarCursos {
 
     private CursosTablaTodos vista;
-    private CursosHabilitar vistaH;
     private DefaultTableModel modelo;
     private CursosDAO dao = new CursosDAO();
 
-    public CtrlAdminCursosRegistrar(CursosRegistrar vistaRegistro, CursosTablaTodos vistaTabla) {
-    this.vista = vistaTabla; 
-    
-    // le agregue datos a la vista pq me estaba dando problema de q NULO
-    this.modelo = (DefaultTableModel) this.vista.getTblAdmin().getModel();
+    public ControladorAdministrarCursos(CursosTablaTodos vista) {
+        this.vista = vista;
+        this.modelo = (DefaultTableModel) vista.getTblAdmin().getModel();
 
-    //this.vista.getBtnEliminar().addActionListener(e -> eliminar());
-    // this.vista.getBtnBack().addActionListener(e -> vista.dispose());
-    this.vista.getBtnHabilitar().addActionListener(e -> habilitar());
-    this.vista.getBtnVerTablaHabilitados().addActionListener(e -> tablaHabilitados());
-    
-    this.vista.getBtnAgregar().addActionListener(e -> abrirFormulario(null));
-    this.vista.getBtnModificar().addActionListener(e -> editar());
+        this.vista.getBtnEliminar().addActionListener(e -> eliminar());
+        //this.vista.getBtnBack().addActionListener(e -> vista.dispose());
 
-    cargarTabla();
-}
-    
-    private void habilitar(){
-        CursosHabilitar habili = new CursosHabilitar();
-        CursosTablaHabilitados tablaHabilitados = new CursosTablaHabilitados();
-        CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(habili, tablaHabilitados);
-        habili.setVisible(true);
-    }
-    
-    private void tablaHabilitados(){
-        CursosTablaHabilitados vistaTabla = new CursosTablaHabilitados();
-        CtrlAdminCursosTablaHabilitar ctrlHabilitar = new CtrlAdminCursosTablaHabilitar(vistaTabla);
-        vistaTabla.setVisible(true);
+        this.vista.getBtnAgregar().addActionListener(e -> abrirFormulario(null));
+        this.vista.getBtnModificar().addActionListener(e -> editar());
+
+        cargarTabla();
     }
 
     private void cargarTabla() {
@@ -70,7 +49,7 @@ public class CtrlAdminCursosRegistrar {
 
     private void abrirFormulario(Curso curso) {
         CursosRegistrar form = new CursosRegistrar();
-        new CtrlAdminCursosTablaTodos(form, curso, this);
+        new CtrlAdminCursosRegistrar(form, this.vista);
         form.setVisible(true);
     }
 
@@ -93,7 +72,7 @@ public class CtrlAdminCursosRegistrar {
         }
     }
 
-    /*private void eliminar() {
+    private void eliminar() {
         int fila = vista.getTblAdmin().getSelectedRow();
 
         if (fila == -1) {
@@ -118,7 +97,7 @@ public class CtrlAdminCursosRegistrar {
                 JOptionPane.showMessageDialog(vista, "Error al eliminar: " + e.getMessage());
             }
         }
-    }*/
+    }
 
     public void recargarTabla() {
         cargarTabla();

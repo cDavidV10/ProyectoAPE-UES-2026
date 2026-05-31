@@ -21,7 +21,8 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
-import vista.AdministrarCursos;
+import vista.CursosRegistrar;
+import vista.CursosTablaTodos;
 import vista.DocentePrincipalView;
 import vista.VistaCredenciales;
 import vista.Login;
@@ -67,8 +68,9 @@ public class CtrlAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                AdministrarCursos administrarCursos = new AdministrarCursos();
-                ControladorAdministrarCursos ctrlCursos = new ControladorAdministrarCursos(administrarCursos);
+                CursosTablaTodos administrarCursos = new CursosTablaTodos();
+                CursosRegistrar form = new CursosRegistrar();
+                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form,administrarCursos);
                 new Paneles().insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
 
