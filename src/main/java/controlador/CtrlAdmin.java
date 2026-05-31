@@ -23,6 +23,7 @@ import modelo.Usuario;
 import vista.AdminView;
 import vista.RegistrarCursos;
 import vista.CursosTablaTodos;
+import vista.InscripcionAdminView;
 //import vista.DocentePrincipalView;
 //import vista.CursosTablaTodos;
 import vista.VistaCredenciales;
@@ -42,11 +43,13 @@ public class CtrlAdmin {
     EstudianteDAO dao = new EstudianteDAO();
     Usuario usuario;
     Login login;
+    private Paneles paneles;
 
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
         this.usuario = usuario;
         this.login = login;
+        this.paneles = new Paneles();
 
         adminView.addWindowListener(new WindowAdapter() {
             @Override
@@ -63,7 +66,7 @@ public class CtrlAdmin {
                 AdminDocente vistaPrincipal = new AdminDocente();
 
                 CtrlAdminDocente controlador = new CtrlAdminDocente(vistaPrincipal);
-                new Paneles().insertarPaneles(vistaPrincipal, adminView.getBgPanel());
+                paneles.insertarPaneles(vistaPrincipal, adminView.getBgPanel());
             }
 
         });
@@ -74,8 +77,8 @@ public class CtrlAdmin {
 
                 CursosTablaTodos administrarCursos = new CursosTablaTodos();
                 RegistrarCursos form = new RegistrarCursos();
-                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form,administrarCursos);
-                new Paneles().insertarPaneles(administrarCursos, adminView.getBgPanel());
+                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form, administrarCursos);
+                paneles.insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
 
         });
@@ -86,8 +89,15 @@ public class CtrlAdmin {
 
                 VistaEstudiantesRegistrados estudiantesRegistrados = new VistaEstudiantesRegistrados();
                 cargarTabla(estudiantesRegistrados);
-                new Paneles().insertarPaneles(estudiantesRegistrados, adminView.getBgPanel());
+                paneles.insertarPaneles(estudiantesRegistrados, adminView.getBgPanel());
             }
+
+        });
+
+        adminView.getBtnInscripcion().addActionListener(e -> {
+            InscripcionAdminView inscripcionView = new InscripcionAdminView();
+            CtrlAdminInscripcion ctrlAdminInscripcion = new CtrlAdminInscripcion(inscripcionView);
+            paneles.insertarPaneles(inscripcionView, adminView.getBgPanel());
 
         });
 
@@ -96,7 +106,7 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
                 VistaCredenciales credenciales = new VistaCredenciales();
                 new CtrlCredenciales(credenciales);
-                new Paneles().insertarPaneles(credenciales, adminView.getBgPanel());
+                paneles.insertarPaneles(credenciales, adminView.getBgPanel());
             }
         });
 
