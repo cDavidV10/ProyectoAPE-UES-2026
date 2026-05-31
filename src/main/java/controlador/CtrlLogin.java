@@ -125,7 +125,7 @@ public class CtrlLogin {
                 usuario.setDocente(docente);
 
                 DocenteView docenteView = new DocenteView();
-                CtrlDocente ctrlDocenteView = new CtrlDocente(docenteView, usuario);
+                CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
 
                 // CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario,
                 // loginView);
