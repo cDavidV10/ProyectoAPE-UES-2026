@@ -5,6 +5,7 @@
 package controlador;
 
 import dao.DocenteDAO;
+import funciones.AbiriReporte;
 import funciones.Credenciales;
 
 import java.util.List;
@@ -29,46 +30,45 @@ public class CtrlAdminDocente {
         cargarTabla();
         onClickAgregar();
         onClickEliminar();
-        
-        /*
-         * onClickModificar();
-         * onClickBuscar();
-         */
+
+        vistaPrincipal.getBtnReporte().addActionListener(e -> {
+            new AbiriReporte().abrirReporte("/DocentesReporte.jasper");
+        });
     }
 
     private void cargarTabla() {
         try {
             List<Docente> lista = dao.listar();
             DefaultTableModel modelo = vistaPrincipal.getModelo();
-            modelo.setRowCount(0);//limpiar
-            
+            modelo.setRowCount(0);// limpiar
+
             for (Docente d : lista) {
-                modelo.addRow(new Object[]{
-                    d.getIdDocente(),
-                    d.getDui(),
-                    d.getNombre(),
-                    d.getApellido(),
-                    d.getCorreo(),
-                    d.getTelefono(),
-                    d.getFechaNacimiento(),
-                    d.getTipoContrato(),
-                    d.getEspecialidad(),
-                    d.getGradoAcademico()
+                modelo.addRow(new Object[] {
+                        d.getIdDocente(),
+                        d.getDui(),
+                        d.getNombre(),
+                        d.getApellido(),
+                        d.getCorreo(),
+                        d.getTelefono(),
+                        d.getFechaNacimiento(),
+                        d.getTipoContrato(),
+                        d.getEspecialidad(),
+                        d.getGradoAcademico()
                 });
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void onClickAgregar() {
-        vistaPrincipal.getBtnNuevoDocente().addActionListener( e -> {
-           AdminFormularioDocente formDocente = new AdminFormularioDocente();
-           new CtrlAdminFormularioDocente(formDocente, this.dao, this);
-           formDocente.setVisible(true);
+        vistaPrincipal.getBtnNuevoDocente().addActionListener(e -> {
+            AdminFormularioDocente formDocente = new AdminFormularioDocente();
+            new CtrlAdminFormularioDocente(formDocente, this.dao, this);
+            formDocente.setVisible(true);
         });
     }
-    
+
     public void onClickEliminar() {
         vistaPrincipal.getBtnEliminarDocente().addActionListener(e -> {
             int fila = vistaPrincipal.getTableDocentes().getSelectedRow();
@@ -82,8 +82,7 @@ public class CtrlAdminDocente {
                     vistaPrincipal,
                     "¿Está seguro de eliminar este docente?",
                     "Confirmar eliminación",
-                    JOptionPane.YES_NO_OPTION
-            );
+                    JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
                 try {
@@ -97,7 +96,7 @@ public class CtrlAdminDocente {
         });
     }
 
-    public void refrescarTabla(){
+    public void refrescarTabla() {
         cargarTabla();
     }
 
