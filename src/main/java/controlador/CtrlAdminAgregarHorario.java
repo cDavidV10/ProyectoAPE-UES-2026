@@ -48,6 +48,12 @@ public class CtrlAdminAgregarHorario {
                 this.agregarHorarioView.getCbFinalHoras().getSelectedItem().toString(),
                 this.agregarHorarioView.getCbFinalMinutos().getSelectedItem().toString());
 
+        if (horaInicial.equalsIgnoreCase(horaFinal)) {
+            JOptionPane.showMessageDialog(null, "La hora de inicio y final no puede ser la misma", "Error de llenado",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         horario.setHoraInicio(LocalTime.parse(horaInicial));
         horario.setHoraFinal(LocalTime.parse(horaFinal));
 
