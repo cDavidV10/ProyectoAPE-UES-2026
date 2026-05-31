@@ -97,7 +97,7 @@ public class CtrlAdminAgregarHorario {
     private void llenarCbDias() {
         this.agregarHorarioView.getCbDias().removeAllItems();
 
-        String[] dias = { "Lunnes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+        String[] dias = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 
         for (int i = 0; i < dias.length; i++) {
             this.agregarHorarioView.getCbDias().addItem(dias[i]);
