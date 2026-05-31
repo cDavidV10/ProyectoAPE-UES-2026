@@ -16,15 +16,15 @@ import vista.RegistrarCursos;
  * @author alexi
  */
 
-public class ControladorRegistrarCursos {
+public class CtrlAdminCursosTablaTodos {
 
     private RegistrarCursos vista;
     private CursosDAO dao = new CursosDAO();
     private Curso cursoEditar;
-    private ControladorAdministrarCursos controladorTabla;
+    private CtrlAdminCursosRegistrar controladorTabla;
 
-    public ControladorRegistrarCursos(RegistrarCursos vista, Curso cursoEditar,
-            ControladorAdministrarCursos controladorTabla) {
+    public CtrlAdminCursosTablaTodos(RegistrarCursos vista, Curso cursoEditar,
+            CtrlAdminCursosRegistrar controladorTabla) {
         this.vista = vista;
         this.cursoEditar = cursoEditar;
         this.controladorTabla = controladorTabla;

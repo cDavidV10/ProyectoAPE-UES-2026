@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Yonathan
  */
 public class InicioCurso {
+    private int idInicioCurso;
     private LocalDate fechaApertura;
     private LocalDate fechaCierre;
     private String cupoMaximo;
@@ -28,6 +29,7 @@ public class InicioCurso {
         this.fechaApertura = fechaApertura;
         this.fechaCierre = fechaCierre;
         this.cupoMaximo = cupoMaximo;
+        this.idInicioCurso = idInicioCurso;
     }
 
     // SETTER Y GETTER
@@ -71,6 +73,16 @@ public class InicioCurso {
     public void setDocente(Docente docente) {
         this.docente = docente;
     }
+
+    public int getIdInicioCurso() {
+        return idInicioCurso;
+    }
+
+    public void setIdInicioCurso(int idInicioCurso) {
+        this.idInicioCurso = idInicioCurso;
+    }
+    
+    
 
     public ArrayList<Horario> getHorario() {
         return horario;

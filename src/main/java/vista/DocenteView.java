@@ -6,7 +6,6 @@ package vista;
 
 import java.awt.BorderLayout;
 
-import controlador.ControladorAdministrarCursos;
 import controlador.CtrlAdminDocente;
 import funciones.Paneles;
 

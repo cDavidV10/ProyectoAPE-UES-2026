@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
 
 import dao.CursosDisponiblesDAO;
 import modelo.Usuario;
-import vista.AdministrarCursos;
 import vista.CursosDisponiblesView;
 import vista.EstudianteView;
 import vista.Login;
