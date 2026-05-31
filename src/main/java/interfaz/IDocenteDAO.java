@@ -15,5 +15,5 @@ public interface IDocenteDAO {
     void insertar(Docente docente) throws Exception;
     List<Docente> listar() throws Exception;
     void eliminar(String dui) throws Exception;
-    Docente buscarIdPorUsuario(String username) throws Exception;
+    Docente buscarDocentePorUsuario(String username) throws Exception;
 }

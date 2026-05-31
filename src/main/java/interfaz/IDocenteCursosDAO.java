@@ -5,11 +5,12 @@
 package interfaz;
 
 import java.util.List;
+import modelo.Docente;
 import modelo.InicioCurso;
 /**
  *
  * @author Yonathan
  */
 public interface IDocenteCursosDAO {
-    List<InicioCurso> listarCursosxDocente(int idDocente) throws Exception;
+    List<InicioCurso> listarCursosxDocente(Docente docente) throws Exception;
 }

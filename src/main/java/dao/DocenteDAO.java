@@ -106,7 +106,7 @@ public class DocenteDAO implements IDocenteDAO {
     }
 
     @Override
-    public Docente buscarIdPorUsuario(String username) throws Exception {    
+    public Docente buscarDocentePorUsuario(String username) throws Exception {    
         try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(SELECT_DOCENTE_XUSER)) {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
