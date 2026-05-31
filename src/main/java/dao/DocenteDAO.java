@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-
 import modelo.Docente;
 
-//CAMBIAR LOS DATOS Y SEGUIR
 /**
  *
  * @author Yonathan
