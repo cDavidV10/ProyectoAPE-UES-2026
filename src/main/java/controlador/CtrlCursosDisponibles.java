@@ -12,17 +12,17 @@ import vista.CursosDisponiblesView;
 
 public class CtrlCursosDisponibles {
 
-    private final CursosDisponiblesDAO cursosDAO;
     private final CursosDisponiblesView view;
     private final int idEstudiante;
+    private CursosDisponiblesDAO cursosDAO;
 
     // Lista para guardar los daatos completos de cada fila
     private List<Object[]> cursosLista = new ArrayList<>();
 
-    public CtrlCursosDisponibles(CursosDisponiblesDAO cursosDAO, CursosDisponiblesView view, int idEstudiante) {
-        this.cursosDAO = cursosDAO;
+    public CtrlCursosDisponibles(CursosDisponiblesView view, int idEstudiante) {
         this.view = view;
         this.idEstudiante = idEstudiante;
+        this.cursosDAO = new CursosDisponiblesDAO();
 
         iniciarEventos();
         cargarTabla();
