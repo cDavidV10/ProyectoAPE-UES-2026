@@ -82,11 +82,8 @@ public class CtrlAdminAgregarHorario {
             this.agregarHorarioView.getJtHorarios().setModel(modelo);
 
         } catch (Exception e) {
-            // TODO: handle exception
-        }
-
-        for (Object string : titulos) {
-
+            JOptionPane.showMessageDialog(null, "No hay datos para mostrar", "Error al cargar informacion",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }
