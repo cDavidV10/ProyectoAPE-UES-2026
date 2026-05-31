@@ -27,7 +27,6 @@ import vista.VistaRegEstu;
 public class CtrlLogin {
     private Login loginView;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
-    
 
     public CtrlLogin(Login loginView) {
         this.loginView = loginView;
@@ -91,8 +90,8 @@ public class CtrlLogin {
 
         try {
             String result = usuarioDAO.buscar(username, password);
-            Usuario usuario = usuarioDAO.getUsuario();    
-            
+            Usuario usuario = usuarioDAO.getUsuario();
+
             if (result.equalsIgnoreCase("Administrador")) {
                 AdminView adminView = new AdminView();
                 CtrlAdmin ctrlAdmin = new CtrlAdmin(adminView, usuario, loginView);
@@ -101,25 +100,34 @@ public class CtrlLogin {
             }
 
             if (result.equalsIgnoreCase("Estudiante")) {
+                // EstudianteDAO estudianteDAO = new EstudianteDAO();
+                // modelo.Estudiante estudiante = (modelo.Estudiante)
+                // estudianteDAO.buscarRegistro(username);
+
+                // guarda id dedel estudiante en el usuario
+                // usuario.setEstudiante(estudiante);
+
                 EstudianteView estudianteView = new EstudianteView();
                 CtrlEstudianteView ctrlEstudianteView = new CtrlEstudianteView(estudianteView, usuario, loginView);
+
                 estudianteView.setVisible(true);
                 loginView.dispose();
             }
 
-            if (result.equalsIgnoreCase("Docente")) {    
-                
+            if (result.equalsIgnoreCase("Docente")) {
+
                 DocenteDAO docenteDAO = new DocenteDAO();
 
                 modelo.Docente docente = docenteDAO.buscarIdPorUsuario(username);
 
                 // Guardar el id en el usuario
                 usuario.setDocente(docente);
-    
-                vista.DocenteView docenteView = new DocenteView();
-                CtrlDocente ctrlDocenteView = new CtrlDocente(docenteView, usuario);
 
-                //CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
+                DocenteView docenteView = new DocenteView();
+                CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
+
+                // CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario,
+                // loginView);
                 docenteView.setVisible(true);
                 loginView.dispose();
             }

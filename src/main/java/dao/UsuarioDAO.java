@@ -38,6 +38,11 @@ public class UsuarioDAO implements IUsuarioDAO {
             usuario.setPassword(rs.getString(3));
             usuario.setTipo(rs.getString(4));
 
+            /* linea de prueba para eencontrar el estudiante por el id */
+            modelo.Estudiante e = new modelo.Estudiante();
+            e.setIdEstudiante(rs.getInt("id_estudiante")); // columna ya existe en la tabla usuario
+            usuario.setEstudiante(e);
+
             existe = true;
         }
 
