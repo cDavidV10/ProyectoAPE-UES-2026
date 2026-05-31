@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Docente;
 import modelo.InicioCurso;
 import vista.DocenteVerCursoDetalle;
 import vista.DocenteVerCursosAsignados;
@@ -20,20 +21,20 @@ import vista.DocenteVerCursosAsignados;
 public class CtrlDocenteVerCursosAsignados {
     private DocenteCursosDAO dao;
     private DocenteVerCursosAsignados vista;
-    private int idDocente;
+    private Docente docente;
     
-    public CtrlDocenteVerCursosAsignados(DocenteCursosDAO dao, DocenteVerCursosAsignados vista, int idDocente) {
+    public CtrlDocenteVerCursosAsignados(DocenteCursosDAO dao, DocenteVerCursosAsignados vista, Docente docente) {
         this.dao = dao;
         this.vista = vista;
-        this.idDocente = idDocente;
+        this.docente = docente;
 
-        cargarCursos(idDocente);
+        cargarCursos(docente);
         onClickVerDetalles();
     }
 
-    private void cargarCursos(int idDocente) {    
+    private void cargarCursos(Docente docente) {    
         try {
-            List<InicioCurso> cursos = dao.listarCursosxDocente(idDocente);
+            List<InicioCurso> cursos = dao.listarCursosxDocente(docente);
             mostrarCursos(cursos); 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar cursos: " + ex.getMessage());

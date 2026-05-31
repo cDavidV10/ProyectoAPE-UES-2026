@@ -118,7 +118,7 @@ public class CtrlLogin {
 
                 DocenteDAO docenteDAO = new DocenteDAO();
 
-                modelo.Docente docente = docenteDAO.buscarIdPorUsuario(username);
+                modelo.Docente docente = docenteDAO.buscarDocentePorUsuario(username);
 
                 // Guardar el id en el usuario
                 usuario.setDocente(docente);
@@ -126,8 +126,6 @@ public class CtrlLogin {
                 DocenteView docenteView = new DocenteView();
                 CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario, loginView);
 
-                // CtrlDocenteView ctrlDocenteView = new CtrlDocenteView(docenteView, usuario,
-                // loginView);
                 docenteView.setVisible(true);
                 loginView.dispose();
             }
