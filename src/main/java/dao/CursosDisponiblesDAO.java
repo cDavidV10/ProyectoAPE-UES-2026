@@ -49,7 +49,7 @@ public class CursosDisponiblesDAO {
             "   AND fecha_apertura <= CURRENT_DATE " +
             "   AND fecha_cierre >= CURRENT_DATE " +
             "   LIMIT 1), " +
-            "CURRENT_DATE, 'activo')";
+            "CURRENT_DATE, 'Activa')";
 
     // Verifica si el estudiante ya está inscrito en ese inicio_curso
     private static final String VERIFICAR_INSCRIPCION = "SELECT COUNT(*) FROM inscripcion i " +
