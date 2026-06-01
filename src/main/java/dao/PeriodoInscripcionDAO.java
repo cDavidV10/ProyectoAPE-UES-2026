@@ -87,12 +87,8 @@ public class PeriodoInscripcionDAO implements IInscripcionDAO {
                 FROM inicio_curso ic
                 INNER JOIN curso c ON ic.id_curso = c.id_curso
                 INNER JOIN docente d ON ic.id_docente = d.id_docente
-                WHERE ic.id_inicio_curso NOT IN (
-                    SELECT id_inicio_curso
-                    FROM periodo_inscripcion
-                    WHERE id_inicio_curso IS NOT NULL
-                );
-                                                """;
+                WHERE ic.id_periodo is null;
+                                                                """;
         Connection conexion = Conexion.getConexion();
 
         PreparedStatement ps = conexion.prepareStatement(cursosDisponibles);
