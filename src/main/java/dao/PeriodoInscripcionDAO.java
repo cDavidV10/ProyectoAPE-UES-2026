@@ -19,8 +19,8 @@ public class PeriodoInscripcionDAO implements IInscripcionDAO {
     @Override
     public void insertar(String username, PeriodoInscripcion periodoInscripcion) throws Exception {
         String consulta = """
-                insert into periodo_inscripcion(id_administrador, id_inicio_curso, fecha_apertura, fecha_cierre)
-                SELECT id_admind, null, ?, ?
+                insert into periodo_inscripcion(id_administrador, fecha_apertura, fecha_cierre)
+                SELECT id_admind, ?, ?
                 from usuario us
                 where us.username = ?;
                                 """;

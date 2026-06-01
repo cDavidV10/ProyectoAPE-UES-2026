@@ -61,7 +61,7 @@ public class HabilitarInscripcionView extends javax.swing.JDialog {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 30, -1));
         jPanel1.add(jcFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 150, -1));
 
-        btnGuardar.setText("Habilitar");
+        btnGuardar.setText("Agregar");
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 210));

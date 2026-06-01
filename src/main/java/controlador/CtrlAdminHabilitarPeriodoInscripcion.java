@@ -25,12 +25,12 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
         this.user = user;
         this.accion = accion;
         this.inscripcionDAO = new PeriodoInscripcionDAO();
+        this.periodoInscripcion = new PeriodoInscripcion();
 
         if (accion.equalsIgnoreCase("Actualizar")) {
             habilitarInscripcionView.getBtnGuardar().setText("Actualizar");
 
             try {
-
                 this.periodoInscripcion = inscripcionDAO.periodoActivo();
 
                 Date fechaApertura = Date.from(
@@ -46,29 +46,24 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
                 habilitarInscripcionView.getJcInicio().setDate(fechaApertura);
                 habilitarInscripcionView.getJcFinal().setDate(fechaCierre);
                 habilitarInscripcionView.getJcInicio().setEnabled(false);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al cargar periodo: " + e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
         habilitarInscripcionView.getBtnGuardar().addActionListener(e -> {
-
             if (accion.equalsIgnoreCase("Agregar")) {
-
                 guardar();
             }
-
             if (accion.equalsIgnoreCase("Actualizar")) {
-
                 actualizar();
             }
-
         });
     }
 
     private void guardar() {
-
         this.periodoInscripcion = llenarObjeto();
 
         if (!validarFechas(periodoInscripcion)) {
@@ -80,11 +75,10 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
             JOptionPane.showMessageDialog(null, "Periodo Habilitado correctamente", "Operacion Exitosa",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pude realizar la accion", "Operacion Fallida",
+            JOptionPane.showMessageDialog(null, "No se pudo realizar la accion", "Operacion Fallida",
                     JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
-
     }
 
     private void actualizar() {
@@ -99,11 +93,10 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
             JOptionPane.showMessageDialog(null, "Periodo actualizado correctamente", "Operacion Exitosa",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pude realizar la accion", "Operacion Fallida",
+            JOptionPane.showMessageDialog(null, "No se pudo realizar la accion", "Operacion Fallida",
                     JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
-
     }
 
     private PeriodoInscripcion llenarObjeto() {
@@ -120,6 +113,12 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
     }
 
     private boolean validarFechas(PeriodoInscripcion periodoInscripcion) {
+        if (periodoInscripcion.getFechaApertura() == null || periodoInscripcion.getFechaCierre() == null) {
+            JOptionPane.showMessageDialog(null, "Por favor seleccione ambas fechas", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         if (periodoInscripcion.getFechaApertura().isBefore(LocalDate.now())) {
             JOptionPane.showMessageDialog(null, "La fecha de apertura no puede iniciar antes del dia actual", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -134,5 +133,4 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
 
         return true;
     }
-
 }
