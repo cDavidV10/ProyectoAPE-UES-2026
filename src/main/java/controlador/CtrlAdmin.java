@@ -96,7 +96,7 @@ public class CtrlAdmin {
 
         adminView.getBtnInscripcion().addActionListener(e -> {
             InscripcionAdminView inscripcionView = new InscripcionAdminView();
-            CtrlAdminInscripcion ctrlAdminInscripcion = new CtrlAdminInscripcion(inscripcionView);
+            CtrlAdminInscripcion ctrlAdminInscripcion = new CtrlAdminInscripcion(inscripcionView, usuario);
             paneles.insertarPaneles(inscripcionView, adminView.getBgPanel());
 
         });

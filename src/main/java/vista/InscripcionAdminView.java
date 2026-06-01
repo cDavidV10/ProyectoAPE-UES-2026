@@ -5,6 +5,7 @@
 package vista;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 /**
@@ -32,17 +33,19 @@ public class InscripcionAdminView extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtCursos = new javax.swing.JTable();
-        btnHabilitar = new javax.swing.JButton();
         btnDetalles = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtCursos = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtPeriodo = new javax.swing.JLabel();
+        btnHabilitar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1060, 700));
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 42, 120));
         jPanel1.setMinimumSize(new java.awt.Dimension(1060, 105));
@@ -80,16 +83,18 @@ public class InscripcionAdminView extends javax.swing.JPanel {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setMinimumSize(new java.awt.Dimension(1060, 615));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cursos Habilitados");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
+        btnDetalles.setText("Ver Detalles");
+        add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
+
+        btnAgregar.setText("Agregar a Periodo de Inscripcion");
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, -1, -1));
 
         jtCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,18 +109,26 @@ public class InscripcionAdminView extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jtCursos);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 990, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 990, -1));
 
-        btnHabilitar.setText("Habilitar Perido de Inscripcion");
-        jPanel2.add(btnHabilitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, -1, -1));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnDetalles.setText("Ver Detalles");
-        jPanel2.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Periodo de Inscripcion Activo: ");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        btnAgregar.setText("Agregar a Periodo de Inscripcion");
-        jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        txtPeriodo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtPeriodo.setForeground(new java.awt.Color(0, 0, 0));
+        txtPeriodo.setText("Cambiar");
+        jPanel3.add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 290, -1));
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        btnHabilitar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnHabilitar.setText("Agregar");
+        jPanel3.add(btnHabilitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, -1));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1060, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     public JTable getJtCursos() {
@@ -123,7 +136,7 @@ public class InscripcionAdminView extends javax.swing.JPanel {
     }
 
     public JButton getBtnAgregar() {
-        return btnAgregar;
+        return btnHabilitar;
     }
 
     public JButton getBtnDetalles() {
@@ -132,6 +145,10 @@ public class InscripcionAdminView extends javax.swing.JPanel {
 
     public JButton getBtnHabilitar() {
         return btnHabilitar;
+    }
+
+    public JLabel getTxtPeriodo() {
+        return txtPeriodo;
     }
     
     
@@ -144,9 +161,11 @@ public class InscripcionAdminView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtCursos;
+    private javax.swing.JLabel txtPeriodo;
     // End of variables declaration//GEN-END:variables
 }
