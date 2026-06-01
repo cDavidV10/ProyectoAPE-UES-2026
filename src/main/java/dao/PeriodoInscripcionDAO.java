@@ -81,7 +81,7 @@ public class PeriodoInscripcionDAO implements IInscripcionDAO {
                     c.nombre as curso,
                     d.nombre as nombreDocente,
                     d.apellido as apellidoDocente,
-                    ic.fecha_apertura as fechaApertcsura,
+                    ic.fecha_apertura as fechaApertura,
                     ic.fecha_cierre as fechaCierre,
                     ic.cupo_maximo as cupoMaximo
                 FROM inicio_curso ic
