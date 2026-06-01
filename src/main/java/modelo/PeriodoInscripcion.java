@@ -11,7 +11,7 @@ public class PeriodoInscripcion {
     // ? Clases Relacionadas
     private Administrador administrador;
     private ArrayList<Inscripcion> inscripciones;
-    private InicioCurso inicioCurso;
+    private ArrayList<InicioCurso> inicioCurso;
 
     public PeriodoInscripcion() {
     }
@@ -54,8 +54,6 @@ public class PeriodoInscripcion {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
 
     public Administrador getAdministrador() {
         return administrador;
@@ -73,12 +71,14 @@ public class PeriodoInscripcion {
         this.inscripciones = inscripciones;
     }
 
-    public InicioCurso getInicioCurso() {
+    public ArrayList<InicioCurso> getInicioCurso() {
         return inicioCurso;
     }
 
-    public void setInicioCurso(InicioCurso inicioCurso) {
+    public void setInicioCurso(ArrayList<InicioCurso> inicioCurso) {
         this.inicioCurso = inicioCurso;
     }
+    
+    
 
 }
