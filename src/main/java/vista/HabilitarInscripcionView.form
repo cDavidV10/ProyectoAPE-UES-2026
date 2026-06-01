@@ -105,7 +105,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Habilitar"/>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
