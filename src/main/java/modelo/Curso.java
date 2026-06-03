@@ -15,7 +15,6 @@ public class Curso {
     private String Codigo;
     private String nombreCurso;
     private String descripcion;
-    // ? Clases Relacionadas
     private ArrayList<InicioCurso> InicioCurso;
 
     public Curso() {
@@ -69,7 +68,6 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Cursos{" + "idCurso=" + idCurso + ", descripcion=" + descripcion + ", nombreCurso=" + nombreCurso + '}';
+        return nombreCurso; 
     }
-
 }
