@@ -27,8 +27,10 @@ public class CtrlDocenteVerCursosAsignados {
         this.dao = dao;
         this.vista = vista;
         this.docente = docente;
-
+        
+        vista.getBtnVerDetalles().setEnabled(false);
         cargarCursos(docente);
+        habilitarBotonVerDetalles();
         onClickVerDetalles();
     }
 
@@ -45,7 +47,7 @@ public class CtrlDocenteVerCursosAsignados {
     public void mostrarCursos(List<InicioCurso> cursos) {
         DefaultTableModel model = (DefaultTableModel) vista.getTablaDocentesCursosAsignados().getModel();
         model.setRowCount(0); // limpiar
-
+        
         for (InicioCurso ic : cursos) {
             model.addRow(new Object[]{
                 ic.getCursos().getCodigo(),
@@ -57,14 +59,19 @@ public class CtrlDocenteVerCursosAsignados {
             });
         }
     }
+    
+    private void habilitarBotonVerDetalles() {
+    vista.getTablaDocentesCursosAsignados().getSelectionModel().addListSelectionListener(e -> {
+        boolean filaSeleccionada = vista.getTablaDocentesCursosAsignados().getSelectedRow() != -1;
+        vista.getBtnVerDetalles().setEnabled(filaSeleccionada);
+    });
+    }
 
     private void onClickVerDetalles() {
-        vista.getBtnVerDetalles().addActionListener(e -> {
+
+        vista.getBtnVerDetalles().addActionListener(e -> {           
             int fila = vista.getTablaDocentesCursosAsignados().getSelectedRow();
-            if (fila == -1) {
-                JOptionPane.showMessageDialog(null, "Seleccione un curso primero");
-                return;
-            }
+            vista.getBtnVerDetalles().setEnabled(true);
 
             // paara obtener datos de la fila seleccionada
             String codigo = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 0);
@@ -85,5 +92,6 @@ public class CtrlDocenteVerCursosAsignados {
         vista.getBtnRegresar().addActionListener(e -> {
             vista.setVisible(false); 
         });
+        return;
     }
 }
