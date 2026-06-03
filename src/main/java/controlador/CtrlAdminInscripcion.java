@@ -25,6 +25,8 @@ public class CtrlAdminInscripcion {
 
         mostrarPeridoActivo();
 
+        inscripcionView.getBtnAgregar().setEnabled(false);
+
         inscripcionView.getBtnHabilitar().addActionListener(e -> {
 
             HabilitarInscripcionView habilitarInscripcionView = new HabilitarInscripcionView(null, false);
@@ -50,6 +52,13 @@ public class CtrlAdminInscripcion {
             habilitarInscripcionView.setVisible(true);
 
         });
+
+        inscripcionView.getJtCursos().getSelectionModel().addListSelectionListener(e -> {
+            boolean seleccionado = inscripcionView.getJtCursos().getSelectedRow() != -1;
+            inscripcionView.getBtnAgregar().setEnabled(true);
+
+        });
+
     }
 
     private void mostrarPeridoActivo() {
