@@ -7,6 +7,7 @@ package vista;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import modelo.Curso;
 import modelo.Docente;
@@ -37,8 +38,6 @@ public class CursosHabilitar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cmbCurso = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         fechaInicio = new com.toedter.calendar.JDateChooser();
         fechaCierre = new com.toedter.calendar.JDateChooser();
@@ -52,13 +51,13 @@ public class CursosHabilitar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cmbHorario = new javax.swing.JComboBox<>();
         btnHorario = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        lblEspecialidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Habilitar Curso");
-
-        jLabel2.setText("Seleccione curso");
 
         jLabel3.setText("Fecha de apertura");
 
@@ -76,6 +75,10 @@ public class CursosHabilitar extends javax.swing.JFrame {
 
         btnHorario.setText("Agregar Hora");
 
+        jLabel8.setText("Especialidad:");
+
+        lblEspecialidad.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,14 +89,14 @@ public class CursosHabilitar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEspecialidad, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnHorario)
                         .addGap(90, 90, 90)
@@ -117,22 +120,22 @@ public class CursosHabilitar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(jLabel1)
-                .addGap(78, 78, 78)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(fechaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
+                            .addComponent(jLabel3)
                             .addComponent(cmbDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabel6))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8)
+                            .addComponent(lblEspecialidad))))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -144,7 +147,7 @@ public class CursosHabilitar extends javax.swing.JFrame {
                     .addComponent(btnCancelar)
                     .addComponent(btnAgregar)
                     .addComponent(btnHorario))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,9 +184,11 @@ public class CursosHabilitar extends javax.swing.JFrame {
         return fechaCierre;
     }
 
-    public JComboBox<Curso> getCmbCurso() {
-        return cmbCurso;
+    public JLabel getLblEspecialidad() {
+        return lblEspecialidad;
     }
+
+    
 
     public JComboBox<Docente> getCmbDocente() {
         return cmbDocente;
@@ -221,18 +226,18 @@ public class CursosHabilitar extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnHorario;
-    private javax.swing.JComboBox<modelo.Curso> cmbCurso;
     private javax.swing.JComboBox<modelo.Docente> cmbDocente;
     private javax.swing.JComboBox<modelo.Horario> cmbHorario;
     public com.toedter.calendar.JDateChooser fechaCierre;
     public com.toedter.calendar.JDateChooser fechaInicio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblEspecialidad;
     private javax.swing.JSpinner spinCupo;
     // End of variables declaration//GEN-END:variables
 }

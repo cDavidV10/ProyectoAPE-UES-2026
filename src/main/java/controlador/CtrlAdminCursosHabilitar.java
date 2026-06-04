@@ -38,8 +38,13 @@ public class CtrlAdminCursosHabilitar {
         this.modelo = (DefaultTableModel) vistaTabla.getTblHabilitados().getModel();
 
         cargarCombos();
+        
+        mostrarEspecialidad();
+
+        this.vistaHabilitar.getCmbDocente().addActionListener(e -> mostrarEspecialidad());
 
         this.vistaHabilitar.getBtnHorario().addActionListener(e -> {
+            
             AgregarHorarioView agregarHorarioView = new AgregarHorarioView(vistaTabla, false);
             CtrlAdminAgregarHorario ctrlAgregarHorario = new CtrlAdminAgregarHorario(agregarHorarioView);
 
@@ -55,10 +60,18 @@ public class CtrlAdminCursosHabilitar {
         this.vistaHabilitar.getBtnAgregar().addActionListener(e -> guardar());
         this.vistaHabilitar.getBtnCancelar().addActionListener(e -> vistaHabilitar.dispose());
     }
+    
+    private void mostrarEspecialidad() {
+    Docente docente = (Docente) vistaHabilitar.getCmbDocente().getSelectedItem();
+
+    if (docente != null) {
+        vistaHabilitar.getLblEspecialidad().setText(docente.getEspecialidad());
+    }
+}
 
     private void guardar() {
         try {
-            if (vistaHabilitar.getCmbCurso().getSelectedIndex() == -1 ||
+            if (
                     vistaHabilitar.getCmbDocente().getSelectedIndex() == -1 ||
                     vistaHabilitar.getCmbHorario().getSelectedIndex() == -1) {
 
@@ -68,11 +81,9 @@ public class CtrlAdminCursosHabilitar {
 
             InicioCurso ci = new InicioCurso();
 
-            Curso cursoSel = (Curso) vistaHabilitar.getCmbCurso().getSelectedItem();
             Docente docenteSel = (Docente) vistaHabilitar.getCmbDocente().getSelectedItem();
             Horario horarioSel = (Horario) vistaHabilitar.getCmbHorario().getSelectedItem();
 
-            ci.setCursos(cursoSel);
             ci.setDocente(docenteSel);
 
             ArrayList<Horario> listaHorarios = new ArrayList<>();
@@ -96,18 +107,12 @@ public class CtrlAdminCursosHabilitar {
 
     private void cargarCombos() {
         try {
-            vistaHabilitar.getCmbCurso().removeAllItems();
             vistaHabilitar.getCmbDocente().removeAllItems();
             vistaHabilitar.getCmbHorario().removeAllItems();
 
-            CursosDAO daoCurso = new CursosDAO();
             DocenteDAO daoDocente = new DocenteDAO();
             HorarioDAO daoHorario = new HorarioDAO();
 
-            List<Curso> listaCursos = daoCurso.listar();
-            for (Curso c : listaCursos) {
-                vistaHabilitar.getCmbCurso().addItem(c);
-            }
 
             List<Docente> listaDocentes = daoDocente.listar();
             for (Docente d : listaDocentes) {

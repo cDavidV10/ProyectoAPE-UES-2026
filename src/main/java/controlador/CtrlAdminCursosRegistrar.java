@@ -7,7 +7,6 @@ import dao.CursosDAO;
 import vista.CursosHabilitar;
 import vista.CursosTablaTodos;
 import vista.RegistrarCursos;
-import vista.RegistrarCursos;
 import vista.CursosTablaHabilitados;
 
 /**
@@ -30,13 +29,23 @@ public class CtrlAdminCursosRegistrar {
 
     //this.vista.getBtnEliminar().addActionListener(e -> eliminar());
     // this.vista.getBtnBack().addActionListener(e -> vista.dispose());
-    this.vista.getBtnHabilitar().addActionListener(e -> habilitar());
+    this.vista.getBtnHabilitar().setEnabled(false);
     this.vista.getBtnVerTablaHabilitados().addActionListener(e -> tablaHabilitados());
     
     this.vista.getBtnAgregar().addActionListener(e -> abrirFormulario(null));
     this.vista.getBtnModificar().addActionListener(e -> editar());
 
+    
+    
+    onClickVerHabili();
     cargarTabla();
+
+    this.vista.getTblAdmin().getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) {
+            int fila = vista.getTblAdmin().getSelectedRow();
+            vista.getBtnHabilitar().setEnabled(fila != -1);
+        }
+    });
 }
     
     private void habilitar(){
@@ -45,6 +54,14 @@ public class CtrlAdminCursosRegistrar {
         CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(habili, tablaHabilitados);
         habili.setVisible(true);
     }
+    
+    private void onClickVerHabili() {
+        vista.getBtnHabilitar().addActionListener(e -> {
+            habilitar();
+        });
+    }
+
+
     
     private void tablaHabilitados(){
         CursosTablaHabilitados vistaTabla = new CursosTablaHabilitados();
@@ -70,7 +87,6 @@ public class CtrlAdminCursosRegistrar {
 
     private void abrirFormulario(Curso curso) {
         RegistrarCursos form = new RegistrarCursos();
-        new CtrlAdminCursosRegistrar(form, this.vista);
         form.setVisible(true);
     }
 

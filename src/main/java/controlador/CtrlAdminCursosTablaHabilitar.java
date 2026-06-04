@@ -45,14 +45,14 @@ public class CtrlAdminCursosTablaHabilitar {
                 Object idCurso = (ci.getCursos() != null) ? ci.getCursos().getIdCurso() : "";
                 Object nombreCurso = (ci.getCursos() != null) ? ci.getCursos().getNombreCurso() : "";
                 
-                Object idHorario = (ci.getHorario() != null && !ci.getHorario().isEmpty()) ? ci.getHorario().get(0).getId() : "";
-                Object horarioStr = (ci.getHorario() != null && !ci.getHorario().isEmpty()) ? ci.getHorario().get(0).toString() : "";
+                //Object idHorario = (ci.getHorario() != null && !ci.getHorario().isEmpty()) ? ci.getHorario().get(0).getId() : "";
+                //Object horarioStr = (ci.getHorario() != null && !ci.getHorario().isEmpty()) ? ci.getHorario().get(0).toString() : "";
                 
                 modelo.addRow(new Object[] {
                         idCurso,
                         nombreCurso,
-                        idHorario,
-                        horarioStr,
+                        //idHorario,
+                        //horarioStr,
                         ci.getFechaApertura(),
                         ci.getFechaCierre(),
                         ci.getCupoMaximo()
