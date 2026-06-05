@@ -11,6 +11,10 @@ import funciones.Paneles;
 import java.awt.Component;
 import java.awt.Container;
 import java.time.LocalDate;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import javax.swing.JOptionPane;
 import modelo.Estudiante;
 import modelo.Usuario;
@@ -154,7 +158,8 @@ public class CtrlFormModifEstudiante {
         boolean modificado;
         java.util.Date fechaNacimiento;
 
-        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de modificar los datos?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de modificar los datos?", "Confirmar",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (respuesta == JOptionPane.YES_OPTION) {
             try {

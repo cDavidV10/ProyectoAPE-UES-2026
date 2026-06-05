@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.EstudianteDAO;
+import funciones.AbiriReporte;
 import funciones.Paneles;
 import funciones.UsuarioActivo;
 
@@ -24,6 +25,14 @@ import vista.AdministrarCursos;
 import vista.DocentePrincipalView;
 import vista.VistaCredenciales;
 import vista.Login;
+import vista.CursosRegistrar;
+import vista.CursosTablaTodos;
+import vista.InscripcionAdminView;
+//import vista.DocentePrincipalView;
+//import vista.CursosTablaTodos;
+import vista.VistaCredenciales;
+import vista.Login;
+import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
 
 /**
@@ -36,11 +45,17 @@ public class CtrlAdmin {
     private AdminView adminView;
     private Login login;
     private Usuario usuario;
+    AdminView adminView;
+    EstudianteDAO dao = new EstudianteDAO();
+    Usuario usuario;
+    Login login;
+    private Paneles paneles;
 
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
         this.usuario = usuario;
         this.login = login;
+        this.paneles = new Paneles();
 
         adminView.addWindowListener(new WindowAdapter() {
             @Override
@@ -54,10 +69,10 @@ public class CtrlAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DocentePrincipalView vistaPrincipal = new DocentePrincipalView();
+                AdminDocente vistaPrincipal = new AdminDocente();
 
-                CtrlDocente controlador = new CtrlDocente(vistaPrincipal);
-                new Paneles().insertarPaneles(vistaPrincipal, adminView.getBgPanel());
+                CtrlAdminDocente controlador = new CtrlAdminDocente(vistaPrincipal);
+                paneles.insertarPaneles(vistaPrincipal, adminView.getBgPanel());
             }
 
         });
@@ -66,9 +81,10 @@ public class CtrlAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                AdministrarCursos administrarCursos = new AdministrarCursos();
-                ControladorAdministrarCursos ctrlCursos = new ControladorAdministrarCursos(administrarCursos);
-                new Paneles().insertarPaneles(administrarCursos, adminView.getBgPanel());
+                CursosTablaTodos administrarCursos = new CursosTablaTodos();
+                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(administrarCursos,
+                        adminView.getBgPanel());
+                paneles.insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
 
         });
@@ -79,16 +95,24 @@ public class CtrlAdmin {
 
                 VistaEstudiantesRegistrados estudiantesRegistrados = new VistaEstudiantesRegistrados();
                 cargarTabla(estudiantesRegistrados);
-                new Paneles().insertarPaneles(estudiantesRegistrados, adminView.getBgPanel());
+                paneles.insertarPaneles(estudiantesRegistrados, adminView.getBgPanel());
             }
 
         });
-        adminView.getBtnCredencialess().addActionListener(new ActionListener(){
+
+        adminView.getBtnInscripcion().addActionListener(e -> {
+            InscripcionAdminView inscripcionView = new InscripcionAdminView();
+            CtrlAdminInscripcion ctrlAdminInscripcion = new CtrlAdminInscripcion(inscripcionView, usuario);
+            paneles.insertarPaneles(inscripcionView, adminView.getBgPanel());
+
+        });
+
+        adminView.getBtnCredencialess().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 VistaCredenciales credenciales = new VistaCredenciales();
                 new CtrlCredenciales(credenciales);
-                new Paneles().insertarPaneles(credenciales, adminView.getBgPanel());
+                paneles.insertarPaneles(credenciales, adminView.getBgPanel());
             }
         });
         this.adminView.addWindowListener(new WindowAdapter() {
@@ -107,15 +131,19 @@ public class CtrlAdmin {
         try {
             List<Estudiante> lista = dao.listar();
             for (Estudiante e : lista) {
-                modelo.addRow(new Object[]{
-                    e.getIdEstudiante(),
-                    e.getNombre(),
-                    e.getApellido(),
-                    e.getDui(),
-                    e.getFechaNacimiento(),
-                    e.getCorreo()
+                modelo.addRow(new Object[] {
+                        e.getIdEstudiante(),
+                        e.getDui(),
+                        e.getNombre(),
+                        e.getApellido(),
+                        e.getFechaNacimiento(),
+                        e.getCorreo()
                 });
             }
+
+            vistaTabla.getBtnReporte().addActionListener(e -> {
+                new AbiriReporte().abrirReporte("ReporteEstudiante.jasper");
+            });
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vistaTabla,
                     "Error al cargar datos: " + ex.getMessage(),

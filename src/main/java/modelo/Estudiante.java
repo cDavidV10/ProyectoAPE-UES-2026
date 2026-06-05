@@ -11,12 +11,13 @@ public class Estudiante {
     private String apellido;
     private LocalDate fechaNacimiento;
     private String correo;
-    
-    public Estudiante() {}
 
     // ? Clases Relacionadas
     private Usuario usuario;
     private ArrayList<Inscripcion> inscripciones;
+
+    public Estudiante() {
+    }
 
     public Estudiante(int idEstudiante, String dui, String nombre,
             String apellido, LocalDate fechaNacimiento, String correo) {
@@ -28,24 +29,53 @@ public class Estudiante {
         this.correo = correo;
     }
 
-    public int getIdEstudiante() { return idEstudiante; }
-    public void setIdEstudiante(int idEstudiante) { this.idEstudiante = idEstudiante; }
+    public int getIdEstudiante() {
+        return idEstudiante;
+    }
 
-    public String getDui() { return dui; }
-    public void setDui(String dui) { this.dui = dui; }
+    public void setIdEstudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getDui() {
+        return dui;
+    }
 
-    public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
+    public void setDui(String dui) {
+        this.dui = dui;
+    }
 
-    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
-    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
-    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -62,7 +92,6 @@ public class Estudiante {
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
-    
 
     @Override
     public String toString() {

@@ -4,7 +4,6 @@
  */
 package modelo;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class Docente {
     private String tipoContrato;
     private String especialidad;
     private String gradoAcademico;
-    // ? Clases Relacionadas
+    
     private Usuario usuario;
     private ArrayList<InicioCurso> inicioCursos;
 
@@ -143,5 +142,10 @@ public class Docente {
     public void setInicioCursos(ArrayList<InicioCurso> inicioCursos) {
         this.inicioCursos = inicioCursos;
     }
-
+    
+    @Override
+    public String toString() {
+        return this.nombre + " " + this.apellido;
+    }
 }
+

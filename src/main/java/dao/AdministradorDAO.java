@@ -20,11 +20,10 @@ import modelo.Administrador;
  */
 public class AdministradorDAO implements IAdministradorDAO {
 
-    private String UPDATE = "";
-
     @Override
     public boolean crearRegistro(Administrador a) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'crearRegistro'");
     }
 
     @Override
@@ -51,7 +50,8 @@ public class AdministradorDAO implements IAdministradorDAO {
 
     @Override
     public ArrayList listarRegistros() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarRegistros'");
     }
 
     @Override

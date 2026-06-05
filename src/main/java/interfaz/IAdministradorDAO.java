@@ -7,13 +7,17 @@ package interfaz;
 import java.util.ArrayList;
 import modelo.Administrador;
 
+import modelo.Administrador;
+
 /**
  *
  * @author MINEDUCYT
  */
 public interface IAdministradorDAO {
     public boolean crearRegistro(Administrador a) throws Exception;
+
     public boolean modificarRegistro(Administrador a) throws Exception;
+
     public ArrayList listarRegistros() throws Exception;
     public boolean desactivarRegistro(Administrador a) throws Exception;
     public Object buscarRegistro(String buscar) throws Exception;

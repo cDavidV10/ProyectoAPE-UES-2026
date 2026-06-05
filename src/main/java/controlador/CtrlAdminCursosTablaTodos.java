@@ -9,22 +9,22 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Curso;
 import dao.CursosDAO;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 
 /**
  *
  * @author alexi
  */
 
-public class ControladorRegistrarCursos {
+public class CtrlAdminCursosTablaTodos {
 
-    private RegistrarCursos vista;
+    private CursosRegistrar vista;
     private CursosDAO dao = new CursosDAO();
     private Curso cursoEditar;
-    private ControladorAdministrarCursos controladorTabla;
+    private CtrlAdminCursosRegistrar controladorTabla;
 
-    public ControladorRegistrarCursos(RegistrarCursos vista, Curso cursoEditar,
-            ControladorAdministrarCursos controladorTabla) {
+    public CtrlAdminCursosTablaTodos(CursosRegistrar vista, Curso cursoEditar,
+            CtrlAdminCursosRegistrar controladorTabla) {
         this.vista = vista;
         this.cursoEditar = cursoEditar;
         this.controladorTabla = controladorTabla;

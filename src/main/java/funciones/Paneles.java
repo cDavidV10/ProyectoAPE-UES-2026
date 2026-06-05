@@ -14,15 +14,15 @@ import javax.swing.JPanel;
  */
 public class Paneles {
     public void insertarPaneles(JPanel panel, JPanel contenedor) {
-        panel.setSize(1030, 700);
+        panel.setSize(1060, 720);
 
         contenedor.removeAll();
         contenedor.add(panel, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }
-    
-    public void insertarPaneles(JPanel panel, JPanel contenedor, int ancho, int alto){
+
+    public void insertarPaneles(JPanel panel, JPanel contenedor, int ancho, int alto) {
         panel.setSize(ancho, alto);
         
         

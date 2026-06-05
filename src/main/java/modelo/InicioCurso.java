@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Yonathan
  */
 public class InicioCurso {
+    private int idInicioCurso;
     private LocalDate fechaApertura;
     private LocalDate fechaCierre;
     private String cupoMaximo;
@@ -19,7 +20,7 @@ public class InicioCurso {
     private Curso cursos;
     private Docente docente;
     private ArrayList<Horario> horario;
-    private ArrayList<Inscripcion> inscripciones;
+    private PeriodoInscripcion periodoInscripcion;
 
     public InicioCurso() {
     }
@@ -28,6 +29,7 @@ public class InicioCurso {
         this.fechaApertura = fechaApertura;
         this.fechaCierre = fechaCierre;
         this.cupoMaximo = cupoMaximo;
+        this.idInicioCurso = idInicioCurso;
     }
 
     // SETTER Y GETTER
@@ -72,6 +74,16 @@ public class InicioCurso {
         this.docente = docente;
     }
 
+    public int getIdInicioCurso() {
+        return idInicioCurso;
+    }
+
+    public void setIdInicioCurso(int idInicioCurso) {
+        this.idInicioCurso = idInicioCurso;
+    }
+    
+    
+
     public ArrayList<Horario> getHorario() {
         return horario;
     }
@@ -80,12 +92,13 @@ public class InicioCurso {
         this.horario = horario;
     }
 
-    public ArrayList<Inscripcion> getInscripciones() {
-        return inscripciones;
+    public PeriodoInscripcion getPeriodoInscripcion() {
+        return periodoInscripcion;
     }
 
-    public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
-        this.inscripciones = inscripciones;
+    public void setPeriodoInscripcion(PeriodoInscripcion periodoInscripcion) {
+        this.periodoInscripcion = periodoInscripcion;
     }
 
+    
 }
