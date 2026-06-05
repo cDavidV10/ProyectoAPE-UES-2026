@@ -15,7 +15,6 @@ import java.util.Date;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -31,7 +30,7 @@ import vista.VistaModifCredenc;
  * @author MINEDUCYT
  */
 public class CtrlFormModifDocente {
-    
+
     private VistaCredenciales viewCredenciales;
     private FormDocenteModif view;
     private VistaModifCredenc viewModifCreden;
@@ -40,10 +39,9 @@ public class CtrlFormModifDocente {
 
     public CtrlFormModifDocente(FormDocenteModif vieew, VistaCredenciales viewCredenc) {
         this.view = vieew;
-        this.viewCredenciales =viewCredenc;
+        this.viewCredenciales = viewCredenc;
         this.viewModifCreden = new VistaModifCredenc();
         view.setLocation(130, 0);
-        
 
         view.getBtnGuardarDocente().addActionListener(e -> {
             guardarDatosD();
@@ -52,7 +50,7 @@ public class CtrlFormModifDocente {
         view.getBtnCancelarDocente().addActionListener(e -> {
             view.setVisible(false);
         });
-        
+
         view.getBtnCambiarContraseña().addActionListener(e -> {
             try {
                 view.setLocation(-30, 0);
@@ -68,16 +66,18 @@ public class CtrlFormModifDocente {
                     componente.setEnabled(false);
                 }
             } catch (Exception ex) {
-                System.getLogger(CtrlFormModifDocente.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                System.getLogger(CtrlFormModifDocente.class.getName()).log(System.Logger.Level.ERROR, (String) null,
+                        ex);
             }
         });
-        
+
         viewModifCreden.getBtnGuardar().addActionListener(e -> {
 
             try {
                 cambiarContraUser();
             } catch (Exception ex) {
-                System.getLogger(CtrlFormModifDocente.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                System.getLogger(CtrlFormModifDocente.class.getName()).log(System.Logger.Level.ERROR, (String) null,
+                        ex);
             }
 
         });
@@ -129,8 +129,7 @@ public class CtrlFormModifDocente {
          * });
          */
     }
-    
-    
+
     private void traerCredenDocent() throws Exception {
         user = new UsuarioDAO().buscarUsuario(docenteModif.getIdDocente(), "id_docente");
 
@@ -138,12 +137,13 @@ public class CtrlFormModifDocente {
         viewModifCreden.getTxtUsuario().setText(user.getUsername());
         viewModifCreden.getTxtContraseña().setText("cambie contraseña");
     }
-    
+
     private void cambiarContraUser() throws Exception {
         boolean modificado;
         String password = viewModifCreden.getTxtContraseña().getText();
 
-        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de modificar la contraseña?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de modificar la contraseña?", "Confirmar",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (respuesta == JOptionPane.YES_OPTION && !password.equals("cambie_contraseña") && !password.isEmpty()) {
             String bdPassword = BCrypt.withDefaults().hashToString(12,

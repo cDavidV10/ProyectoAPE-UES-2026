@@ -21,8 +21,6 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
-import vista.AdministrarCursos;
-import vista.DocentePrincipalView;
 import vista.VistaCredenciales;
 import vista.Login;
 import vista.CursosRegistrar;
@@ -45,10 +43,6 @@ public class CtrlAdmin {
     private AdminView adminView;
     private Login login;
     private Usuario usuario;
-    AdminView adminView;
-    EstudianteDAO dao = new EstudianteDAO();
-    Usuario usuario;
-    Login login;
     private Paneles paneles;
 
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
