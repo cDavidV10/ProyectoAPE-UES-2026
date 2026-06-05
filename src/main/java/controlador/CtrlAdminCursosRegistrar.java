@@ -6,7 +6,7 @@ import modelo.Curso;
 import dao.CursosDAO;
 import vista.CursosHabilitar;
 import vista.CursosTablaTodos;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 import vista.CursosTablaHabilitados;
 
 /**
@@ -21,7 +21,7 @@ public class CtrlAdminCursosRegistrar {
     private DefaultTableModel modelo;
     private CursosDAO dao = new CursosDAO();
 
-    public CtrlAdminCursosRegistrar(RegistrarCursos vistaRegistro, CursosTablaTodos vistaTabla) {
+    public CtrlAdminCursosRegistrar(CursosRegistrar vistaRegistro, CursosTablaTodos vistaTabla) {
     this.vista = vistaTabla; 
     
     // le agregue datos a la vista pq me estaba dando problema de q NULO
@@ -86,7 +86,7 @@ public class CtrlAdminCursosRegistrar {
     }
 
     private void abrirFormulario(Curso curso) {
-        RegistrarCursos form = new RegistrarCursos();
+        CursosRegistrar form = new CursosRegistrar();
         form.setVisible(true);
     }
 

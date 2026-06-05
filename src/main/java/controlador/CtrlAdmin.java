@@ -21,14 +21,14 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 import vista.CursosTablaTodos;
 import vista.InscripcionAdminView;
 //import vista.DocentePrincipalView;
 //import vista.CursosTablaTodos;
 import vista.VistaCredenciales;
 import vista.Login;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 import vista.VistaCredenciales;
 import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
@@ -76,7 +76,7 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 CursosTablaTodos administrarCursos = new CursosTablaTodos();
-                RegistrarCursos form = new RegistrarCursos();
+                CursosRegistrar form = new CursosRegistrar();
                 CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form, administrarCursos);
                 paneles.insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
