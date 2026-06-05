@@ -18,6 +18,8 @@ public class CursosHabilitar extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -39,56 +41,55 @@ public class CursosHabilitar extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtAula = new javax.swing.JLabel();
 
-        // ✅ Sin setDefaultCloseOperation ni pack()
-        this.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Habilitar Curso");
-        this.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 107, 172, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 107, 172, -1));
 
         jLabel3.setText("Fecha de apertura");
-        this.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 97, -1));
-        this.add(fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 210, -1));
-        this.add(fechaCierre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 210, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 97, -1));
+        add(fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 210, -1));
+        add(fechaCierre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 210, -1));
 
         jLabel4.setText("Fecha de cierre");
-        this.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
 
         jLabel5.setText("Cupo maximo");
-        this.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
-        this.add(spinCupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 210, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
+        add(spinCupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 210, -1));
 
         btnCancelar.setText("Cancelar");
-        this.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
+        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, -1, -1));
 
         btnAgregar.setText("Agregar");
-        this.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, -1, -1));
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, -1, -1));
 
-        this.add(cmbDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 210, -1));
+        add(cmbDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 210, -1));
 
         jLabel6.setText("Docente encargado");
-        this.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
         jLabel7.setText("Horario");
-        this.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
-        this.add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 210, -1));
+        add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 210, -1));
 
         btnHorario.setText("Agregar Hora");
-        this.add(btnHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, -1, -1));
+        add(btnHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, -1, -1));
 
         jLabel8.setText("Especialidad:");
-        this.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         lblEspecialidad.setText("...");
-        this.add(lblEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 210, -1));
+        add(lblEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 210, -1));
 
         jLabel2.setText("Aula");
-        this.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
 
         txtAula.setText("...");
-        this.add(txtAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 170, -1));
-    }
+        add(txtAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 170, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     public JDateChooser getFechaCierre() {
         return fechaCierre;
@@ -130,7 +131,7 @@ public class CursosHabilitar extends javax.swing.JPanel {
         return txtAula;
     }
 
-    // Variables declaration
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnHorario;
@@ -149,4 +150,5 @@ public class CursosHabilitar extends javax.swing.JPanel {
     private javax.swing.JLabel lblEspecialidad;
     private javax.swing.JSpinner spinCupo;
     private javax.swing.JLabel txtAula;
+    // End of variables declaration//GEN-END:variables
 }
