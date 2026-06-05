@@ -21,7 +21,7 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 import vista.CursosTablaTodos;
 import vista.InscripcionAdminView;
 //import vista.DocentePrincipalView;

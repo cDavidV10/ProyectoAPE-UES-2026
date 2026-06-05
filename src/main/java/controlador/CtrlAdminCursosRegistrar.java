@@ -9,7 +9,7 @@ import funciones.Paneles;
 import vista.AgregarHorarioNuevo;
 import vista.CursosHabilitar;
 import vista.CursosTablaTodos;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 import vista.CursosTablaHabilitados;
 
 /**
@@ -65,8 +65,8 @@ public class CtrlAdminCursosRegistrar {
         curso.setNombreCurso(cursoName);
         try {
             if (!dao.cursoActivo(codigo)) {
-                CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(vistaH);
-                vistaH.setVisible(true);
+                CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(vistaH, vista, bgContent);
+                paneles.insertarPaneles(vistaH, bgContent);
                 return;
             }
 
@@ -109,7 +109,7 @@ public class CtrlAdminCursosRegistrar {
     }
 
     private void abrirFormulario(Curso curso) {
-        RegistrarCursos form = new RegistrarCursos();
+        CursosRegistrar form = new CursosRegistrar();
         form.setVisible(true);
     }
 

@@ -30,7 +30,7 @@ public class CtrlAdminCursosTablaHabilitar {
         this.vista.getBtnEliminar().addActionListener(e -> eliminar());
         // this.vista.getBtnBack().addActionListener(e -> vista.dispose());
 
-        this.vista.getBtnAgregar2().addActionListener(e -> abrirFormulario(null));
+        // this.vista.getBtnAgregar2().addActionListener(e -> abrirFormulario(null));
         this.vista.getBtnModificar().addActionListener(e -> editar());
 
         cargarTabla();
@@ -65,11 +65,11 @@ public class CtrlAdminCursosTablaHabilitar {
         }
     }
 
-    private void abrirFormulario(InicioCurso inicioCurso) {
-        CursosHabilitar form = new CursosHabilitar();
-        new CtrlAdminCursosHabilitar(form);
-        form.setVisible(true);
-    }
+    // private void abrirFormulario(InicioCurso inicioCurso) {
+    // CursosHabilitar form = new CursosHabilitar();
+    // new CtrlAdminCursosHabilitar(form);
+    // form.setVisible(true);
+    // }
 
     private void editar() {
         int fila = vista.getTblHabilitados().getSelectedRow();
@@ -83,7 +83,7 @@ public class CtrlAdminCursosTablaHabilitar {
             int id = (int) vista.getTblHabilitados().getValueAt(fila, 0);
             InicioCurso ci = dao.buscar(id);
 
-            abrirFormulario(ci);
+            // abrirFormulario(ci);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "Error: " + e.getMessage());
