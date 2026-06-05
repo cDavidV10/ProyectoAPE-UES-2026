@@ -65,8 +65,8 @@ public class CtrlAdminCursosRegistrar {
         curso.setNombreCurso(cursoName);
         try {
             if (!dao.cursoActivo(codigo)) {
-                CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(vistaH);
-                vistaH.setVisible(true);
+                CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(vistaH, vista, bgContent);
+                paneles.insertarPaneles(vistaH, bgContent);
                 return;
             }
 

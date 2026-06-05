@@ -7,10 +7,13 @@ package controlador;
 import dao.CursoInicioDAO;
 import dao.DocenteDAO;
 import dao.HorarioDAO;
+import funciones.Paneles;
+
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Docente;
 import modelo.Horario;
@@ -18,6 +21,7 @@ import modelo.InicioCurso;
 import vista.AgregarHorarioView;
 import vista.CursosHabilitar;
 import vista.CursosTablaHabilitados;
+import vista.CursosTablaTodos;
 
 /**
  *
@@ -26,20 +30,30 @@ import vista.CursosTablaHabilitados;
 
 public class CtrlAdminCursosHabilitar {
     private CursosHabilitar vistaHabilitar;
+    private CursosTablaTodos viewAnterior;
+    private JPanel bgContent;
     private CursoInicioDAO dao = new CursoInicioDAO();
 
-    public CtrlAdminCursosHabilitar(CursosHabilitar vistaHabilitar) {
+    public CtrlAdminCursosHabilitar(CursosHabilitar vistaHabilitar, CursosTablaTodos viewAnterior,
+            JPanel bgContent) {
         this.vistaHabilitar = vistaHabilitar;
+        this.viewAnterior = viewAnterior;
+        this.bgContent = bgContent;
+        Paneles paneles = new Paneles();
 
         cargarCombos();
 
         mostrarEspecialidad();
 
+        mostrarAula();
+
         this.vistaHabilitar.getCmbDocente().addActionListener(e -> mostrarEspecialidad());
+
+        this.vistaHabilitar.getCmbHorario().addActionListener(e -> mostrarAula());
 
         this.vistaHabilitar.getBtnHorario().addActionListener(e -> {
 
-            AgregarHorarioView agregarHorarioView = new AgregarHorarioView(vistaHabilitar, false);
+            AgregarHorarioView agregarHorarioView = new AgregarHorarioView(null, false);
             CtrlAdminAgregarHorario ctrlAgregarHorario = new CtrlAdminAgregarHorario(agregarHorarioView);
 
             agregarHorarioView.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -52,7 +66,9 @@ public class CtrlAdminCursosHabilitar {
         });
 
         this.vistaHabilitar.getBtnAgregar().addActionListener(e -> guardar());
-        this.vistaHabilitar.getBtnCancelar().addActionListener(e -> vistaHabilitar.dispose());
+        this.vistaHabilitar.getBtnCancelar().addActionListener(e -> {
+            paneles.insertarPaneles(viewAnterior, bgContent);
+        });
     }
 
     private void mostrarEspecialidad() {
@@ -60,6 +76,14 @@ public class CtrlAdminCursosHabilitar {
 
         if (docente != null) {
             vistaHabilitar.getLblEspecialidad().setText(docente.getEspecialidad());
+        }
+    }
+
+    private void mostrarAula() {
+        Horario horario = (Horario) vistaHabilitar.getCmbHorario().getSelectedItem();
+
+        if (horario != null) {
+            vistaHabilitar.getTxtAula().setText(horario.getAula().getCodigo());
         }
     }
 
