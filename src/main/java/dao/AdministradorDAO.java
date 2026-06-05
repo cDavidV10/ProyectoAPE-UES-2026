@@ -28,7 +28,7 @@ public class AdministradorDAO implements IAdministradorDAO {
 
     @Override
     public boolean modificarRegistro(Administrador a) throws Exception {
-        UPDATE = "UPDATE administrador SET nombre = ?, apellido = ? WHERE id_admind = ?";
+        String UPDATE = "UPDATE administrador SET nombre = ?, apellido = ? WHERE id_admind = ?";
         
         try {
             Connection conn = Conexion.getConexion();
