@@ -9,7 +9,7 @@ import funciones.Paneles;
 import vista.AgregarHorarioNuevo;
 import vista.CursosHabilitar;
 import vista.CursosTablaTodos;
-import vista.RegistrarCursos;
+import vista.CursosRegistrar;
 import vista.CursosTablaHabilitados;
 
 /**
@@ -109,7 +109,7 @@ public class CtrlAdminCursosRegistrar {
     }
 
     private void abrirFormulario(Curso curso) {
-        RegistrarCursos form = new RegistrarCursos();
+        CursosRegistrar form = new CursosRegistrar();
         form.setVisible(true);
     }
 

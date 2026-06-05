@@ -28,7 +28,7 @@ public class AdminView extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         CursosTablaTodos administrarCursos = new CursosTablaTodos();
-        RegistrarCursos form = new RegistrarCursos();
+        CursosRegistrar form = new CursosRegistrar();
         CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(administrarCursos, bgPanel);
         new Paneles().insertarPaneles(administrarCursos, bgPanel);
     }
