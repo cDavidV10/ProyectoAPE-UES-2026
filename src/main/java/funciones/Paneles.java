@@ -25,8 +25,22 @@ public class Paneles {
     public void insertarPaneles(JPanel panel, JPanel contenedor, int ancho, int alto){
         panel.setSize(ancho, alto);
         
+        
         contenedor.removeAll();
         contenedor.add(panel, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+    
+    public void insertarPaneles(JPanel panel, JPanel contenedor, int ancho, int alto, boolean remove){
+        contenedor.setLayout(null);
+        panel.setSize(ancho, alto);
+        
+        if (remove){
+            contenedor.removeAll();
+        }
+        
+        contenedor.add(panel);
         contenedor.revalidate();
         contenedor.repaint();
     }
