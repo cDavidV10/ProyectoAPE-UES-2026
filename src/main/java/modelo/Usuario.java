@@ -84,4 +84,9 @@ public class Usuario {
         this.docente = docente;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", username=" + username + ", password=" + password + ", tipo=" + tipo + ", administrador=" + administrador + ", estudiante=" + estudiante + ", docente=" + docente + '}';
+    }
+
 }

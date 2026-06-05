@@ -21,6 +21,10 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
+import vista.AdministrarCursos;
+import vista.DocentePrincipalView;
+import vista.VistaCredenciales;
+import vista.Login;
 import vista.CursosRegistrar;
 import vista.CursosTablaTodos;
 import vista.InscripcionAdminView;
@@ -37,6 +41,10 @@ import vista.VistaEstudiantesRegistrados;
  */
 public class CtrlAdmin {
 
+    private EstudianteDAO dao = new EstudianteDAO();
+    private AdminView adminView;
+    private Login login;
+    private Usuario usuario;
     AdminView adminView;
     EstudianteDAO dao = new EstudianteDAO();
     Usuario usuario;
@@ -107,7 +115,6 @@ public class CtrlAdmin {
                 paneles.insertarPaneles(credenciales, adminView.getBgPanel());
             }
         });
-
         this.adminView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {

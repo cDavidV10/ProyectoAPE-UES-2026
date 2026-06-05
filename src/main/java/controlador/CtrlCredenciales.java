@@ -4,17 +4,19 @@
  */
 package controlador;
 
+import dao.AdministradorDAO;
 import dao.DocenteDAO;
 import dao.EstudianteDAO;
 import funciones.Paneles;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import javax.swing.JOptionPane;
+import modelo.Administrador;
 import modelo.Docente;
 import modelo.Estudiante;
 import vista.FormDocenteModif;
+import vista.FormModifAdmin;
 import vista.VistaCredenciales;
 import vista.VistaFormModifEstudiante;
 
@@ -27,30 +29,42 @@ public class CtrlCredenciales {
     private VistaCredenciales view;
     private VistaFormModifEstudiante viewEstudiante;
     private FormDocenteModif viewFormDocente;
+    private FormModifAdmin viewFormAdmin;
 
     public CtrlCredenciales(VistaCredenciales vieew) {
         view = vieew;
         llenarCombo();
         
         view.getBtnBuscar().addActionListener(e -> {
-            Object editar = buscarCoincidencias();
+            Object editar = 1;
+            try {
+                editar = buscarCoincidencias();
+            } catch (Exception ex) {
+                System.getLogger(CtrlCredenciales.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
             
             
             if (editar instanceof Docente) {
                 
-                JOptionPane.showMessageDialog(null, "Se encontró docente");
+                //JOptionPane.showMessageDialog(null, "Se encontró docente");
                 viewFormDocente = new FormDocenteModif();
-                new CtrlFormModifDocente(viewFormDocente).traerDatosD((Docente)editar);
-                new Paneles().insertarPaneles(viewFormDocente.getJpnModifDocente(), view.getJpanelForms(), 600, 500);
+                new CtrlFormModifDocente(viewFormDocente, view).traerDatosD((Docente)editar);
+                new Paneles().insertarPaneles(viewFormDocente, view.getJpanelForms(), 600, 500, true);
                 
             } else if (editar instanceof Estudiante) {
                 
-                JOptionPane.showMessageDialog(null, "Se encontró estudiante");
+                //JOptionPane.showMessageDialog(null, "Se encontró estudiante");
                 viewEstudiante = new VistaFormModifEstudiante();
-                new CtrlFormModifEstudiante(viewEstudiante).traerDatosE((Estudiante)editar);
-                new Paneles().insertarPaneles(viewEstudiante, view.getJpanelForms(), 600, 500);
+                new CtrlFormModifEstudiante(viewEstudiante, view).traerDatosE((Estudiante)editar);
+                new Paneles().insertarPaneles(viewEstudiante, view.getJpanelForms(), 600, 500, true);
                 
-            } else if(editar == (Integer)0){
+            }else if (editar instanceof Administrador){
+                
+                //JOptionPane.showMessageDialog(null, "Se encontró administrador");
+                viewFormAdmin = new FormModifAdmin();
+                new CtrlFormModifAdmin(viewFormAdmin, view).traerDatosAdmin((Administrador) editar);
+                new Paneles().insertarPaneles(viewFormAdmin, view.getJpanelForms(), 450, 500, true);
+            }else if(editar == (Integer)0){
                 JOptionPane.showMessageDialog(null, "No se encontró coincidencia");
             }
         });
@@ -95,7 +109,7 @@ public class CtrlCredenciales {
         view.getCmbFiltrar().addItem("Administrador");
     }
 
-    public Object buscarCoincidencias() {
+    public Object buscarCoincidencias() throws Exception {
         String buscar;
         String buscarPor;
         Object result = 1;
@@ -117,12 +131,12 @@ public class CtrlCredenciales {
                 break;
             }
             case "Administrador":{
-                JOptionPane.showMessageDialog(null, "CASO ADMIN");
+                result = new AdministradorDAO().buscarRegistro(buscar);
                 break;
             }
 
             default:
-                JOptionPane.showMessageDialog(null, "no se selecciono el rol");
+                JOptionPane.showMessageDialog(null, "no se seleccionó el rol de la persona");
                 break;
         }
         return result;
