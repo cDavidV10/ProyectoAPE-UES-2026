@@ -4,7 +4,6 @@
  */
 package controlador;
 
-import dao.CursosDAO;
 import dao.CursoInicioDAO;
 import dao.DocenteDAO;
 import dao.HorarioDAO;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Curso;
 import modelo.Docente;
 import modelo.Horario;
 import modelo.InicioCurso;
@@ -28,24 +26,20 @@ import vista.CursosTablaHabilitados;
 
 public class CtrlAdminCursosHabilitar {
     private CursosHabilitar vistaHabilitar;
-    private CursosTablaHabilitados vistaTabla;
-    private DefaultTableModel modelo;
     private CursoInicioDAO dao = new CursoInicioDAO();
 
-    public CtrlAdminCursosHabilitar(CursosHabilitar vistaHabilitar, CursosTablaHabilitados vistaTabla) {
+    public CtrlAdminCursosHabilitar(CursosHabilitar vistaHabilitar) {
         this.vistaHabilitar = vistaHabilitar;
-        this.vistaTabla = vistaTabla;
-        this.modelo = (DefaultTableModel) vistaTabla.getTblHabilitados().getModel();
 
         cargarCombos();
-        
+
         mostrarEspecialidad();
 
         this.vistaHabilitar.getCmbDocente().addActionListener(e -> mostrarEspecialidad());
 
         this.vistaHabilitar.getBtnHorario().addActionListener(e -> {
-            
-            AgregarHorarioView agregarHorarioView = new AgregarHorarioView(vistaTabla, false);
+
+            AgregarHorarioView agregarHorarioView = new AgregarHorarioView(vistaHabilitar, false);
             CtrlAdminAgregarHorario ctrlAgregarHorario = new CtrlAdminAgregarHorario(agregarHorarioView);
 
             agregarHorarioView.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -60,19 +54,18 @@ public class CtrlAdminCursosHabilitar {
         this.vistaHabilitar.getBtnAgregar().addActionListener(e -> guardar());
         this.vistaHabilitar.getBtnCancelar().addActionListener(e -> vistaHabilitar.dispose());
     }
-    
-    private void mostrarEspecialidad() {
-    Docente docente = (Docente) vistaHabilitar.getCmbDocente().getSelectedItem();
 
-    if (docente != null) {
-        vistaHabilitar.getLblEspecialidad().setText(docente.getEspecialidad());
+    private void mostrarEspecialidad() {
+        Docente docente = (Docente) vistaHabilitar.getCmbDocente().getSelectedItem();
+
+        if (docente != null) {
+            vistaHabilitar.getLblEspecialidad().setText(docente.getEspecialidad());
+        }
     }
-}
 
     private void guardar() {
         try {
-            if (
-                    vistaHabilitar.getCmbDocente().getSelectedIndex() == -1 ||
+            if (vistaHabilitar.getCmbDocente().getSelectedIndex() == -1 ||
                     vistaHabilitar.getCmbHorario().getSelectedIndex() == -1) {
 
                 JOptionPane.showMessageDialog(vistaHabilitar, "Por favor, seleccione un curso, docente y horario.");
@@ -112,7 +105,6 @@ public class CtrlAdminCursosHabilitar {
 
             DocenteDAO daoDocente = new DocenteDAO();
             HorarioDAO daoHorario = new HorarioDAO();
-
 
             List<Docente> listaDocentes = daoDocente.listar();
             for (Docente d : listaDocentes) {
