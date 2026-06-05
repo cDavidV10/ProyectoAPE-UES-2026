@@ -5,7 +5,10 @@
 package interfaz;
 
 import java.util.List;
+
 import modelo.Curso;
+import modelo.Horario;
+import modelo.InicioCurso;
 
 /**
  *
@@ -22,4 +25,8 @@ public interface ICursosDAO {
     List<Curso> listar() throws Exception;
 
     Curso buscar(int idCurso) throws Exception;
+
+    boolean cursoActivo(String codigo) throws Exception;
+
+    List<Horario> infoCurso(String codigo) throws Exception;
 }

@@ -28,8 +28,6 @@ import vista.InscripcionAdminView;
 //import vista.CursosTablaTodos;
 import vista.VistaCredenciales;
 import vista.Login;
-import vista.RegistrarCursos;
-import vista.VistaCredenciales;
 import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
 
@@ -76,8 +74,8 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 CursosTablaTodos administrarCursos = new CursosTablaTodos();
-                RegistrarCursos form = new RegistrarCursos();
-                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form, administrarCursos);
+                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(administrarCursos,
+                        adminView.getBgPanel());
                 paneles.insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
 
