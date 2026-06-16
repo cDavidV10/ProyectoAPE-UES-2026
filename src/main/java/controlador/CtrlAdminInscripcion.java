@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.PeriodoInscripcionDAO;
@@ -24,6 +25,8 @@ public class CtrlAdminInscripcion {
         mostrarDatos();
 
         mostrarPeridoActivo();
+
+        inscripcionView.getBtnAgregar().setEnabled(false);
 
         inscripcionView.getBtnHabilitar().addActionListener(e -> {
 
@@ -50,6 +53,21 @@ public class CtrlAdminInscripcion {
             habilitarInscripcionView.setVisible(true);
 
         });
+
+        inscripcionView.getJtCursos().getSelectionModel().addListSelectionListener(e -> {
+            boolean seleccionado = inscripcionView.getJtCursos().getSelectedRow() != -1;
+
+            if (seleccionado) {
+
+                inscripcionView.getBtnAgregar().setEnabled(true);
+            }
+
+        });
+
+        inscripcionView.getBtnAgregar().addActionListener(e -> {
+            agregarCursoPeriodo();
+        });
+
     }
 
     private void mostrarPeridoActivo() {
@@ -97,6 +115,23 @@ public class CtrlAdminInscripcion {
 
             this.inscripcionView.getJtCursos().setModel(modelo);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void agregarCursoPeriodo() {
+        int fila = inscripcionView.getJtCursos().getSelectedRow();
+        String codigo = (String) inscripcionView.getJtCursos().getValueAt(fila, 0);
+
+        try {
+            periodoDAO.agregarCurso(codigo);
+
+            JOptionPane.showMessageDialog(null, "Curso agregado correctamente", "Operacion Exitosa",
+                    JOptionPane.INFORMATION_MESSAGE);
+            mostrarDatos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar curso", "Operacion Fallida",
+                    JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
     }

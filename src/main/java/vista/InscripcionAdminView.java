@@ -136,7 +136,7 @@ public class InscripcionAdminView extends javax.swing.JPanel {
     }
 
     public JButton getBtnAgregar() {
-        return btnHabilitar;
+        return btnAgregar;
     }
 
     public JButton getBtnDetalles() {

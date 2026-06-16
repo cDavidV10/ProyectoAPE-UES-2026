@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.HorarioDAO;
+import modelo.Aula;
 import modelo.Horario;
 import vista.AgregarHorarioView;
 
@@ -22,6 +23,7 @@ public class CtrlAdminAgregarHorario {
         mostrarTabla();
 
         llenarCbDias();
+        llenarComboAula();
         llenarCbHoras(this.agregarHorarioView.getCbInicioHoras());
         llenarCbHoras(this.agregarHorarioView.getCbFinalHoras());
         llenarCbMinutos(this.agregarHorarioView.getCbInicioMinutos());
@@ -54,8 +56,12 @@ public class CtrlAdminAgregarHorario {
             return;
         }
 
+        Aula aula = new Aula();
+        aula.setCodigo(this.agregarHorarioView.getCbAula().getSelectedItem().toString());
+
         horario.setHoraInicio(LocalTime.parse(horaInicial));
         horario.setHoraFinal(LocalTime.parse(horaFinal));
+        horario.setAula(aula);
 
         try {
             horarioDAO.insertar(horario);
@@ -69,7 +75,7 @@ public class CtrlAdminAgregarHorario {
     private void mostrarTabla() {
         DefaultTableModel modelo = new DefaultTableModel();
 
-        String[] titulos = { "Dia", "Inicio", "Final" };
+        String[] titulos = { "Dia", "Inicio", "Final", "Aula" };
         modelo.setColumnIdentifiers(titulos);
 
         try {
@@ -79,7 +85,8 @@ public class CtrlAdminAgregarHorario {
                 Object[] obj = {
                         dato.getDia(),
                         dato.getHoraInicio(),
-                        dato.getHoraFinal()
+                        dato.getHoraFinal(),
+                        dato.getAula().getCodigo()
                 };
 
                 modelo.addRow(obj);
@@ -118,6 +125,21 @@ public class CtrlAdminAgregarHorario {
 
         for (int i = 0; i < minutos.length; i++) {
             comboBox.addItem(minutos[i]);
+        }
+    }
+
+    private void llenarComboAula() {
+        this.agregarHorarioView.getCbAula().removeAllItems();
+
+        try {
+            List<Aula> datos = horarioDAO.listarAulas();
+
+            datos.forEach(dato -> {
+                this.agregarHorarioView.getCbAula().addItem(dato.getCodigo());
+            });
+
+        } catch (Exception e) {
+            // TODO: handle exception
         }
     }
 }

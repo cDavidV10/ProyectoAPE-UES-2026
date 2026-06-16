@@ -7,17 +7,24 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import conexion.Conexion;
+import interfaz.ICursosDAO;
+import modelo.Aula;
 import modelo.Curso;
+import modelo.Docente;
+import modelo.Horario;
+import modelo.InicioCurso;
 
 /**
  *
  * @author alexi
  */
-public class CursosDAO {
+public class CursosDAO implements ICursosDAO {
     // private static final String INSERT = "INSERT INTO public.curso (nombre,
     // estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT = "INSERT INTO curso (codigo, nombre, descripcion) VALUES (?,?, ?)";
@@ -101,7 +108,7 @@ public class CursosDAO {
         Curso c = null;
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(
-                "SELECT * FROM public.curso WHERE id_curso = ?");
+                "SELECT * FROM curso WHERE id_curso = ?");
         ps.setInt(1, idCurso);
         // ps.setString(2, descripcion);
         ResultSet rs = ps.executeQuery();
@@ -119,6 +126,83 @@ public class CursosDAO {
 
         conn.close();
         return c;
+    }
+
+    @Override
+    public boolean cursoActivo(String codigo) throws Exception {
+        String consulta = """
+                select
+                    count(*)
+                from inicio_curso ic
+                inner join curso c on c.id_curso = ic.id_curso
+                where estado = 'Activo'
+                and c.codigo = ?
+                                """;
+
+        Connection conexion = Conexion.getConexion();
+        PreparedStatement ps = conexion.prepareStatement(consulta);
+
+        ps.setString(1, codigo);
+
+        ResultSet rs = ps.executeQuery();
+
+        rs.next();
+
+        conexion.close();
+        return rs.getInt(1) > 0;
+
+    }
+
+    @Override
+    public List<Horario> infoCurso(String codigo) throws Exception {
+        String consulta = """
+                 select
+                    d.nombre as docenteNombre,
+                    d.apellido as docenteApellido,
+                    h.dia as dia,
+                    h.hora_inicio as inicio,
+                    h.hora_final as final,
+                    a.codigo as aula
+                from inicio_curso ic
+                inner join docente d on d.id_docente = ic.id_docente
+                inner join horario h on h.id_inicio_curso = ic.id_inicio_curso
+                inner join aula a on a.id_aula = h.id_aula
+                where ic.estado = 'Activo'
+                and ic.id_curso = (select c.id_curso from curso c where c.codigo = ?);
+                                """;
+
+        Connection conexion = Conexion.getConexion();
+
+        PreparedStatement ps = conexion.prepareStatement(consulta);
+
+        ps.setString(1, codigo);
+
+        List<Horario> datos = new ArrayList<>();
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Horario horario = new Horario();
+            Docente docente = new Docente();
+            Aula aula = new Aula();
+            docente.setNombre(rs.getString(1));
+            docente.setApellido(rs.getString(2));
+            horario.setDia(rs.getString(3));
+            horario.setHoraInicio(rs.getObject(4, LocalTime.class));
+            horario.setHoraFinal(rs.getObject(5, LocalTime.class));
+            aula.setCodigo(rs.getString(6));
+
+            InicioCurso ic = new InicioCurso();
+
+            ic.setDocente(docente);
+
+            horario.setInicioCurso(ic);
+            horario.setAula(aula);
+            datos.add(horario);
+
+        }
+
+        return datos;
     }
 
 }

@@ -11,6 +11,7 @@ public class Estudiante {
     private String apellido;
     private LocalDate fechaNacimiento;
     private String correo;
+
     // ? Clases Relacionadas
     private Usuario usuario;
     private ArrayList<Inscripcion> inscripciones;
