@@ -120,6 +120,9 @@ public class CtrlAdminHabilitarPeriodoInscripcion {
         }
 
         if (periodoInscripcion.getFechaApertura().isBefore(LocalDate.now())) {
+            if(accion.equalsIgnoreCase("Actualizar")){
+                return true;
+            }
             JOptionPane.showMessageDialog(null, "La fecha de apertura no puede iniciar antes del dia actual", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return false;
