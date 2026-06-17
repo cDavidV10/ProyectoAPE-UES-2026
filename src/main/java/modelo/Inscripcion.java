@@ -7,9 +7,11 @@ public class Inscripcion {
     private int id;
     private LocalDate fechaInscripcion;
     private String estado;
-    // ? Clases Relacionadas
+
+    // Clases Relacionadas
     private Estudiante estudiante;
-    private PeriodoInscripcion periodoInscripcion;
+    private InicioCurso inicioCurso;
+
     private ArrayList<Evaluacion> evaluaciones;
 
     public Inscripcion() {
@@ -53,12 +55,12 @@ public class Inscripcion {
         this.estudiante = estudiante;
     }
 
-    public PeriodoInscripcion getPeriodoInscripcion() {
-        return periodoInscripcion;
+    public InicioCurso getInicioCurso() {
+        return inicioCurso;
     }
 
-    public void setPeriodoInscripcion(PeriodoInscripcion periodoInscripcion) {
-        this.periodoInscripcion = periodoInscripcion;
+    public void setInicioCurso(InicioCurso inicioCurso) {
+        this.inicioCurso = inicioCurso;
     }
 
     public ArrayList<Evaluacion> getEvaluaciones() {
