@@ -8,9 +8,10 @@ public class PeriodoInscripcion {
     private LocalDate fechaApertura;
     private LocalDate fechaCierre;
     private String estado;
-    // ? Clases Relacionadas
+
+    // Clases Relacionadas
     private Administrador administrador;
-    private ArrayList<Inscripcion> inscripciones;
+
     private ArrayList<InicioCurso> inicioCurso;
 
     public PeriodoInscripcion() {
@@ -63,14 +64,6 @@ public class PeriodoInscripcion {
         this.administrador = administrador;
     }
 
-    public ArrayList<Inscripcion> getInscripciones() {
-        return inscripciones;
-    }
-
-    public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
-        this.inscripciones = inscripciones;
-    }
-
     public ArrayList<InicioCurso> getInicioCurso() {
         return inicioCurso;
     }
@@ -78,7 +71,5 @@ public class PeriodoInscripcion {
     public void setInicioCurso(ArrayList<InicioCurso> inicioCurso) {
         this.inicioCurso = inicioCurso;
     }
-    
-    
 
 }
