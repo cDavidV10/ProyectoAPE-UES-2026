@@ -6,11 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import dao.CursosDAO;
+import dao.HorarioDAO;
 import funciones.Paneles;
 import modelo.Curso;
 import modelo.Horario;
 import modelo.InicioCurso;
 import vista.AgregarHorarioNuevo;
+import vista.AsignarHorarioView;
 import vista.CursosTablaTodos;
 
 public class CtrlAdminCursoHorario {
@@ -20,6 +22,7 @@ public class CtrlAdminCursoHorario {
     private JPanel bgContente;
     private Curso curso;
     private CursosDAO cursosDAO;
+    private AsignarHorarioView ahv;
 
     public CtrlAdminCursoHorario(CursosTablaTodos viewAnterior, AgregarHorarioNuevo aHorarioNuevo,
             JPanel bgContente, Curso curso) {
@@ -37,6 +40,14 @@ public class CtrlAdminCursoHorario {
         this.aHorarioNuevo.getBtnRegresar().addActionListener(e -> {
             paneles.insertarPaneles(viewAnterior, bgContente);
         });
+
+        this.aHorarioNuevo.getBtnAgregar().addActionListener(e -> {
+            ahv = new AsignarHorarioView(null, true);
+            CtrlAdminAsignarHoraCurso horaNuevaCurso =  new CtrlAdminAsignarHoraCurso(ahv, curso);
+            mostrarDatos();
+            ahv.setVisible(true);
+        });
+
     }
 
     private void mostrarDatos() {
