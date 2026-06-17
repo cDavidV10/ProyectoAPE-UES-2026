@@ -8,6 +8,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import dao.AdministradorDAO;
 import dao.UsuarioDAO;
 import funciones.Paneles;
+import funciones.Validaciones;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import modelo.Administrador;

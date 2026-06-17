@@ -3,6 +3,7 @@ package funciones;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 public class Validaciones {
 
@@ -46,6 +47,26 @@ public class Validaciones {
             return false;
         }
 
+        return true;
+    }
+    
+    public boolean validarTexto(String texto, int maxLeng){
+        boolean same;
+        if (texto.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo vacio");
+            return false;
+        }
+        for (int i = 0; i < texto.length(); i++){
+            char ch = texto.charAt(i);
+            if (ch == texto.charAt(i+1)){
+                JOptionPane.showMessageDialog(null, "Dato no valido(letra duplicada)");
+                return false;
+            }
+            if (i>=maxLeng){
+                JOptionPane.showMessageDialog(null, "Demasiados caracteres");
+                return false;
+            }
+        }
         return true;
     }
 }
