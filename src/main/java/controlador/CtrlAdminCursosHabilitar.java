@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import dao.CursoInicioDAO;
@@ -20,13 +16,7 @@ import modelo.Horario;
 import modelo.InicioCurso;
 import vista.AgregarHorarioView;
 import vista.CursosHabilitar;
-import vista.CursosTablaHabilitados;
 import vista.CursosTablaTodos;
-
-/**
- *
- * @author alexi
- */
 
 public class CtrlAdminCursosHabilitar {
     private CursosHabilitar vistaHabilitar;
@@ -42,17 +32,13 @@ public class CtrlAdminCursosHabilitar {
         Paneles paneles = new Paneles();
 
         cargarCombos();
-
         mostrarEspecialidad();
-
         mostrarAula();
 
         this.vistaHabilitar.getCmbDocente().addActionListener(e -> mostrarEspecialidad());
-
         this.vistaHabilitar.getCmbHorario().addActionListener(e -> mostrarAula());
 
         this.vistaHabilitar.getBtnHorario().addActionListener(e -> {
-
             AgregarHorarioView agregarHorarioView = new AgregarHorarioView(null, false);
             CtrlAdminAgregarHorario ctrlAgregarHorario = new CtrlAdminAgregarHorario(agregarHorarioView);
 
@@ -65,7 +51,19 @@ public class CtrlAdminCursosHabilitar {
             agregarHorarioView.setVisible(true);
         });
 
-        this.vistaHabilitar.getBtnAgregar().addActionListener(e -> guardar());
+        this.vistaHabilitar.getBtnAgregar().addActionListener(e -> {
+            AgregarHorarioView agregarView = new AgregarHorarioView(null, false);
+            new CtrlAdminAgregarHorario(agregarView);
+
+            agregarView.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    cargarCombos();
+                }
+            });
+            agregarView.setVisible(true);
+        });
+
         this.vistaHabilitar.getBtnCancelar().addActionListener(e -> {
             paneles.insertarPaneles(viewAnterior, bgContent);
         });
@@ -73,7 +71,6 @@ public class CtrlAdminCursosHabilitar {
 
     private void mostrarEspecialidad() {
         Docente docente = (Docente) vistaHabilitar.getCmbDocente().getSelectedItem();
-
         if (docente != null) {
             vistaHabilitar.getLblEspecialidad().setText(docente.getEspecialidad());
         }
@@ -81,7 +78,6 @@ public class CtrlAdminCursosHabilitar {
 
     private void mostrarAula() {
         Horario horario = (Horario) vistaHabilitar.getCmbHorario().getSelectedItem();
-
         if (horario != null) {
             vistaHabilitar.getTxtAula().setText(horario.getAula().getCodigo());
         }
@@ -91,7 +87,6 @@ public class CtrlAdminCursosHabilitar {
         try {
             if (vistaHabilitar.getCmbDocente().getSelectedIndex() == -1 ||
                     vistaHabilitar.getCmbHorario().getSelectedIndex() == -1) {
-
                 JOptionPane.showMessageDialog(vistaHabilitar, "Por favor, seleccione un curso, docente y horario.");
                 return;
             }

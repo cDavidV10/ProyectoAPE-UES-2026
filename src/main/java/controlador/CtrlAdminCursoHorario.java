@@ -11,6 +11,7 @@ import modelo.Curso;
 import modelo.Horario;
 import modelo.InicioCurso;
 import vista.AgregarHorarioNuevo;
+import vista.AgregarHorarioView;
 import vista.CursosTablaTodos;
 
 public class CtrlAdminCursoHorario {
@@ -22,22 +23,33 @@ public class CtrlAdminCursoHorario {
     private CursosDAO cursosDAO;
 
     public CtrlAdminCursoHorario(CursosTablaTodos viewAnterior, AgregarHorarioNuevo aHorarioNuevo,
-            JPanel bgContente, Curso curso) {
-        this.viewAnterior = viewAnterior;
-        this.aHorarioNuevo = aHorarioNuevo;
-        this.bgContente = bgContente;
-        this.curso = curso;
-        Paneles paneles = new Paneles();
-        this.cursosDAO = new CursosDAO();
+        JPanel bgContente, Curso curso) {
+    this.viewAnterior = viewAnterior;
+    this.aHorarioNuevo = aHorarioNuevo;
+    this.bgContente = bgContente;
+    this.curso = curso;
+    Paneles paneles = new Paneles();
+    this.cursosDAO = new CursosDAO();
+    this.aHorarioNuevo.getTxtCurso().setText(curso.getNombreCurso());
+    mostrarDatos();
 
-        this.aHorarioNuevo.getTxtCurso().setText(curso.getNombreCurso());
+        this.aHorarioNuevo.getBtnAgregar().addActionListener(e -> {
+            AgregarHorarioView agregarView = new AgregarHorarioView(null, false);
+            new CtrlAdminAgregarHorario(agregarView);
 
-        mostrarDatos();
+            agregarView.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    mostrarDatos();
+                }
+            });
+            agregarView.setVisible(true);
+        });
 
         this.aHorarioNuevo.getBtnRegresar().addActionListener(e -> {
-            paneles.insertarPaneles(viewAnterior, bgContente);
-        });
-    }
+        paneles.insertarPaneles(viewAnterior, bgContente);
+    });
+}
 
     private void mostrarDatos() {
         DefaultTableModel modelo = new DefaultTableModel();

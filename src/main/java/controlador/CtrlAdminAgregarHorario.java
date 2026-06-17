@@ -33,7 +33,6 @@ public class CtrlAdminAgregarHorario {
             guardar();
             mostrarTabla();
         });
-
     }
 
     private void guardar() {
@@ -98,7 +97,6 @@ public class CtrlAdminAgregarHorario {
             JOptionPane.showMessageDialog(null, "No hay datos para mostrar", "Error al cargar informacion",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     private void llenarCbDias() {
