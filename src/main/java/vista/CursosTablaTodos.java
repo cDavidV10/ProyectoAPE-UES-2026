@@ -28,7 +28,6 @@ public class CursosTablaTodos extends javax.swing.JPanel {
     public CursosTablaTodos() {
 
         initComponents();
-
         this.vista = vista;
 
     }
@@ -50,12 +49,11 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAdmin = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnHabilitar = new javax.swing.JButton();
-        btnVerTablaHabilitados = new javax.swing.JButton();
+        btnModificar1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registrar Cursos");
@@ -106,15 +104,15 @@ public class CursosTablaTodos extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 570, 119, 46));
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 580, 130, 40));
 
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setText("Mostrar Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
-        add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, 119, 46));
+        add(btnReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, 150, 40));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,28 +122,37 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         });
         add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 119, 46));
 
-        btnBack.setText("Salir");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 570, 119, 46));
-
+      
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("CURSOS ACTUALES");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 56, 213, -1));
 
         btnHabilitar.setBackground(new java.awt.Color(255, 102, 102));
         btnHabilitar.setForeground(new java.awt.Color(255, 255, 255));
-        btnHabilitar.setText("Habilitar curso");
-        add(btnHabilitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 560, -1, 70));
+        btnHabilitar.setText("Habilitar Curso");
+        btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHabilitarActionPerformed(evt);
+            }
+        });
+        add(btnHabilitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 580, 120, 40));
 
-        btnVerTablaHabilitados.setBackground(new java.awt.Color(255, 102, 102));
-        btnVerTablaHabilitados.setForeground(new java.awt.Color(255, 255, 255));
-        btnVerTablaHabilitados.setText("Ver Tabla");
-        add(btnVerTablaHabilitados, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 560, 110, 70));
+        btnModificar1.setText("Modificar");
+        btnModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar1ActionPerformed(evt);
+            }
+        });
+        add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, 119, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHabilitarActionPerformed
+
+    private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
@@ -170,23 +177,21 @@ public class CursosTablaTodos extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_btnBackActionPerformed
+    
+    
 
     public JButton getBtnAgregar() {
         return btnAgregar;
-    }
-
-    public JButton getBtnBack() {
-        return btnBack;
     }
 
     public JButton getBtnEliminar() {
         return btnEliminar;
     }
 
-    public JButton getBtnModificar() {
-        return btnModificar;
-    }
 
+    public JButton getBtnModificar() {
+        return btnModificar1;
+    }
     public JTable getTblAdmin() {
         return tblAdmin;
     }
@@ -195,24 +200,24 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         return btnHabilitar;
     }
 
-    public JButton getBtnVerTablaHabilitados() {
-        return btnVerTablaHabilitados;
-    }
-
     public JButton getBtnTablaHabilitados() {
         return btnHabilitar;
     }
+
+    public JButton getBtnReporte() {
+        return btnReporte;
+    }
     
-    
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnHabilitar2;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnVerTablaHabilitados;
+    private javax.swing.JButton btnModificar1;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
@@ -220,4 +225,5 @@ public class CursosTablaTodos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblAdmin;
     // End of variables declaration//GEN-END:variables
+
 }

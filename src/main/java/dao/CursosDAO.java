@@ -26,7 +26,6 @@ import modelo.InicioCurso;
  */
 public class CursosDAO implements ICursosDAO {
     // private static final String INSERT = "INSERT INTO public.curso (nombre,
-    // estado, capacidad, fecha_inicio, fecha_cierre) VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT = "INSERT INTO curso (codigo, nombre, descripcion) VALUES (?,?, ?)";
     private static final String SELECT_ALL = "SELECT * FROM curso ORDER BY id_curso";
     private static final String SELECT_ID = "SELECT * FROM curso WHERE id_curso = ?";
@@ -34,16 +33,12 @@ public class CursosDAO implements ICursosDAO {
     private static final String DELETE = "DELETE FROM curso WHERE id_curso = ?";
 
     public void insertar(Curso c) throws Exception {
-
         try {
             Connection conn = Conexion.getConexion();
-
             if (conn == null) {
                 throw new Exception("No se pudo establecer conexión con la base de datos.");
             }
-
             conn.setAutoCommit(false);
-
             conn.setAutoCommit(false);
             PreparedStatement ps = conn.prepareStatement(INSERT);
             ps.setString(1, c.getCodigo());
@@ -104,24 +99,18 @@ public class CursosDAO implements ICursosDAO {
         }
     }
 
-    public Curso buscar(int idCurso) throws Exception {
+    public Curso buscar(String codigo) throws Exception {
         Curso c = null;
         Connection conn = Conexion.getConexion();
-        PreparedStatement ps = conn.prepareStatement(
-                "SELECT * FROM curso WHERE id_curso = ?");
-        ps.setInt(1, idCurso);
-        // ps.setString(2, descripcion);
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM curso WHERE codigo = ?");
+        ps.setString(1, codigo);
         ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
+        if(rs.next()) {
             c = new Curso();
             c.setIdCurso(rs.getInt("id_curso"));
+            c.setCodigo(rs.getString("codigo")); // ¡Agregamos esto para que no llegue vacío a la vista!
             c.setNombreCurso(rs.getString("nombre"));
             c.setDescripcion(rs.getString("descripcion"));
-            // c.setEstado(rs.getBoolean("estado"));
-            // c.setCapacidad(rs.getInt("capacidad"));
-            // c.setInicioCurso(rs.getDate("fecha_inicio").toLocalDate());
-            // c.setCierreCurso(rs.getDate("fecha_cierre").toLocalDate());
         }
 
         conn.close();
@@ -141,21 +130,18 @@ public class CursosDAO implements ICursosDAO {
 
         Connection conexion = Conexion.getConexion();
         PreparedStatement ps = conexion.prepareStatement(consulta);
-
         ps.setString(1, codigo);
 
         ResultSet rs = ps.executeQuery();
-
         rs.next();
-
         conexion.close();
         return rs.getInt(1) > 0;
-
     }
 
     @Override
     public List<Horario> infoCurso(String codigo) throws Exception {
-        String consulta = """
+        String consulta = 
+                """
                  select
                     d.nombre as docenteNombre,
                     d.apellido as docenteApellido,
@@ -168,19 +154,13 @@ public class CursosDAO implements ICursosDAO {
                 inner join horario h on h.id_inicio_curso = ic.id_inicio_curso
                 inner join aula a on a.id_aula = h.id_aula
                 where ic.estado = 'Activo'
-                and ic.id_curso = (select c.id_curso from curso c where c.codigo = ?);
-                                """;
+                and ic.id_curso = (select c.id_curso from curso c where c.codigo = ?);""";
 
         Connection conexion = Conexion.getConexion();
-
         PreparedStatement ps = conexion.prepareStatement(consulta);
-
         ps.setString(1, codigo);
-
         List<Horario> datos = new ArrayList<>();
-
         ResultSet rs = ps.executeQuery();
-
         while (rs.next()) {
             Horario horario = new Horario();
             Docente docente = new Docente();
@@ -199,10 +179,14 @@ public class CursosDAO implements ICursosDAO {
             horario.setInicioCurso(ic);
             horario.setAula(aula);
             datos.add(horario);
-
         }
 
         return datos;
+    }
+
+    @Override
+    public Curso buscar(int idCurso) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
