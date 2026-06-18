@@ -8,22 +8,30 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import dao.CursosDisponiblesDAO;
+import dao.EstudianteDAO;
+import funciones.Correos;
+import modelo.Usuario;
 import vista.CursosDisponiblesView;
 import vista.DetallesInscripcionCurso;
 
 public class CtrlCursosDisponibles {
 
     private final CursosDisponiblesView view;
-    private final int idEstudiante;
+    private final Usuario usuario;
     private CursosDisponiblesDAO cursosDAO;
 
     private List<Object[]> cursosLista = new ArrayList<>();
 
-    public CtrlCursosDisponibles(CursosDisponiblesView view, int idEstudiante) {
+    public CtrlCursosDisponibles(CursosDisponiblesView view, Usuario usuario) {
         this.view = view;
-        this.idEstudiante = idEstudiante;
+        this.usuario = usuario;
         this.cursosDAO = new CursosDisponiblesDAO();
 
+        cargarEstudiante();
+        System.out.println(usuario.getEstudiante().getIdEstudiante());
+        System.out.println(usuario.getEstudiante().getNombre());
+        System.out.println(usuario.getEstudiante().getApellido());
+        System.out.println(usuario.getEstudiante().getCorreo());
         iniciarEventos();
         cargarTabla();
     }
@@ -32,6 +40,15 @@ public class CtrlCursosDisponibles {
         view.getBtnBuscarCurso().addActionListener(e -> buscar());
         view.getBtnInscribirCurso().addActionListener(e -> inscribir());
         view.getBtnVerDetallesCurso().addActionListener(e -> verDetalles());
+    }
+
+    private void cargarEstudiante(){
+        try {
+            EstudianteDAO estudianteDAO = new EstudianteDAO();
+            usuario.setEstudiante(estudianteDAO.buscar(usuario.getEstudiante().getIdEstudiante()));
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     private void cargarTabla() {
@@ -129,7 +146,7 @@ public class CtrlCursosDisponibles {
         // ==========================================================
 
         try {
-            if (cursosDAO.verificarInscripcion(idEstudiante, idInicioCurso)) {
+            if (cursosDAO.verificarInscripcion(usuario.getEstudiante().getIdEstudiante(), idInicioCurso)) {
                 JOptionPane.showMessageDialog(view,
                         "Ya estás inscrito en el curso: " + nombreCurso,
                         "Inscripción duplicada", JOptionPane.WARNING_MESSAGE);
@@ -150,11 +167,14 @@ public class CtrlCursosDisponibles {
 
         if (confirmar == JOptionPane.YES_OPTION) {
             try {
-                cursosDAO.inscribir(idEstudiante, idInicioCurso);
+                cursosDAO.inscribir(usuario.getEstudiante().getIdEstudiante(), idInicioCurso);
                 JOptionPane.showMessageDialog(view,
                         "¡Inscripción exitosa en " + nombreCurso + "!",
                         "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
+                new Correos().correoInscripcion(nombreCurso, usuario.getEstudiante().getNombre(),
+                 usuario.getEstudiante().getApellido(),
+                usuario.getEstudiante().getCorreo());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(view,
                         "Error al inscribir: " + e.getMessage(),
