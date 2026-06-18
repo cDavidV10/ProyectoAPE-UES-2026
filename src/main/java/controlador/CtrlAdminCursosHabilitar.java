@@ -23,12 +23,14 @@ public class CtrlAdminCursosHabilitar {
     private CursosTablaTodos viewAnterior;
     private JPanel bgContent;
     private CursoInicioDAO dao = new CursoInicioDAO();
+    private modelo.Curso cursoSeleccionado;
 
     public CtrlAdminCursosHabilitar(CursosHabilitar vistaHabilitar, CursosTablaTodos viewAnterior,
-            JPanel bgContent) {
+            JPanel bgContent, modelo.Curso cursoSeleccionado) {
         this.vistaHabilitar = vistaHabilitar;
         this.viewAnterior = viewAnterior;
         this.bgContent = bgContent;
+        this.cursoSeleccionado = cursoSeleccionado;
         Paneles paneles = new Paneles();
 
         cargarCombos();
@@ -87,6 +89,7 @@ public class CtrlAdminCursosHabilitar {
             Docente docenteSel = (Docente) vistaHabilitar.getCmbDocente().getSelectedItem();
             Horario horarioSel = (Horario) vistaHabilitar.getCmbHorario().getSelectedItem();
 
+            ci.setCursos(cursoSeleccionado);
             ci.setDocente(docenteSel);
 
             ArrayList<Horario> listaHorarios = new ArrayList<>();

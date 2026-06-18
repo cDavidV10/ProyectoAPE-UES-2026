@@ -75,15 +75,21 @@ public class CtrlAdminTablaCursos {
     
     private void habilitar() {
         int fila = vista.getTblAdmin().getSelectedRow();
-        String codigo = (String) vista.getTblAdmin().getValueAt(fila, 0);
-        String cursoName = (String) vista.getTblAdmin().getValueAt(fila, 1);
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(vista, "Seleccione un curso antes de habilitarlo.");
+            return;
+        }
 
-        Curso curso = new Curso();
-        curso.setCodigo(codigo);
-        curso.setNombreCurso(cursoName);
+        String codigo = (String) vista.getTblAdmin().getValueAt(fila, 0);
         try {
+            Curso curso = dao.buscar(codigo);
+            if (curso == null) {
+                JOptionPane.showMessageDialog(vista, "No se encontró el curso seleccionado.");
+                return;
+            }
+
             if (!dao.cursoActivo(codigo)) {
-                CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(vistaH, vista, bgContent);
+                CtrlAdminCursosHabilitar ctrlHabilitar = new CtrlAdminCursosHabilitar(vistaH, vista, bgContent, curso);
                 paneles.insertarPaneles(vistaH, bgContent);
                 return;
             }
