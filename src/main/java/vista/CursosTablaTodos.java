@@ -50,9 +50,10 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         tblAdmin = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         btnHabilitar = new javax.swing.JButton();
         btnModificar1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registrar Cursos");
@@ -95,7 +96,7 @@ public class CursosTablaTodos extends javax.swing.JPanel {
             tblAdmin.getColumnModel().getColumn(2).setPreferredWidth(400);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 163, 953, 345));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 163, 970, 345));
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,10 +113,6 @@ public class CursosTablaTodos extends javax.swing.JPanel {
             }
         });
         add(btnReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, 150, 40));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("CURSOS ACTUALES");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 56, 213, -1));
 
         btnHabilitar.setBackground(new java.awt.Color(255, 102, 102));
         btnHabilitar.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,6 +131,33 @@ public class CursosTablaTodos extends javax.swing.JPanel {
             }
         });
         add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, 119, 40));
+
+        jPanel1.setBackground(new java.awt.Color(0, 42, 120));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1060, 105));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("CURSOS ACTUALES");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(404, 404, 404)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(443, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
@@ -206,6 +230,7 @@ public class CursosTablaTodos extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblAdmin;
     // End of variables declaration//GEN-END:variables

@@ -10,7 +10,7 @@ import io.github.cdimascio.dotenv.Dotenv;
  *
  * @author cdavi
  */
-public class Conexion {
+public class Conexion{
 
     public static Connection getConexion() {
         Dotenv dotenv = Dotenv.load();
@@ -27,7 +27,6 @@ public class Conexion {
         } catch (SQLException e) {
             System.out.println("Error al conectar: " + e.getMessage());
         }
-
         return null;
     }
 

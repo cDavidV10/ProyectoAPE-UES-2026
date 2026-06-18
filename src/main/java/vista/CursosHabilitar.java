@@ -56,14 +56,14 @@ public class CursosHabilitar extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
 
         jLabel5.setText("Cupo maximo");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
-        add(spinCupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 210, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
+        add(spinCupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 210, -1));
 
         btnCancelar.setText("Cancelar");
-        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, -1, -1));
+        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 533, 100, 60));
 
         btnAgregar.setText("Agregar");
-        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, -1, -1));
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 533, 100, 60));
 
         add(cmbDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 210, -1));
 
@@ -76,7 +76,7 @@ public class CursosHabilitar extends javax.swing.JPanel {
         add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 210, -1));
 
         btnHorario.setText("Agregar Hora");
-        add(btnHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, -1, -1));
+        add(btnHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 533, 110, 60));
 
         jLabel8.setText("Especialidad:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
