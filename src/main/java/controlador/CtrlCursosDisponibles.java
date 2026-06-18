@@ -28,10 +28,6 @@ public class CtrlCursosDisponibles {
         this.cursosDAO = new CursosDisponiblesDAO();
 
         cargarEstudiante();
-        System.out.println(usuario.getEstudiante().getIdEstudiante());
-        System.out.println(usuario.getEstudiante().getNombre());
-        System.out.println(usuario.getEstudiante().getApellido());
-        System.out.println(usuario.getEstudiante().getCorreo());
         iniciarEventos();
         cargarTabla();
     }
