@@ -35,7 +35,7 @@ public class CtrlAdminTablaCursos {
 
         //le agregue datos a la vista pq me estaba dando problema de q NULO
         this.modelo = (DefaultTableModel) this.vista.getTblAdmin().getModel();
-        this.vista.getBtnEliminar().addActionListener(e -> eliminar());
+        //this.vista.getBtnEliminar().addActionListener(e -> eliminar());
         //this.vista.getBtnBack().addActionListener(e -> vista.dispose());
         this.vista.getBtnHabilitar().setEnabled(false);
         this.vista.getBtnAgregar().addActionListener(e -> agregador(null));

@@ -50,7 +50,6 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         tblAdmin = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnHabilitar = new javax.swing.JButton();
         btnModificar1 = new javax.swing.JButton();
@@ -114,15 +113,6 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         });
         add(btnReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, 150, 40));
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 119, 46));
-
-      
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("CURSOS ACTUALES");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 56, 213, -1));
@@ -184,11 +174,6 @@ public class CursosTablaTodos extends javax.swing.JPanel {
         return btnAgregar;
     }
 
-    public JButton getBtnEliminar() {
-        return btnEliminar;
-    }
-
-
     public JButton getBtnModificar() {
         return btnModificar1;
     }
@@ -213,7 +198,6 @@ public class CursosTablaTodos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnHabilitar2;
     private javax.swing.JButton btnModificar1;
