@@ -6,31 +6,38 @@ package controlador;
 
 import dao.DocenteDAO;
 import funciones.Credenciales;
+import funciones.Paneles;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import modelo.Docente;
-import vista.AdminFormularioDocente;
+import vista.AdminDocente;
+import vista.AdminFormDocente;
 
 /**
  *
  * @author Yonathan
  */
 public class CtrlAdminFormularioDocente {
-    private AdminFormularioDocente vistaForm;
+    private AdminFormDocente vistaForm;
     //private DocenteDAO dao = new DocenteDAO();
     private DocenteDAO dao;
     private CtrlAdminDocente ctrlPrincipal;
     private Credenciales credenciales = new Credenciales();
+    private Paneles paneles;
+    private JPanel bgPanel;
 
-    public CtrlAdminFormularioDocente(AdminFormularioDocente vistaForm, DocenteDAO dao, CtrlAdminDocente ctrlPrincipal) {
+    public CtrlAdminFormularioDocente(AdminFormDocente vistaForm, DocenteDAO dao, CtrlAdminDocente ctrlPrincipal, JPanel bgPanel) {
         this.vistaForm = vistaForm;
         this.dao = dao;
         this.ctrlPrincipal = ctrlPrincipal;
+        this.bgPanel = bgPanel;
+        this.paneles = new Paneles();
         
         aplicarPlaceholder(vistaForm.getTxtDui(), "00000000-0");
         aplicarPlaceholder(vistaForm.getTxtNombre(), "Ej. Carlos Bladimir");
@@ -80,13 +87,8 @@ public class CtrlAdminFormularioDocente {
                 //Para las credenmciales 
                 credenciales.registrarCredenciales(docente.getNombre(), docente.getApellido(), "Docente",
                     docente.getDui(), docente.getCorreo());
-                ctrlPrincipal.refrescarTabla(); 
-                
-                // Refrescar tabla en la vista principal
+     
                 ctrlPrincipal.refrescarTabla();
-
-                // Cerrar formulario
-                vistaForm.dispose();
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -162,7 +164,13 @@ public class CtrlAdminFormularioDocente {
     }
 
     private void onClickCancelar(){
-        vistaForm.getBtnCancelarDocente().addActionListener(e -> vistaForm.dispose());
+        vistaForm.getBtnCancelarDocente().addActionListener(e -> {         
+            AdminDocente vistaPrincipal = new AdminDocente();
+            CtrlAdminDocente controlador = new CtrlAdminDocente(vistaPrincipal);
+            paneles.insertarPaneles(vistaPrincipal, bgPanel);
+            //bgPanel.setVisible(false);
+            //ctrlPrincipal.refrescarTabla();
+        });
     }
    
     private void aplicarPlaceholder(JTextField campo, String placeholder) {
