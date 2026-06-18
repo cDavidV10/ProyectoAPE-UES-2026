@@ -29,9 +29,9 @@ public class CursosDisponiblesView extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 42, 120));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("APE VIRTUAL - Catalogo e inscripcion de cursos");
+        jLabel1.setText("APE VIRTUAL - Catologo e inscripcion de cursos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,24 +52,24 @@ public class CursosDisponiblesView extends javax.swing.JPanel {
 
         tblCursosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Docente", "Horario", "Cupos Disponibles"
+                "Codigo ", "Nombre", "Docente", "Cupos Disponibles"
             }
         ));
         jScrollPane1.setViewportView(tblCursosDisponibles);
 
-        btnInscribirCurso.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        btnInscribirCurso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnInscribirCurso.setText("INSCRIBIR CURSO SELECCIONADO");
 
-        btnVerDetallesCurso.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        btnVerDetallesCurso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVerDetallesCurso.setText("VER DETALLE DE CURSO SELECCIONADO");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Filtrar por codigo: ");
 
         btnBuscarCurso.setText("Buscar");
@@ -107,24 +107,52 @@ public class CursosDisponiblesView extends javax.swing.JPanel {
                     .addComponent(btnBuscarCurso))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnInscribirCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(btnVerDetallesCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(btnVerDetallesCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(btnInscribirCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Métodos Getter
-    public JButton getBtnBuscarCurso() { return btnBuscarCurso; }
-    public JButton getBtnInscribirCurso() { return btnInscribirCurso; }
-    public JButton getBtnVerDetallesCurso() { return btnVerDetallesCurso; }
-    public JLabel getjLabel1() { return jLabel1; }
-    public JLabel getjLabel2() { return jLabel2; }
-    public JPanel getjPanel1() { return jPanel1; }
-    public JScrollPane getjScrollPane1() { return jScrollPane1; }
-    public JTable getTblCursosDisponibles() { return tblCursosDisponibles; }
-    public JTextField getTxtFiltrarCurso() { return txtFiltrarCurso; }
+
+    public JButton getBtnBuscarCurso() {
+        return btnBuscarCurso;
+    }
+
+    public JButton getBtnInscribirCurso() {
+        return btnInscribirCurso;
+    }
+
+    public JButton getBtnVerDetallesCurso() {
+        return btnVerDetallesCurso;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JTable getTblCursosDisponibles() {
+        return tblCursosDisponibles;
+    }
+
+    public JTextField getTxtFiltrarCurso() {
+        return txtFiltrarCurso;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscarCurso;
