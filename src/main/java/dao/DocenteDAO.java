@@ -130,7 +130,7 @@ public class DocenteDAO implements IDocenteDAO {
     public Object buscarRegistro(String buscar) {
         final String SELECT = """
                               Select * from docente d
-                              join usuario u on e.id_docente = u.id_docente
+                              join usuario u on d.id_docente = u.id_docente
                               where d.dui = ? or d.nombre = ? or u.username = ?
                               """;
         Docente encontrado = null;
