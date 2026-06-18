@@ -4,6 +4,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,134 +12,152 @@ import conexion.Conexion;
 
 public class CursosDisponiblesDAO {
 
-    // SQL Para cursos disponibles actuales
-    private static final String SELECT_DISPONIBLES = "SELECT c.codigo, c.nombre, " +
-            "d.nombre || ' ' || d.apellido AS docente, " +
-            "h.dia || ' ' || CAST(h.hora_inicio AS VARCHAR) || ' - ' || CAST(h.hora_final AS VARCHAR) AS horario, " +
-            "ic.cupo_maximo, " +
-            "ic.id_inicio_curso " +
-            "FROM inicio_curso ic " +
-            "JOIN curso c ON ic.id_curso = c.id_curso " +
-            "JOIN docente d ON ic.id_docente = d.id_docente " +
-            "LEFT JOIN horario h ON h.id_inicio_curso = ic.id_inicio_curso " +
-            "WHERE ic.fecha_apertura <= CURRENT_DATE " +
-            "AND ic.fecha_cierre >= CURRENT_DATE " +
-            "ORDER BY c.codigo";
-
-    // Busca cursos vigentes filtrando por código (búsqueda parcial)
-    private static final String SELECT_POR_CODIGO = "SELECT c.codigo, c.nombre, " +
-            "d.nombre || ' ' || d.apellido AS docente, " +
-            "h.dia || ' ' || CAST(h.hora_inicio AS VARCHAR) || ' - ' || CAST(h.hora_final AS VARCHAR) AS horario, " +
-            "ic.cupo_maximo, " +
-            "ic.id_inicio_curso " +
-            "FROM inicio_curso ic " +
-            "JOIN curso c ON ic.id_curso = c.id_curso " +
-            "JOIN docente d ON ic.id_docente = d.id_docente " +
-            "LEFT JOIN horario h ON h.id_inicio_curso = ic.id_inicio_curso " +
-            "WHERE ic.fecha_apertura <= CURRENT_DATE " +
-            "AND ic.fecha_cierre >= CURRENT_DATE " +
-            "AND LOWER(c.codigo) LIKE LOWER(?) " +
-            "ORDER BY c.codigo";
-
-    // Inscribe al estudiante en el periodo activo del curso seleccionado
-    private static final String INSCRIBIR = "INSERT INTO inscripcion (id_estudiante, id_periodo, fecha_inscripcion, estado) "
-            +
-            "VALUES (?, " +
-            "  (SELECT id_periodo FROM periodo_inscripcion " +
-            "   WHERE id_inicio_curso = ? " +
-            "   AND fecha_apertura <= CURRENT_DATE " +
-            "   AND fecha_cierre >= CURRENT_DATE " +
-            "   LIMIT 1), " +
-            "CURRENT_DATE, 'Activa')";
-
-    // Verifica si el estudiante ya está inscrito en ese inicio_curso
-    private static final String VERIFICAR_INSCRIPCION = "SELECT COUNT(*) FROM inscripcion i " +
-            "JOIN periodo_inscripcion pi ON i.id_periodo = pi.id_periodo " +
-            "WHERE i.id_estudiante = ? " +
-            "AND pi.id_inicio_curso = ?";
-
-    // Lista para retornar los cursos disponibles
     public List<Object[]> listarDisponibles() throws Exception {
-        List<Object[]> lista = new ArrayList<>();
+        String sql = """
+                    SELECT
+                    c.codigo,
+                    c.nombre,
+                    CONCAT_WS(' ', d.nombre, d.apellido) AS docente,
+                    ic.cupo_maximo,
+                    ic.id_inicio_curso
+                FROM inicio_curso ic
+                INNER JOIN curso c ON ic.id_curso = c.id_curso
+                INNER JOIN docente d ON ic.id_docente = d.id_docente
+                INNER JOIN periodo_inscripcion pi ON ic.id_periodo = pi.id_periodo
+                WHERE pi.estado = 'Activo'
+                  AND ic.estado = 'Activo'
+                ORDER BY c.codigo;
+                                """;
+
         Connection conn = Conexion.getConexion();
-        try {
-            PreparedStatement ps = conn.prepareStatement(SELECT_DISPONIBLES);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                lista.add(new Object[] {
-                        rs.getString("codigo"),
-                        rs.getString("nombre"),
-                        rs.getString("docente"),
-                        rs.getString("horario"),
-                        rs.getString("cupo_maximo"),
-                        rs.getInt("id_inicio_curso")
-                });
-            }
-        } finally {
-            conn.close();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        List<Object[]> lista = new ArrayList<>();
+        while (rs.next()) {
+            Object[] fila = new Object[5];
+            fila[0] = rs.getString("codigo");
+            fila[1] = rs.getString("nombre");
+            fila[2] = rs.getString("docente");
+            fila[3] = rs.getString("cupo_maximo");
+            fila[4] = rs.getInt("id_inicio_curso");
+            lista.add(fila);
         }
+        conn.close();
         return lista;
     }
 
-    // Buscar cursos por codigo
     public List<Object[]> buscarPorCodigo(String codigo) throws Exception {
-        List<Object[]> lista = new ArrayList<>();
+        String sql = """
+                    SELECT
+                        c.codigo,
+                        c.nombre,
+                        d.nombre || ' ' || d.apellido AS docente,
+                        ic.cupo_maximo,
+                        ic.id_inicio_curso
+                    FROM inicio_curso ic
+                    INNER JOIN curso c ON ic.id_curso = c.id_curso
+                    INNER JOIN docente d ON ic.id_docente = d.id_docente
+                    WHERE ic.id_periodo = (
+                        SELECT id_periodo FROM periodo_inscripcion WHERE estado = 'Activo'
+                    )
+                    AND ic.estado = 'Activo'
+                    AND UPPER(c.codigo) LIKE UPPER(?)
+                    ORDER BY c.codigo
+                """;
+
         Connection conn = Conexion.getConexion();
-        try {
-            PreparedStatement ps = conn.prepareStatement(SELECT_POR_CODIGO);
-            ps.setString(1, "%" + codigo + "%");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                lista.add(new Object[] {
-                        rs.getString("codigo"),
-                        rs.getString("nombre"),
-                        rs.getString("docente"),
-                        rs.getString("horario"),
-                        rs.getString("cupo_maximo"),
-                        rs.getInt("id_inicio_curso")
-                });
-            }
-        } finally {
-            conn.close();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, "%" + codigo + "%");
+        ResultSet rs = ps.executeQuery();
+
+        List<Object[]> lista = new ArrayList<>();
+        while (rs.next()) {
+            Object[] fila = new Object[5];
+            fila[0] = rs.getString("codigo");
+            fila[1] = rs.getString("nombre");
+            fila[2] = rs.getString("docente");
+            fila[3] = rs.getString("cupo_maximo");
+            fila[4] = rs.getInt("id_inicio_curso");
+            lista.add(fila);
         }
+        conn.close();
         return lista;
     }
 
-    // Verifica si el estudiante ya está inscrito en ese curso
-    public boolean verificarInscripcion(int idEstudiante, int idInicioCurso) throws Exception {
+    public List<Object[]> obtenerHorarios(int idInicioCurso) throws Exception {
+        String sql = """
+                SELECT
+                    c.codigo,
+                    c.nombre,
+                    CONCAT_WS(' ', d.nombre, d.apellido) AS docente,
+                    ic.cupo_maximo,
+                    ic.id_inicio_curso
+                FROM inicio_curso ic
+                INNER JOIN curso c ON ic.id_curso = c.id_curso
+                INNER JOIN docente d ON ic.id_docente = d.id_docente
+                INNER JOIN periodo_inscripcion pi ON ic.id_periodo = pi.id_periodo
+                WHERE pi.estado = 'Activo'
+                  AND ic.estado = 'Activo'
+                  AND c.codigo ILIKE ?
+                ORDER BY c.codigo;
+                                                """;
+
         Connection conn = Conexion.getConexion();
-        try {
-            PreparedStatement ps = conn.prepareStatement(VERIFICAR_INSCRIPCION);
-            ps.setInt(1, idEstudiante);
-            ps.setInt(2, idInicioCurso);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } finally {
-            conn.close();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idInicioCurso);
+        ResultSet rs = ps.executeQuery();
+
+        List<Object[]> lista = new ArrayList<>();
+        while (rs.next()) {
+            Object[] fila = new Object[4];
+            fila[0] = rs.getString("dia");
+            fila[1] = rs.getObject("hora_inicio", LocalTime.class);
+            fila[2] = rs.getObject("hora_final", LocalTime.class);
+            fila[3] = rs.getString("aula");
+            lista.add(fila);
         }
-        return false;
+        conn.close();
+        return lista;
     }
 
-    // Inscribir al estudiante en el curso seleccionado
+    public boolean verificarInscripcion(int idEstudiante, int idInicioCurso) throws Exception {
+        String sql = """
+                    SELECT COUNT(*) FROM inscripcion
+                    WHERE id_estudiante = ? AND id_inicio_curso = ?
+                """;
+
+        Connection conn = Conexion.getConexion();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idEstudiante);
+        ps.setInt(2, idInicioCurso);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        boolean existe = rs.getInt(1) > 0;
+        conn.close();
+        return existe;
+    }
+
     public void inscribir(int idEstudiante, int idInicioCurso) throws Exception {
+        String sql = """
+                    INSERT INTO inscripcion (id_estudiante, id_inicio_curso, fecha_inscripcion, estado)
+                    VALUES (?, ?, CURRENT_DATE, 'Activo')
+                """;
+
         Connection conn = Conexion.getConexion();
         try {
             conn.setAutoCommit(false);
-            PreparedStatement ps = conn.prepareStatement(INSCRIBIR);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, idEstudiante);
             ps.setInt(2, idInicioCurso);
-            int filas = ps.executeUpdate();
-            if (filas == 0) {
-                throw new Exception("No se encontró un periodo de inscripción activo para este curso.");
-            }
+            ps.executeUpdate();
             conn.commit();
-        } catch (Exception ex) {
+        } catch (Exception e) {
             conn.rollback();
-            throw ex;
+            throw e;
         } finally {
             conn.close();
         }
     }
+
 }

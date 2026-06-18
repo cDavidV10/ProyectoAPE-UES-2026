@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.CursosDisponiblesDAO;
 import vista.CursosDisponiblesView;
+import vista.DetallesInscripcionCurso;
 
 public class CtrlCursosDisponibles {
 
@@ -16,7 +17,6 @@ public class CtrlCursosDisponibles {
     private final int idEstudiante;
     private CursosDisponiblesDAO cursosDAO;
 
-    // Lista para guardar los daatos completos de cada fila
     private List<Object[]> cursosLista = new ArrayList<>();
 
     public CtrlCursosDisponibles(CursosDisponiblesView view, int idEstudiante) {
@@ -31,7 +31,7 @@ public class CtrlCursosDisponibles {
     private void iniciarEventos() {
         view.getBtnBuscarCurso().addActionListener(e -> buscar());
         view.getBtnInscribirCurso().addActionListener(e -> inscribir());
-
+        view.getBtnVerDetallesCurso().addActionListener(e -> verDetalles());
     }
 
     private void cargarTabla() {
@@ -68,23 +68,50 @@ public class CtrlCursosDisponibles {
         }
     }
 
-    // Llena la tabla con los datos que guarda la lista "cursosLista"
     private void poblarTabla(List<Object[]> lista) {
         this.cursosLista = lista;
         DefaultTableModel modelo = (DefaultTableModel) view.getTblCursosDisponibles().getModel();
         modelo.setRowCount(0);
         for (Object[] fila : lista) {
             modelo.addRow(new Object[] {
-                    fila[0], // codigo
-                    fila[1], // nombre
-                    fila[2], // docente
-                    fila[3], // horario
-                    fila[4] // cupo_maximo
+                    fila[0],
+                    fila[1],
+                    fila[2],
+                    fila[3]
             });
         }
     }
 
-    /* INSCRIPCION */
+    private void verDetalles() {
+        int fila = view.getTblCursosDisponibles().getSelectedRow();
+
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(view,
+                    "Seleccione un curso de la tabla para ver sus detalles.",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String nombreCurso = cursosLista.get(fila)[1].toString();
+        String docente = cursosLista.get(fila)[2].toString();
+        int idInicioCurso = (int) cursosLista.get(fila)[4];
+
+        try {
+            List<Object[]> horarios = cursosDAO.obtenerHorarios(idInicioCurso);
+
+            DetallesInscripcionCurso dialog = new DetallesInscripcionCurso(null, true);
+
+            new CtrlDetallesInscripcionCurso(dialog, nombreCurso, docente, horarios);
+
+            dialog.setLocationRelativeTo(view);
+            dialog.setVisible(true);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view,
+                    "Error al cargar detalles del curso: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void inscribir() {
         int fila = view.getTblCursosDisponibles().getSelectedRow();
@@ -98,9 +125,9 @@ public class CtrlCursosDisponibles {
 
         String nombreCurso = cursosLista.get(fila)[1].toString();
         String codigoCurso = cursosLista.get(fila)[0].toString();
-        int idInicioCurso = (int) cursosLista.get(fila)[5];
+        int idInicioCurso = (int) cursosLista.get(fila)[4];
+        // ==========================================================
 
-        // Verificar si ya está inscrito
         try {
             if (cursosDAO.verificarInscripcion(idEstudiante, idInicioCurso)) {
                 JOptionPane.showMessageDialog(view,
@@ -115,7 +142,6 @@ public class CtrlCursosDisponibles {
             return;
         }
 
-        // Confirmar inscripción
         int confirmar = JOptionPane.showConfirmDialog(view,
                 "¿Desea inscribirse en el curso:\n" +
                         "  Código: " + codigoCurso + "\n" +
@@ -128,7 +154,7 @@ public class CtrlCursosDisponibles {
                 JOptionPane.showMessageDialog(view,
                         "¡Inscripción exitosa en " + nombreCurso + "!",
                         "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                cargarTabla(); // refresca la tabla
+                cargarTabla();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(view,
                         "Error al inscribir: " + e.getMessage(),

@@ -52,7 +52,7 @@ public class ControllerRegEstu {
                 LocalDate fecha = dateChooser.toInstant()
                         .atZone(ZoneId.systemDefault())
                         .toLocalDate();
-                e.setFechaNacimiento(fecha); // Ahora tu setter recibe LocalDate
+                e.setFechaNacimiento(fecha);
             }
 
             e.setCorreo(vista.txtCorreo.getText().trim());
@@ -74,10 +74,6 @@ public class ControllerRegEstu {
         vista.JdFechaNaci.setDate(null);
         vista.txtCorreo.setText("");
     }
-
-    // private void cancelar() {
-    // vista.dispose();
-    // }
 
     private boolean validarCampos() {
         if (vista.txtNombre.getText().trim().isEmpty()

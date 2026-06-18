@@ -130,12 +130,18 @@ public class EstudianteDAO implements IEstudianteDAO {
 
     @Override
     public Object buscarRegistro(String buscar) throws Exception {
-        final String SELECT = "SELECT * FROM estudiante WHERE dui = ?";
+        final String SELECT = """
+                              SELECT * FROM estudiante e
+                              JOIN usuario u on e.id_estudiante = u.id_estudiante
+                              WHERE e.dui = ? or e.nombre = ? or u.username = ?
+                              """;
         Estudiante encontrado = null;
         try {
             Connection conn = Conexion.getConexion();
             PreparedStatement ps = conn.prepareStatement(SELECT);
             ps.setString(1, buscar);
+            ps.setString(2, buscar);
+            ps.setString(3, buscar);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {

@@ -109,7 +109,7 @@ public class AgregarHorarioNuevo extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 1000, 240));
 
-        btnAgregar.setText("AGREGAR NUEVO HORARIO");
+        btnAgregar.setText("ASIGNAR NUEVO HORARIO");
         add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, -1, -1));
 
         btnRegresar.setText("REGRESAR");

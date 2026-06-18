@@ -136,7 +136,7 @@ public class CtrlAdmin {
             }
 
             vistaTabla.getBtnReporte().addActionListener(e -> {
-                new AbiriReporte().abrirReporte("ReporteEstudiante.jasper");
+                new AbiriReporte().abrirReporte("ReporteEstudiantesReg.jasper");
             });
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vistaTabla,

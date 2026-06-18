@@ -6,8 +6,10 @@ package vista;
 
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Docente;
 //import vista.FormDocente;
@@ -50,10 +52,15 @@ public class AdminDocente extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableDocentes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         btnNuevoDocente = new javax.swing.JButton();
-        btnEliminarDocente = new javax.swing.JButton();
         btnMostrarReporte = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtDuiBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1030, 700));
@@ -75,46 +82,88 @@ public class AdminDocente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableDocentes);
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnNuevoDocente.setBackground(new java.awt.Color(204, 255, 204));
+        btnNuevoDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNuevoDocente.setText("+Nuevo docente");
+        btnNuevoDocente.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanel2.add(btnNuevoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 160, -1));
+
+        btnMostrarReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMostrarReporte.setText("Mostrar Reporte");
+        btnMostrarReporte.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanel2.add(btnMostrarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 160, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Mantenimiento de Docentes");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 970, 10));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Buscar por DUI:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDuiBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDuiBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(jLabel3))
+                .addContainerGap())
+        );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 450, 60));
+
+        btnBuscar.setBackground(new java.awt.Color(204, 255, 204));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 160, -1));
+
+        btnActualizar.setBackground(new java.awt.Color(204, 255, 204));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanel2.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 80, 160, -1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1030, 330));
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Mantenimiento de Docentes");
-        jPanel2.add(jLabel1);
-
-        btnNuevoDocente.setBackground(new java.awt.Color(204, 255, 204));
-        btnNuevoDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnNuevoDocente.setText("+Nuevo docente");
-        jPanel2.add(btnNuevoDocente);
-
-        btnEliminarDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEliminarDocente.setText("Eliminar docente");
-        jPanel2.add(btnEliminarDocente);
-
-        btnMostrarReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnMostrarReporte.setText("Mostrar Reporte");
-        jPanel2.add(btnMostrarReporte);
-
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 780));
     }// </editor-fold>//GEN-END:initComponents
 
         private void btnNuevoDocenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNuevoDocenteActionPerformed
@@ -147,42 +196,62 @@ public class AdminDocente extends javax.swing.JPanel {
 
         // GETTER
 
-        public JTable getTablaDocentes() {
-                return tablaDocentes;
-        }
+    public JTable getTablaDocentes() {
+        return tablaDocentes;
+    }
 
-        public DefaultTableModel getModelo() {
-                return modelo;
-        }
+    public DefaultTableModel getModelo() {
+        return modelo;
+    }
 
-        public JButton getBtnNuevoDocente() {
-                return btnNuevoDocente;
-        }
+    public JButton getBtnNuevoDocente() {
+        return btnNuevoDocente;
+    }
 
-        public JScrollPane getjScrollPane1() {
-                return jScrollPane1;
-        }
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
 
-        public JTable getTableDocentes() {
-                return tableDocentes;
-        }
+    public JTable getTableDocentes() {
+        return tableDocentes;
+    }
 
-        public JButton getBtnReporte() {
-                return btnMostrarReporte;
-        }
+    public JButton getBtnReporte() {
+        return btnMostrarReporte;
+    }
 
-        public JButton getBtnEliminarDocente() {
-                return btnEliminarDocente;
-        }
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JTextField getTxtDuiBuscar() {
+        return txtDuiBuscar;
+    }
+
+    public JPanel getBgPanel() {
+        return jPanel1;
+    }
+
+    
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarDocente;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnMostrarReporte;
     private javax.swing.JButton btnNuevoDocente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tableDocentes;
+    private javax.swing.JTextField txtDuiBuscar;
     // End of variables declaration//GEN-END:variables
 }

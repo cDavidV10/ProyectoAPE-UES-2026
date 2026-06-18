@@ -128,12 +128,18 @@ public class DocenteDAO implements IDocenteDAO {
     }
 
     public Object buscarRegistro(String buscar) {
-        final String SELECT = "Select * from docente where dui = ?";
+        final String SELECT = """
+                              Select * from docente d
+                              join usuario u on e.id_docente = u.id_docente
+                              where d.dui = ? or d.nombre = ? or u.username = ?
+                              """;
         Docente encontrado = null;
         try {
             Connection conn = Conexion.getConexion();
             PreparedStatement ps = conn.prepareStatement(SELECT);
             ps.setString(1, buscar);
+            ps.setString(2, buscar);
+            ps.setString(3, buscar);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {

@@ -36,11 +36,8 @@ public class CtrlDocenteView {
 
                 DocenteVerCursosAsignados docenteCursosAsign = new DocenteVerCursosAsignados();
 
-                // Crear el DAO
                 DocenteCursosDAO dao = new DocenteCursosDAO();
-                // Obteniendo el id del usuario activo
                 Docente docente = usuario.getDocente();
-                // Crear el controlador pasando el idDocente
                 new CtrlDocenteVerCursosAsignados(dao, docenteCursosAsign, docente);
 
                 new Paneles().insertarPaneles(docenteCursosAsign, docenteView.getBgPanel());
