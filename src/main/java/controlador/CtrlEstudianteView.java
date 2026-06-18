@@ -28,7 +28,7 @@ public class CtrlEstudianteView {
         this.cursosDisponiblesView = new CursosDisponiblesView();
 
         ctrlCursosDisponibles = new CtrlCursosDisponibles(cursosDisponiblesView,
-                usuario.getEstudiante().getIdEstudiante());
+                usuario);
         paneles.insertarPaneles(cursosDisponiblesView, this.estudianteView.getBgContent());
 
         estudianteView.addWindowListener(new WindowAdapter() {
@@ -53,7 +53,7 @@ public class CtrlEstudianteView {
     private void abrirCursosDisponibles() {
 
         ctrlCursosDisponibles = new CtrlCursosDisponibles(cursosDisponiblesView,
-                usuario.getEstudiante().getIdEstudiante());
+                usuario);
         paneles.insertarPaneles(cursosDisponiblesView, this.estudianteView.getBgContent());
 
     }
