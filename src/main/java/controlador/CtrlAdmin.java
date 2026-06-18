@@ -44,7 +44,7 @@ public class CtrlAdmin {
     private Login login;
     private Usuario usuario;
     private Paneles paneles;
-    
+
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
         this.usuario = usuario;
@@ -136,7 +136,7 @@ public class CtrlAdmin {
             }
 
             vistaTabla.getBtnReporte().addActionListener(e -> {
-                new AbiriReporte().abrirReporte("ReporteEstudiante.jasper");
+                new AbiriReporte().abrirReporte("ReporteEstudiantesReg.jasper");
             });
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(vistaTabla,
