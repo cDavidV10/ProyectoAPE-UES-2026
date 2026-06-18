@@ -17,7 +17,6 @@ public class CtrlCursosDisponibles {
     private final int idEstudiante;
     private CursosDisponiblesDAO cursosDAO;
 
-    // Lista para guardar los datos completos de cada fila
     private List<Object[]> cursosLista = new ArrayList<>();
 
     public CtrlCursosDisponibles(CursosDisponiblesView view, int idEstudiante) {
@@ -32,9 +31,7 @@ public class CtrlCursosDisponibles {
     private void iniciarEventos() {
         view.getBtnBuscarCurso().addActionListener(e -> buscar());
         view.getBtnInscribirCurso().addActionListener(e -> inscribir());
-        // ======================== NUEVO ========================
         view.getBtnVerDetallesCurso().addActionListener(e -> verDetalles());
-        // =======================================================
     }
 
     private void cargarTabla() {
@@ -71,29 +68,20 @@ public class CtrlCursosDisponibles {
         }
     }
 
-    // ======================== MODIFICADO ========================
-    // Ya NO incluye la columna de horario, ahora son 4 columnas:
-    // Codigo | Nombre | Docente | Cupo Maximo
-    // ===========================================================
     private void poblarTabla(List<Object[]> lista) {
         this.cursosLista = lista;
         DefaultTableModel modelo = (DefaultTableModel) view.getTblCursosDisponibles().getModel();
         modelo.setRowCount(0);
         for (Object[] fila : lista) {
             modelo.addRow(new Object[] {
-                    fila[0], // codigo
-                    fila[1], // nombre
-                    fila[2], // docente
-                    fila[3] // cupo_maximo
-                    // Ya NO se agrega fila[3] de horario
-                    // Ya NO se agrega fila[4] de cupo
+                    fila[0],
+                    fila[1],
+                    fila[2],
+                    fila[3]
             });
         }
     }
 
-    // ======================== NUEVO ========================
-    // Abre el JDialog con los detalles del curso seleccionado
-    // =======================================================
     private void verDetalles() {
         int fila = view.getTblCursosDisponibles().getSelectedRow();
 
@@ -104,20 +92,15 @@ public class CtrlCursosDisponibles {
             return;
         }
 
-        // Extraer datos de la fila seleccionada
         String nombreCurso = cursosLista.get(fila)[1].toString();
         String docente = cursosLista.get(fila)[2].toString();
         int idInicioCurso = (int) cursosLista.get(fila)[4];
 
         try {
-            // Obtener horarios desde el DAO
             List<Object[]> horarios = cursosDAO.obtenerHorarios(idInicioCurso);
 
-            // ==> AJUSTA el constructor de tu JDialog si es diferente <==
-            // Si tu JDialog extiende JDialog y recibe (Frame parent, boolean modal):
             DetallesInscripcionCurso dialog = new DetallesInscripcionCurso(null, true);
 
-            // Pasar datos al controlador del JDialog
             new CtrlDetallesInscripcionCurso(dialog, nombreCurso, docente, horarios);
 
             dialog.setLocationRelativeTo(view);
@@ -129,8 +112,6 @@ public class CtrlCursosDisponibles {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    /* ===================== INSCRIPCION ===================== */
 
     private void inscribir() {
         int fila = view.getTblCursosDisponibles().getSelectedRow();
@@ -144,12 +125,9 @@ public class CtrlCursosDisponibles {
 
         String nombreCurso = cursosLista.get(fila)[1].toString();
         String codigoCurso = cursosLista.get(fila)[0].toString();
-        // ======================== CAMBIADO ========================
-        // Antes era fila[5], ahora es fila[4] porque ya no hay columna de horario
         int idInicioCurso = (int) cursosLista.get(fila)[4];
         // ==========================================================
 
-        // Verificar si ya esta inscrito
         try {
             if (cursosDAO.verificarInscripcion(idEstudiante, idInicioCurso)) {
                 JOptionPane.showMessageDialog(view,
@@ -164,7 +142,6 @@ public class CtrlCursosDisponibles {
             return;
         }
 
-        // Confirmar inscripcion
         int confirmar = JOptionPane.showConfirmDialog(view,
                 "¿Desea inscribirse en el curso:\n" +
                         "  Código: " + codigoCurso + "\n" +
@@ -177,7 +154,7 @@ public class CtrlCursosDisponibles {
                 JOptionPane.showMessageDialog(view,
                         "¡Inscripción exitosa en " + nombreCurso + "!",
                         "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                cargarTabla(); // refresca la tabla
+                cargarTabla();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(view,
                         "Error al inscribir: " + e.getMessage(),

@@ -75,10 +75,6 @@ public class ControllerRegEstu {
         vista.txtCorreo.setText("");
     }
 
-    // private void cancelar() {
-    // vista.dispose();
-    // }
-
     private boolean validarCampos() {
         if (vista.txtNombre.getText().trim().isEmpty()
                 || vista.txtApellido.getText().trim().isEmpty()

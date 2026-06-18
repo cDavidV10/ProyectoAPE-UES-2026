@@ -26,20 +26,17 @@ public class CtrlDetallesInscripcionCurso {
     }
 
     private void cargarDatos(String nombreCurso, String docente, List<Object[]> horarios) {
-        // --- Poblar labels ---
         vista.lbNombreCurso.setText(nombreCurso);
         vista.lbNombreDocente.setText(docente);
 
-        // --- Configurar columnas de la tabla de horarios ---
         String[] columnas = { "Día", "Hora Inicio", "Hora Final", "Aula" };
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Tabla de solo lectura
+                return false;
             }
         };
 
-        // --- Poblar filas ---
         for (Object[] h : horarios) {
             modelo.addRow(new Object[] {
                     h[0], // dia

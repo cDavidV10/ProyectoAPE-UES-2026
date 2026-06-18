@@ -12,27 +12,22 @@ import conexion.Conexion;
 
 public class CursosDisponiblesDAO {
 
-    // =====================================================================
-    // CONSULTA PRINCIPAL: Un curso por fila (SIN join a horario)
-    // Usa INNER JOIN entre inicio_curso, curso y docente
-    // =====================================================================
     public List<Object[]> listarDisponibles() throws Exception {
         String sql = """
                     SELECT
-                        c.codigo,
-                        c.nombre,
-                        d.nombre || ' ' || d.apellido AS docente,
-                        ic.cupo_maximo,
-                        ic.id_inicio_curso
-                    FROM inicio_curso ic
-                    INNER JOIN curso c ON ic.id_curso = c.id_curso
-                    INNER JOIN docente d ON ic.id_docente = d.id_docente
-                    WHERE ic.id_periodo = (
-                        SELECT id_periodo FROM periodo_inscripcion WHERE estado = 'Activo'
-                    )
-                    AND ic.estado = 'Activo'
-                    ORDER BY c.codigo
-                """;
+                    c.codigo,
+                    c.nombre,
+                    CONCAT_WS(' ', d.nombre, d.apellido) AS docente,
+                    ic.cupo_maximo,
+                    ic.id_inicio_curso
+                FROM inicio_curso ic
+                INNER JOIN curso c ON ic.id_curso = c.id_curso
+                INNER JOIN docente d ON ic.id_docente = d.id_docente
+                INNER JOIN periodo_inscripcion pi ON ic.id_periodo = pi.id_periodo
+                WHERE pi.estado = 'Activo'
+                  AND ic.estado = 'Activo'
+                ORDER BY c.codigo;
+                                """;
 
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,7 +35,6 @@ public class CursosDisponiblesDAO {
 
         List<Object[]> lista = new ArrayList<>();
         while (rs.next()) {
-            // Indices: [0]=codigo, [1]=nombre, [2]=docente, [3]=cupo, [4]=idInicioCurso
             Object[] fila = new Object[5];
             fila[0] = rs.getString("codigo");
             fila[1] = rs.getString("nombre");
@@ -53,9 +47,6 @@ public class CursosDisponiblesDAO {
         return lista;
     }
 
-    // =====================================================================
-    // BUSCAR POR CODIGO: Misma estructura, filtrado por codigo del curso
-    // =====================================================================
     public List<Object[]> buscarPorCodigo(String codigo) throws Exception {
         String sql = """
                     SELECT
@@ -94,33 +85,23 @@ public class CursosDisponiblesDAO {
         return lista;
     }
 
-    // =====================================================================
-    // HORARIOS PARA EL JDIALOG DE DETALLES
-    // Usa INNER JOIN entre horario y aula
-    // Este es el metodo que alimenta la tabla del JDialog
-    // =====================================================================
     public List<Object[]> obtenerHorarios(int idInicioCurso) throws Exception {
         String sql = """
-                    SELECT
-                        h.dia,
-                        h.hora_inicio,
-                        h.hora_final,
-                        a.codigo AS aula
-                    FROM horario h
-                    INNER JOIN aula a ON h.id_aula = a.id_aula
-                    WHERE h.id_inicio_curso = ?
-                    ORDER BY
-                        CASE h.dia
-                            WHEN 'Lunes' THEN 1
-                            WHEN 'Martes' THEN 2
-                            WHEN 'Miercoles' THEN 3
-                            WHEN 'Jueves' THEN 4
-                            WHEN 'Viernes' THEN 5
-                            WHEN 'Sabado' THEN 6
-                            WHEN 'Domingo' THEN 7
-                        END,
-                        h.hora_inicio
-                """;
+                SELECT
+                    c.codigo,
+                    c.nombre,
+                    CONCAT_WS(' ', d.nombre, d.apellido) AS docente,
+                    ic.cupo_maximo,
+                    ic.id_inicio_curso
+                FROM inicio_curso ic
+                INNER JOIN curso c ON ic.id_curso = c.id_curso
+                INNER JOIN docente d ON ic.id_docente = d.id_docente
+                INNER JOIN periodo_inscripcion pi ON ic.id_periodo = pi.id_periodo
+                WHERE pi.estado = 'Activo'
+                  AND ic.estado = 'Activo'
+                  AND c.codigo ILIKE ?
+                ORDER BY c.codigo;
+                                                """;
 
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -140,9 +121,6 @@ public class CursosDisponiblesDAO {
         return lista;
     }
 
-    // =====================================================================
-    // VERIFICAR INSCRIPCION (sin cambios)
-    // =====================================================================
     public boolean verificarInscripcion(int idEstudiante, int idInicioCurso) throws Exception {
         String sql = """
                     SELECT COUNT(*) FROM inscripcion
@@ -160,9 +138,6 @@ public class CursosDisponiblesDAO {
         return existe;
     }
 
-    // =====================================================================
-    // INSCRIBIR ESTUDIANTE (sin cambios)
-    // =====================================================================
     public void inscribir(int idEstudiante, int idInicioCurso) throws Exception {
         String sql = """
                     INSERT INTO inscripcion (id_estudiante, id_inicio_curso, fecha_inscripcion, estado)
