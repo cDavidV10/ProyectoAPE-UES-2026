@@ -174,13 +174,13 @@ public class DetallesInscripcionCurso extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbNombreCurso;
-    private javax.swing.JLabel lbNombreDocente;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel lbNombreCurso;
+    public javax.swing.JLabel lbNombreDocente;
     private javax.swing.JTable tblHorarioCursoDetalle;
     // End of variables declaration//GEN-END:variables
 }
