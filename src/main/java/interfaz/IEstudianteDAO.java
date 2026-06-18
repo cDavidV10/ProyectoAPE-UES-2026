@@ -18,6 +18,9 @@ public interface IEstudianteDAO {
     Estudiante buscar(int idEstudiante) throws Exception;
     
     public Object buscarRegistro(String buscar) throws Exception;
+
     public boolean modificarDatos(Estudiante estudAModif) throws Exception;
+
+    public List<Estudiante> listarEstudiantesPorCurso(String codigoCurso, Docente docente) throws Exception;
     
 }

@@ -26,6 +26,7 @@ public class CtrlDocentesVerEstudiantesAsignados {
         this.vista = vista;
         this.docente = docente;
         this.curso = curso;
+        this.dao = new EstudianteDAO();
        
 
         cargarEstudiantes();
@@ -34,7 +35,7 @@ public class CtrlDocentesVerEstudiantesAsignados {
 
     private void cargarEstudiantes() {
         try {
-            List<Estudiante> estudiantes = dao.listarEstudiantesPorCurso(curso.getCursos().getCodigo(), docente.getIdDocente());
+            List<Estudiante> estudiantes = dao.listarEstudiantesPorCurso(curso.getCursos().getCodigo(), docente);
             mostrarEstudiantes(estudiantes);
         } catch (Exception ex) {
             //JOptionPane.showMessageDialog(vista, "Error al cargar estudiantes: " + ex.getMessage());

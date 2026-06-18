@@ -22,6 +22,13 @@ public class EstudianteDAO implements IEstudianteDAO {
     private static final String UPDATE = "UPDATE estudiante SET dui = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
     private static final String DELETE = "DELETE FROM estudiante WHERE id_estudiante = ?";
     private static final String SELECT_MAX_ID = "SELECT COALESCE(MAX(id_estudiante), 0) + 1 AS siguiente FROM estudiante";
+    private static final String BUSCAR_POR_CURSO = """
+        SELECT e.nombre, e.apellido, e.fecha_nacimiento, e.correo FROM inscripcion i 
+        INNER JOIN estudiante e ON i.id_estudiante  = e.id_estudiante
+        INNER JOIN inicio_curso ic ON i.id_inicio_curso  = ic.id_inicio_curso
+        INNER JOIN curso c ON ic.id_curso  = c.id_curso  
+        WHERE c.codigo  =  ? AND  ic.id_docente =  ?
+    """;
 
     public int generarId() throws Exception {
         Connection conn = Conexion.getConexion();
@@ -193,8 +200,31 @@ public class EstudianteDAO implements IEstudianteDAO {
         }
     }
 
-    public List<Estudiante> listarEstudiantesPorCurso(String codigo, int idDocente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Override
+    public List<Estudiante> listarEstudiantesPorCurso(String codigoCurso, Docente docente) throws Exception {
+        List<Estudiante> lista = new ArrayList<>();
+
+        try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(BUSCAR_POR_CURSO)) {
+            ps.setString(1, codigoCurso);
+            ps.setInt(2, docente.getIdDocente());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Estudiante est = new Estudiante();
+                est.setNombre(rs.getString("nombre"));
+                est.setApellido(rs.getString("apellido"));
+                LocalDate fechaNac = rs.getObject("fecha_nacimiento", LocalDate.class);
+                est.setFechaNacimiento(fechaNac);
+                est.setCorreo(rs.getString("correo"));
+
+                // calcular edad
+                int edad = Period.between(fechaNac, LocalDate.now()).getYears();
+                est.setEdad(edad);
+
+                lista.add(est);
+            }
+        }
+        return lista;
     }
 
 }
