@@ -52,16 +52,7 @@ public class CtrlAdminCursosHabilitar {
         });
 
         this.vistaHabilitar.getBtnAgregar().addActionListener(e -> {
-            AgregarHorarioView agregarView = new AgregarHorarioView(null, false);
-            new CtrlAdminAgregarHorario(agregarView);
-
-            agregarView.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent e) {
-                    cargarCombos();
-                }
-            });
-            agregarView.setVisible(true);
+            guardar();
         });
 
         this.vistaHabilitar.getBtnCancelar().addActionListener(e -> {
