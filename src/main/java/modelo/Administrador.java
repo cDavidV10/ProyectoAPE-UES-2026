@@ -76,7 +76,12 @@ public class Administrador {
     public void setPeriodoInscripcion(ArrayList<PeriodoInscripcion> periodoInscripcion) {
         this.periodoInscripcion = periodoInscripcion;
     }
-    
-    
 
+    @Override
+    public String toString() {
+        return "Administrador{" + "id=" + id + ", dui=" + dui + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario + ", periodoInscripcion=" + periodoInscripcion + '}';
+    }
+    
+    
+    
 }

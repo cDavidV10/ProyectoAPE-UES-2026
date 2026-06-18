@@ -15,4 +15,6 @@ public interface IInscripcionDAO {
     public boolean existePeriodoActivo() throws Exception;
 
     public PeriodoInscripcion periodoActivo() throws Exception;
+
+    public void agregarCurso(String codigo) throws Exception;
 }

@@ -4,10 +4,14 @@
  */
 package interfaz;
 
+import modelo.Usuario;
+
 /**
  *
  * @author cdavi
  */
 public interface IUsuarioDAO {
     String buscar(String username, String password) throws Exception;
+    Usuario buscarUsuario(int id, String campo) throws Exception;
+    boolean modificarUsuario(Usuario u, String campo) throws Exception;
 }

@@ -168,4 +168,40 @@ public class PeriodoInscripcionDAO implements IInscripcionDAO {
         return periodoInscripcion;
     }
 
+    @Override
+    public void agregarCurso(String codigo) throws Exception {
+        String consulta = """
+                update inicio_curso
+                set id_periodo = (
+                    select
+                        pi.id_periodo
+                        from periodo_inscripcion pi
+                        where estado = 'Activo'
+                    )
+                where id_inicio_curso = (
+                    select
+                        ic.id_inicio_curso
+                    from curso c
+                    inner join inicio_curso ic on ic.id_curso = c.id_curso
+                    where c.codigo = ?
+                );
+                                """;
+        Connection conexion = Conexion.getConexion();
+
+        try {
+            PreparedStatement ps = conexion.prepareStatement(consulta);
+
+            ps.setObject(1, codigo);
+            conexion.setAutoCommit(false);
+
+            ps.executeUpdate();
+            conexion.commit();
+        } catch (Exception e) {
+            conexion.rollback();
+            throw e;
+        } finally {
+            conexion.close();
+        }
+    }
+
 }

@@ -21,15 +21,15 @@ import java.awt.event.WindowEvent;
 import modelo.Estudiante;
 import modelo.Usuario;
 import vista.AdminView;
-import vista.RegistrarCursos;
+import vista.VistaCredenciales;
+import vista.Login;
+import vista.CursosRegistrar;
 import vista.CursosTablaTodos;
 import vista.InscripcionAdminView;
 //import vista.DocentePrincipalView;
 //import vista.CursosTablaTodos;
 import vista.VistaCredenciales;
 import vista.Login;
-import vista.RegistrarCursos;
-import vista.VistaCredenciales;
 import vista.AdminDocente;
 import vista.VistaEstudiantesRegistrados;
 
@@ -39,10 +39,10 @@ import vista.VistaEstudiantesRegistrados;
  */
 public class CtrlAdmin {
 
-    AdminView adminView;
-    EstudianteDAO dao = new EstudianteDAO();
-    Usuario usuario;
-    Login login;
+    private EstudianteDAO dao = new EstudianteDAO();
+    private AdminView adminView;
+    private Login login;
+    private Usuario usuario;
     private Paneles paneles;
     
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
@@ -76,8 +76,8 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 CursosTablaTodos administrarCursos = new CursosTablaTodos();
-                RegistrarCursos form = new RegistrarCursos();
-                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(form, administrarCursos);
+                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(administrarCursos,
+                        adminView.getBgPanel());
                 paneles.insertarPaneles(administrarCursos, adminView.getBgPanel());
             }
 
@@ -109,7 +109,6 @@ public class CtrlAdmin {
                 paneles.insertarPaneles(credenciales, adminView.getBgPanel());
             }
         });
-
         this.adminView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {

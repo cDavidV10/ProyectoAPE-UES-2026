@@ -3,12 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 import conexion.Conexion;
 import interfaz.IEstudianteDAO;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Estudiante;
 
@@ -128,13 +128,20 @@ public class EstudianteDAO implements IEstudianteDAO {
         return e;
     }
 
-    public Object buscarRegistro(String buscar) {
-        final String SELECT = "SELECT * FROM estudiante WHERE dui = ?";
+    @Override
+    public Object buscarRegistro(String buscar) throws Exception {
+        final String SELECT = """
+                              SELECT * FROM estudiante e
+                              JOIN usuario u on e.id_estudiante = u.id_estudiante
+                              WHERE e.dui = ? or e.nombre = ? or u.username = ?
+                              """;
         Estudiante encontrado = null;
         try {
             Connection conn = Conexion.getConexion();
             PreparedStatement ps = conn.prepareStatement(SELECT);
             ps.setString(1, buscar);
+            ps.setString(2, buscar);
+            ps.setString(3, buscar);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -145,6 +152,8 @@ public class EstudianteDAO implements IEstudianteDAO {
                 encontrado.setFechaNacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
                 encontrado.setCorreo(rs.getString("correo"));
                 encontrado.setIdEstudiante(rs.getInt("id_estudiante"));
+            }else{
+                return 0;
             }
 
             rs.close();
@@ -158,7 +167,8 @@ public class EstudianteDAO implements IEstudianteDAO {
         return encontrado;
     }
 
-    public boolean modificarDatos(Estudiante estudAModif) {
+    @Override
+    public boolean modificarDatos(Estudiante estudAModif) throws Exception {
         final String UPDATE = "UPDATE estudiante SET nombre = ?, apellido = ?, fecha_nacimiento = ?, correo = ? WHERE id_estudiante = ?";
 
         try {
@@ -175,7 +185,7 @@ public class EstudianteDAO implements IEstudianteDAO {
             ps.close();
             conn.close();
             return filaAfectada > 0;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Algo salio mal en la modificacion-Estudiante");
             return false;
         }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
 import java.util.ArrayList;
@@ -12,6 +9,7 @@ import java.time.LocalDate;
  * @author Yonathan
  */
 public class InicioCurso {
+
     private int idInicioCurso;
     private LocalDate fechaApertura;
     private LocalDate fechaCierre;
@@ -19,10 +17,13 @@ public class InicioCurso {
     // ? Clases Relacionadas
     private Curso cursos;
     private Docente docente;
-    private ArrayList<Horario> horario;
     private PeriodoInscripcion periodoInscripcion;
     private int totalInscritos;
             
+
+    private ArrayList<Horario> horario;
+    private ArrayList<Inscripcion> inscripciones;
+
     public InicioCurso() {
     }
 
@@ -67,6 +68,10 @@ public class InicioCurso {
         return cupoMaximo;
     }
 
+    public ArrayList<Inscripcion> getInscripciones() {
+        return inscripciones;
+    }
+
     public void setCupoMaximo(String cupoMaximo) {
         this.cupoMaximo = cupoMaximo;
     }
@@ -94,8 +99,6 @@ public class InicioCurso {
     public void setIdInicioCurso(int idInicioCurso) {
         this.idInicioCurso = idInicioCurso;
     }
-    
-    
 
     public ArrayList<Horario> getHorario() {
         return horario;
@@ -121,4 +124,8 @@ public class InicioCurso {
         this.totalInscritos = totalInscritos;
     }
     
+    public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
+        this.inscripciones = inscripciones;
+    }
+
 }
