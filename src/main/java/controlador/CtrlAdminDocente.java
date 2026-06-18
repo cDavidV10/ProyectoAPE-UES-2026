@@ -4,16 +4,19 @@
  */
 package controlador;
 
+import dao.DocenteCursosDAO;
 import dao.DocenteDAO;
 import funciones.AbiriReporte;
 import funciones.Credenciales;
+import funciones.Paneles;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Docente;
 import vista.AdminDocente;
-import vista.AdminFormularioDocente;
+import vista.AdminFormDocente;
 
 /**
  *
@@ -22,14 +25,16 @@ import vista.AdminFormularioDocente;
 public class CtrlAdminDocente {
     private DocenteDAO dao = new DocenteDAO();
     private AdminDocente vistaPrincipal;
+    private Paneles paneles;
+    private JPanel bgPanel;
 
     public CtrlAdminDocente(AdminDocente vistaPrincipal) {
         this.vistaPrincipal = vistaPrincipal;
         this.dao = new DocenteDAO();
-
+        this.paneles = new Paneles();
+        
         cargarTabla();
         onClickAgregar();
-        onClickEliminar();
 
         vistaPrincipal.getBtnReporte().addActionListener(e -> {
             new AbiriReporte().abrirReporte("/DocentesReporte.jasper");
@@ -62,13 +67,14 @@ public class CtrlAdminDocente {
     }
 
     public void onClickAgregar() {
-        vistaPrincipal.getBtnNuevoDocente().addActionListener(e -> {
-            AdminFormularioDocente formDocente = new AdminFormularioDocente();
-            new CtrlAdminFormularioDocente(formDocente, this.dao, this);
-            formDocente.setVisible(true);
+        vistaPrincipal.getBtnNuevoDocente().addActionListener(e -> {       
+            AdminFormDocente formDocente = new AdminFormDocente();
+            new CtrlAdminFormularioDocente(formDocente, this.dao, this, vistaPrincipal.getBgPanel());
+            paneles.insertarPaneles(formDocente, vistaPrincipal.getBgPanel());
         });
     }
 
+    /*
     public void onClickEliminar() {
         vistaPrincipal.getBtnEliminarDocente().addActionListener(e -> {
             int fila = vistaPrincipal.getTableDocentes().getSelectedRow();
@@ -95,6 +101,7 @@ public class CtrlAdminDocente {
             }
         });
     }
+    */
 
     public void refrescarTabla() {
         cargarTabla();

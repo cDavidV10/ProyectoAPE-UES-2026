@@ -13,4 +13,5 @@ import modelo.InicioCurso;
  */
 public interface IDocenteCursosDAO {
     List<InicioCurso> listarCursosxDocente(Docente docente) throws Exception;
+    InicioCurso buscarCursos(String codigo, Docente docente) throws Exception;
 }

@@ -17,6 +17,7 @@ import java.util.List;
 
 import modelo.Aula;
 import modelo.Horario;
+import modelo.InicioCurso;
 
 /**
  *
@@ -109,6 +110,83 @@ public class HorarioDAO implements IHorarioDAO {
 
         conn.close();
         return lista;
+    }
+
+    public List<Horario> horariosDisponibles() throws Exception{
+        String consulta = """
+                select
+                    h.dia as dia,
+                    h.hora_inicio as inicio,
+                    h.hora_final as fin,
+                    a.codigo as aula
+                from horario h
+                inner join aula a on a.id_aula = h.id_aula
+                where id_inicio_curso is null
+                order by dia;
+                """;
+
+        List<Horario> lista = new ArrayList<>();
+        Connection conn = Conexion.getConexion();
+        PreparedStatement ps = conn.prepareStatement(consulta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Horario h = new Horario();
+            Aula aula = new Aula();
+
+            h.setDia(rs.getString(1));
+            h.setHoraInicio(rs.getObject(2, LocalTime.class));
+            h.setHoraFinal(rs.getObject(3, LocalTime.class));
+            aula.setCodigo(rs.getString(4));
+
+            h.setAula(aula);
+
+            lista.add(h);
+        }
+
+        conn.close();
+        return lista;
+    }
+
+    @Override
+    public void insertarNuevoHorario(Horario horario) throws Exception {
+        String consulta = """
+                update horario h
+                set id_inicio_curso = (
+                    select ic.id_inicio_curso
+                    from inicio_curso ic
+                    where id_curso = (select c.id_curso from curso c where c.codigo = ?)
+                )
+                where h.dia = ?::dias
+                and h.hora_inicio = ?
+                and h.hora_final = ?;
+                                """;
+        Connection conexion = Conexion.getConexion();
+
+        PreparedStatement ps = conexion.prepareStatement(consulta);
+
+        try {
+            conexion.setAutoCommit(false);
+
+            ps.setString(1, horario.getInicioCurso().getCursos().getCodigo());
+            ps.setString(2, horario.getDia());
+            ps.setTime(3, Time.valueOf(horario.getHoraInicio()));
+            ps.setTime(4, Time.valueOf(horario.getHoraFinal()));
+
+            System.out.println("Codigo curso: " + horario.getInicioCurso().getCursos().getCodigo());
+            System.out.println("Dia: " + horario.getDia());
+            System.out.println("Hora inicio: " + horario.getHoraInicio());
+            System.out.println("Hora final: " + horario.getHoraFinal());
+            ps.executeUpdate();
+
+            conexion.commit();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            conexion.rollback();
+        } finally {
+            conexion.close();
+        }
     }
 
 }

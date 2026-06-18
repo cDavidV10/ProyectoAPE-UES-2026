@@ -11,4 +11,8 @@ public interface IHorarioDAO {
     public void insertar(Horario horario) throws Exception;
 
     public List<Aula> listarAulas() throws Exception;
+
+    public List<Horario> horariosDisponibles() throws Exception;
+
+    public void insertarNuevoHorario(Horario horario) throws Exception;
 }
