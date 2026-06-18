@@ -44,7 +44,7 @@ public class CtrlAdmin {
     private Login login;
     private Usuario usuario;
     private Paneles paneles;
-
+    
     public CtrlAdmin(AdminView adminView, Usuario usuario, Login login) {
         this.adminView = adminView;
         this.usuario = usuario;

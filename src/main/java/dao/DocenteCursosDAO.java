@@ -12,8 +12,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import modelo.Aula;
 import modelo.Docente;
+import modelo.Horario;
 import modelo.InicioCurso;
 
 /**
@@ -22,7 +25,24 @@ import modelo.InicioCurso;
  */
 public class DocenteCursosDAO implements IDocenteCursosDAO {
 
-    private static final String SELECT = "SELECT c.codigo, c.nombre, c.descripcion, ic.fecha_apertura, ic.fecha_cierre, ic.cupo_maximo FROM inicio_curso ic INNER JOIN curso c ON ic.id_curso = c.id_curso WHERE ic.id_docente = ?";
+    private static final String SELECT = """
+        SELECT c.codigo, c.nombre, c.descripcion, ic.fecha_apertura, ic.fecha_cierre, ic.cupo_maximo 
+        FROM inicio_curso ic 
+        INNER JOIN curso c ON ic.id_curso = c.id_curso 
+        WHERE ic.id_docente = ?
+        """;
+    
+    private static final String SELECT_DETALLE_CURSO = """
+        SELECT c.codigo, c.nombre, c.descripcion, ic.fecha_apertura, ic.fecha_cierre, ic.cupo_maximo, 
+            COUNT(i.id_inscripcion) AS total_estudiantes_inscritos, a.codigo AS aula, h.dia, h.hora_inicio, h.hora_final
+        FROM inicio_curso ic INNER JOIN curso c ON ic.id_curso = c.id_curso 
+        LEFT JOIN inscripcion i ON ic.id_inicio_curso = i.id_inicio_curso
+        LEFT JOIN horario h ON ic.id_inicio_curso = h.id_inicio_curso 
+        LEFT JOIN aula a ON h.id_aula = a.id_aula
+        WHERE c.codigo = ? AND ic.id_docente = ?
+        GROUP BY c.codigo, c.nombre, c.descripcion, ic.fecha_apertura, ic.fecha_cierre, ic.cupo_maximo, 
+            a.codigo, h.dia, h.hora_inicio, h.hora_final
+        """;
     
     @Override
     public List<InicioCurso> listarCursosxDocente(Docente docente) throws Exception {
@@ -45,12 +65,53 @@ public class DocenteCursosDAO implements IDocenteCursosDAO {
                 inicio.setFechaCierre(rs.getObject("fecha_cierre", LocalDate.class));
                 inicio.setCupoMaximo(rs.getString("cupo_maximo"));
 
-                // Relacionar con el curso
+                //Relaciones
                 inicio.setCursos(curso);
                 lista.add(inicio);
             }
         }
         return lista;
     }
+    
+    @Override
+    public InicioCurso buscarCursos(String codigo, Docente docente) throws Exception {
+        Connection conn = Conexion.getConexion();
+        
+        PreparedStatement ps = conn.prepareStatement(SELECT_DETALLE_CURSO);
+        ps.setString(1, codigo);
+        ps.setInt(2, docente.getIdDocente());
+        ResultSet rs = ps.executeQuery();
 
+        InicioCurso curso = null;
+        List<Horario> horarios = new ArrayList<>();
+
+        while (rs.next()) {
+            if (curso == null) {
+                curso = new InicioCurso();
+                curso.setFechaApertura(rs.getObject("fecha_apertura", LocalDate.class));
+                curso.setFechaCierre(rs.getObject("fecha_cierre", LocalDate.class));
+                curso.setCupoMaximo(rs.getString("cupo_maximo"));
+                curso.setTotalInscritos(rs.getInt("total_estudiantes_inscritos"));
+                
+                Curso c = new Curso();
+                c.setCodigo(rs.getString("codigo"));
+                c.setNombreCurso(rs.getString("nombre"));
+                c.setDescripcion(rs.getString("descripcion"));
+                curso.setCursos(c);
+            }
+
+            Horario h = new Horario();
+            h.setDia(rs.getString("dia"));
+            h.setHoraInicio(rs.getObject("hora_inicio", LocalTime.class));
+            h.setHoraFinal(rs.getObject("hora_final", LocalTime.class));
+            
+            Aula aula = new Aula();
+            aula.setCodigo(rs.getString("aula"));
+            h.setAula(aula);
+            horarios.add(h);
+        }
+        
+        curso.setHorario((ArrayList<Horario>) horarios);
+        return curso;
+    }
 }

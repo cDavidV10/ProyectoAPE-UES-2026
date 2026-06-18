@@ -5,6 +5,7 @@
 package controlador;
 
 import dao.DocenteCursosDAO;
+import funciones.Paneles;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -37,11 +38,17 @@ public class CtrlDocenteVerCursosAsignados {
     private void cargarCursos(Docente docente) {    
         try {
             List<InicioCurso> cursos = dao.listarCursosxDocente(docente);
-            mostrarCursos(cursos); 
+            if (cursos.isEmpty()) {
+                JOptionPane.showMessageDialog(vista, "El docente no tiene cursos asignados actualmente.",
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
+                vista.getTablaDocentesCursosAsignados().setVisible(false);
+                return;
+            } else {
+                mostrarCursos(cursos);
+            }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar cursos: " + ex.getMessage());
+            JOptionPane.showMessageDialog(vista, "Error al cargar cursos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
     
     public void mostrarCursos(List<InicioCurso> cursos) {
@@ -68,30 +75,25 @@ public class CtrlDocenteVerCursosAsignados {
     }
 
     private void onClickVerDetalles() {
-
-        vista.getBtnVerDetalles().addActionListener(e -> {           
+        vista.getBtnVerDetalles().addActionListener(e -> {
             int fila = vista.getTablaDocentesCursosAsignados().getSelectedRow();
-            vista.getBtnVerDetalles().setEnabled(true);
-
-            // paara obtener datos de la fila seleccionada
             String codigo = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 0);
-            String nombre = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 1);
-            String descripcion = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 2);
-            Date apertura = (Date) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 3);
-            Date cierre = (Date) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 4);
-            String cupo = (String) vista.getTablaDocentesCursosAsignados().getValueAt(fila, 5);
 
-            // vista de detalles
-            DocenteVerCursoDetalle detalleView = new DocenteVerCursoDetalle();
-            //detalleView.mostrarDetalle(codigo, nombre, descripcion, apertura, cierre, cupo);
-            detalleView.setVisible(true);
-     
-        });
+            try {
+                InicioCurso curso = dao.buscarCursos(codigo, docente);
+                DocenteVerCursoDetalle detalleView = new DocenteVerCursoDetalle();
 
-        // Botón Regresar
-        vista.getBtnRegresar().addActionListener(e -> {
-            vista.setVisible(false); 
+                new CtrlDocenteVerCursoDetalle(detalleView, curso, docente);
+                new Paneles().insertarPaneles(detalleView, vista.getBgPanel());
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al cargar detalles: " + ex.getMessage());
+            }
+        }
+        );
+
+    vista.getBtnRegresar().addActionListener(e -> {
+            vista.setVisible(false);
         });
-        return;
     }
 }

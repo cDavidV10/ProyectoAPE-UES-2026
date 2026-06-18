@@ -61,12 +61,18 @@ public class AdministradorDAO implements IAdministradorDAO {
 
     @Override
     public Object buscarRegistro(String buscar) throws Exception {
-        final String SELECT = "Select * from administrador where dui = ?";
+        final String SELECT = """
+                              Select * from administrador a
+                              join usuario u on a.id_admind = u.id_admind
+                              where a.dui = ? or a.nombre = ? or u.username = ?
+                              """;
         Administrador encontrado = null;
         try {
             Connection conn = Conexion.getConexion();
             PreparedStatement ps = conn.prepareStatement(SELECT);
             ps.setString(1, buscar);
+            ps.setString(2, buscar);
+            ps.setString(3, buscar);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
