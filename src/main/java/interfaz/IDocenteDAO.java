@@ -17,4 +17,5 @@ public interface IDocenteDAO {
     public Object buscarRegistro(String buscar) throws Exception;
     void eliminar(String dui) throws Exception;
     Docente buscarDocentePorUsuario(String username) throws Exception;
+    Docente buscarPorDui(String dui) throws Exception;
 }

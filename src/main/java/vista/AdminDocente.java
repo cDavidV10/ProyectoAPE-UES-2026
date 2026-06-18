@@ -60,7 +60,6 @@ public class AdminDocente extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDuiBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1030, 700));
@@ -82,30 +81,44 @@ public class AdminDocente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableDocentes);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(0, 42, 120));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNuevoDocente.setBackground(new java.awt.Color(204, 255, 204));
+        btnNuevoDocente.setBackground(new java.awt.Color(255, 255, 255));
         btnNuevoDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNuevoDocente.setForeground(new java.awt.Color(0, 0, 51));
         btnNuevoDocente.setText("+Nuevo docente");
+        btnNuevoDocente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 3));
         btnNuevoDocente.setPreferredSize(new java.awt.Dimension(150, 40));
-        jPanel2.add(btnNuevoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 160, -1));
+        jPanel2.add(btnNuevoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 220, -1));
 
+        btnMostrarReporte.setBackground(new java.awt.Color(102, 153, 255));
         btnMostrarReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMostrarReporte.setForeground(new java.awt.Color(255, 255, 255));
         btnMostrarReporte.setText("Mostrar Reporte");
+        btnMostrarReporte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 3));
         btnMostrarReporte.setPreferredSize(new java.awt.Dimension(150, 40));
-        jPanel2.add(btnMostrarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 160, -1));
+        jPanel2.add(btnMostrarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 220, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mantenimiento de Docentes");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 970, 10));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 3));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 51));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("Buscar por DUI:");
+
+        txtDuiBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        txtDuiBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 2));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -115,32 +128,28 @@ public class AdminDocente extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDuiBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(txtDuiBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDuiBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(jLabel3))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDuiBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 450, 60));
 
-        btnBuscar.setBackground(new java.awt.Color(204, 255, 204));
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 3));
         btnBuscar.setPreferredSize(new java.awt.Dimension(150, 40));
-        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 160, -1));
-
-        btnActualizar.setBackground(new java.awt.Color(204, 255, 204));
-        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setPreferredSize(new java.awt.Dimension(150, 40));
-        jPanel2.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 80, 160, -1));
+        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 220, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,10 +229,6 @@ public class AdminDocente extends javax.swing.JPanel {
         return btnMostrarReporte;
     }
 
-    public JButton getBtnActualizar() {
-        return btnActualizar;
-    }
-
     public JButton getBtnBuscar() {
         return btnBuscar;
     }
@@ -240,7 +245,6 @@ public class AdminDocente extends javax.swing.JPanel {
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnMostrarReporte;
     private javax.swing.JButton btnNuevoDocente;

@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.util.List;
+import modelo.Docente;
 import modelo.Estudiante;
 
 
@@ -18,4 +19,5 @@ public interface IEstudianteDAO {
     
     public Object buscarRegistro(String buscar) throws Exception;
     public boolean modificarDatos(Estudiante estudAModif) throws Exception;
+    
 }

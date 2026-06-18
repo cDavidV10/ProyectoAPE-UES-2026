@@ -11,6 +11,7 @@ public class Estudiante {
     private String apellido;
     private LocalDate fechaNacimiento;
     private String correo;
+    private int edad;
 
     // ? Clases Relacionadas
     private Usuario usuario;
@@ -91,6 +92,14 @@ public class Estudiante {
 
     public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     @Override

@@ -11,6 +11,8 @@ import funciones.Credenciales;
 import funciones.Paneles;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +37,7 @@ public class CtrlAdminDocente {
         
         cargarTabla();
         onClickAgregar();
+        onClickBuscar();
 
         vistaPrincipal.getBtnReporte().addActionListener(e -> {
             new AbiriReporte().abrirReporte("/DocentesReporte.jasper");
@@ -74,37 +77,56 @@ public class CtrlAdminDocente {
         });
     }
 
-    /*
-    public void onClickEliminar() {
-        vistaPrincipal.getBtnEliminarDocente().addActionListener(e -> {
-            int fila = vistaPrincipal.getTableDocentes().getSelectedRow();
-            if (fila == -1) {
+    public void refrescarTabla() {
+        cargarTabla();
+    }
+    
+    public void onClickBuscar() {
+        vistaPrincipal.getBtnBuscar().addActionListener(e -> {
+            String dui = vistaPrincipal.getTxtDuiBuscar().getText().trim();
+
+            if (dui.isEmpty()) {
+                JOptionPane.showMessageDialog(vistaPrincipal,
+                        "Ingrese un DUI para buscar.",
+                        "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            try {
+                Docente resultado = dao.buscarPorDui(dui);
+                if (resultado == null) {
+                    
+                    DefaultTableModel model = (DefaultTableModel) vistaPrincipal.getTableDocentes().getModel();
+                    model.setRowCount(0);
 
-            // Tomar el dui del docente (columna 1)
-            String dui = vistaPrincipal.getTableDocentes().getValueAt(fila, 1).toString();
-            int confirm = JOptionPane.showConfirmDialog(
-                    vistaPrincipal,
-                    "¿Está seguro de eliminar este docente?",
-                    "Confirmar eliminación",
-                    JOptionPane.YES_NO_OPTION);
-
-            if (confirm == JOptionPane.YES_OPTION) {
-                try {
-                    dao.eliminar(dui);
-                    cargarTabla(); // refrescar la tabla
-                    JOptionPane.showMessageDialog(vistaPrincipal, "Docente eliminado correctamente");
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(vistaPrincipal, ex.getMessage());
+                    JOptionPane.showMessageDialog(vistaPrincipal,
+                            "No se encontró ningún docente con ese DUI.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    mostrarDocente(resultado);
                 }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(vistaPrincipal,
+                        "Error en búsqueda: " + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
     }
-    */
-
-    public void refrescarTabla() {
-        cargarTabla();
+    
+    private void mostrarDocente(Docente d) {
+        DefaultTableModel model = (DefaultTableModel) vistaPrincipal.getTableDocentes().getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{
+            d.getDui(),
+            d.getNombre(),
+            d.getApellido(),
+            d.getCorreo(),
+            d.getTelefono(),
+            d.getEspecialidad(),
+            d.getGradoAcademico()
+        });
     }
 
 }
