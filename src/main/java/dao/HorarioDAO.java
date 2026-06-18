@@ -61,6 +61,7 @@ public class HorarioDAO implements IHorarioDAO {
     public List<Horario> listar() throws Exception {
         String consulta = """
                 select
+                    h.id_horario,
                     h.dia,
                     h.hora_inicio,
                     h.hora_final,
@@ -78,10 +79,11 @@ public class HorarioDAO implements IHorarioDAO {
             Horario h = new Horario();
             Aula aula = new Aula();
 
-            h.setDia(rs.getString(1));
-            h.setHoraInicio(rs.getObject(2, LocalTime.class));
-            h.setHoraFinal(rs.getObject(3, LocalTime.class));
-            aula.setCodigo(rs.getString(4));
+            h.setId(rs.getInt(1));
+            h.setDia(rs.getString(2));
+            h.setHoraInicio(rs.getObject(3, LocalTime.class));
+            h.setHoraFinal(rs.getObject(4, LocalTime.class));
+            aula.setCodigo(rs.getString(5));
 
             h.setAula(aula);
 
@@ -115,6 +117,7 @@ public class HorarioDAO implements IHorarioDAO {
     public List<Horario> horariosDisponibles() throws Exception{
         String consulta = """
                 select
+                    h.id_horario,
                     h.dia as dia,
                     h.hora_inicio as inicio,
                     h.hora_final as fin,
@@ -134,10 +137,11 @@ public class HorarioDAO implements IHorarioDAO {
             Horario h = new Horario();
             Aula aula = new Aula();
 
-            h.setDia(rs.getString(1));
-            h.setHoraInicio(rs.getObject(2, LocalTime.class));
-            h.setHoraFinal(rs.getObject(3, LocalTime.class));
-            aula.setCodigo(rs.getString(4));
+            h.setId(rs.getInt(1));
+            h.setDia(rs.getString(2));
+            h.setHoraInicio(rs.getObject(3, LocalTime.class));
+            h.setHoraFinal(rs.getObject(4, LocalTime.class));
+            aula.setCodigo(rs.getString(5));
 
             h.setAula(aula);
 

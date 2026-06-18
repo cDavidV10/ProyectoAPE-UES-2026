@@ -88,20 +88,15 @@ public class CursosDisponiblesDAO {
     public List<Object[]> obtenerHorarios(int idInicioCurso) throws Exception {
         String sql = """
                 SELECT
-                    c.codigo,
-                    c.nombre,
-                    CONCAT_WS(' ', d.nombre, d.apellido) AS docente,
-                    ic.cupo_maximo,
-                    ic.id_inicio_curso
-                FROM inicio_curso ic
-                INNER JOIN curso c ON ic.id_curso = c.id_curso
-                INNER JOIN docente d ON ic.id_docente = d.id_docente
-                INNER JOIN periodo_inscripcion pi ON ic.id_periodo = pi.id_periodo
-                WHERE pi.estado = 'Activo'
-                  AND ic.estado = 'Activo'
-                  AND c.codigo ILIKE ?
-                ORDER BY c.codigo;
-                                                """;
+                    h.dia,
+                    h.hora_inicio,
+                    h.hora_final,
+                    a.codigo AS aula
+                FROM horario h
+                INNER JOIN aula a ON h.id_aula = a.id_aula
+                WHERE h.id_inicio_curso = ?
+                ORDER BY h.dia, h.hora_inicio;
+                """;
 
         Connection conn = Conexion.getConexion();
         PreparedStatement ps = conn.prepareStatement(sql);
