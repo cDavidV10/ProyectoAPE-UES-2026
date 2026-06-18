@@ -20,6 +20,7 @@ El proyecto consiste en un Sistema informático de Gestión Académica y Campus 
 - Agregar Estudiantes
 - Modificar informacion de curso, docente y estudiantes
 - Permitir al docente ver los cursos asignados asi como los detalles de este
+- Permite al docente ver los estudiantes asignados
 - Permitir al estudiante ver los cursos disponibles e inscribir
 
 ---
