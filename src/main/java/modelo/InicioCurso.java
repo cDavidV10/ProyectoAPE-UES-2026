@@ -30,7 +30,6 @@ public class InicioCurso {
         this.fechaApertura = fechaApertura;
         this.fechaCierre = fechaCierre;
         this.cupoMaximo = cupoMaximo;
-        this.idInicioCurso = idInicioCurso;
     }
 
     public InicioCurso(int idInicioCurso, LocalDate fechaApertura, LocalDate fechaCierre, String cupoMaximo, Curso cursos, Docente docente, ArrayList<Horario> horario, PeriodoInscripcion periodoInscripcion, int totalInscritos) {
