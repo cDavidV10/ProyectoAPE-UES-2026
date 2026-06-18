@@ -181,6 +181,6 @@ public class DetallesInscripcionCurso extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbNombreCurso;
     private javax.swing.JLabel lbNombreDocente;
-    private javax.swing.JTable tblHorarioCursoDetalle;
+    public javax.swing.JTable tblHorarioCursoDetalle;
     // End of variables declaration//GEN-END:variables
 }
