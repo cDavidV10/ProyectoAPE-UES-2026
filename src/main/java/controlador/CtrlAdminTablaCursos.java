@@ -89,9 +89,9 @@ public class CtrlAdminTablaCursos {
             }
 
             AgregarHorarioNuevo aHorarioNuevo = new AgregarHorarioNuevo();
-            paneles.insertarPaneles(aHorarioNuevo, bgContent);
             CtrlAdminCursoHorario ctrcHorario = new CtrlAdminCursoHorario(vista,
-                    aHorarioNuevo, bgContent, curso);
+                aHorarioNuevo, bgContent, curso);
+            paneles.insertarPaneles(aHorarioNuevo, bgContent);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

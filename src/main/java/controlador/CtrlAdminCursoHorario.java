@@ -36,26 +36,13 @@ public class CtrlAdminCursoHorario {
     this.aHorarioNuevo.getTxtCurso().setText(curso.getNombreCurso());
     mostrarDatos();
 
-        this.aHorarioNuevo.getBtnAgregar().addActionListener(e -> {
-            AgregarHorarioView agregarView = new AgregarHorarioView(null, false);
-            new CtrlAdminAgregarHorario(agregarView);
-
-            agregarView.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent e) {
-                    mostrarDatos();
-                }
-            });
-            agregarView.setVisible(true);
-        });
-
         this.aHorarioNuevo.getBtnRegresar().addActionListener(e -> {
             paneles.insertarPaneles(viewAnterior, bgContente);
         });
 
         this.aHorarioNuevo.getBtnAgregar().addActionListener(e -> {
             ahv = new AsignarHorarioView(null, true);
-            CtrlAdminAsignarHoraCurso horaNuevaCurso =  new CtrlAdminAsignarHoraCurso(ahv, curso);
+            CtrlAdminAsignarHoraCurso horaNuevaCurso = new CtrlAdminAsignarHoraCurso(ahv, curso);
             mostrarDatos();
             ahv.setVisible(true);
         });
