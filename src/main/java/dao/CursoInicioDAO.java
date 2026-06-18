@@ -23,8 +23,7 @@ public class CursoInicioDAO {
     private static final String INSERT = "INSERT INTO inicio_curso (id_docente, id_curso, fecha_apertura, fecha_cierre, cupo_maximo) VALUES (?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT * FROM inicioCurso ORDER BY id_inicio_curso";
     //private static final String SELECT_ID =
-    //private static final String UPDATE =
-    //private static final String DELETE =
+
             
     public void insertar(InicioCurso ci) throws Exception {
         try {
@@ -33,7 +32,6 @@ public class CursoInicioDAO {
                 throw new Exception("No se pudo conectar a la base de datos");
             }
             conn.setAutoCommit(false);
-            
             PreparedStatement ps = conn.prepareStatement(INSERT, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, ci.getDocente().getIdDocente());
             ps.setInt(2, ci.getCursos().getIdCurso());

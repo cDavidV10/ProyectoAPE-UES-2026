@@ -76,7 +76,7 @@ public class CtrlAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 CursosTablaTodos administrarCursos = new CursosTablaTodos();
-                CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(administrarCursos,
+                CtrlAdminTablaCursos ctrlCursos = new CtrlAdminTablaCursos(administrarCursos,
                         adminView.getBgPanel());
                 paneles.insertarPaneles(administrarCursos, adminView.getBgPanel());
             }

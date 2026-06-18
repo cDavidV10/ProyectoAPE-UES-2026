@@ -6,7 +6,7 @@ package vista;
 
 import java.awt.BorderLayout;
 
-import controlador.CtrlAdminCursosRegistrar;
+import controlador.CtrlAdminTablaCursos;
 import controlador.CtrlAdminDocente;
 import funciones.Paneles;
 
@@ -29,7 +29,7 @@ public class AdminView extends javax.swing.JFrame {
 
         CursosTablaTodos administrarCursos = new CursosTablaTodos();
         CursosRegistrar form = new CursosRegistrar();
-        CtrlAdminCursosRegistrar ctrlCursos = new CtrlAdminCursosRegistrar(administrarCursos, bgPanel);
+        CtrlAdminTablaCursos ctrlCursos = new CtrlAdminTablaCursos(administrarCursos, bgPanel);
         new Paneles().insertarPaneles(administrarCursos, bgPanel);
     }
 
