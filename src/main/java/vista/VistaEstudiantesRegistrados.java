@@ -109,18 +109,18 @@ public class VistaEstudiantesRegistrados extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Estudiantes Registrados");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout1 = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout1);
+        jPanel1Layout1.setHorizontalGroup(
+            jPanel1Layout1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout1.createSequentialGroup()
                 .addGap(373, 373, 373)
                 .addComponent(jLabel1)
                 .addContainerGap(435, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel1Layout1.setVerticalGroup(
+            jPanel1Layout1.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout1.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
                 .addContainerGap(38, Short.MAX_VALUE))
