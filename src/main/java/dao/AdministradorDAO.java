@@ -16,7 +16,7 @@ import modelo.Administrador;
 
 /**
  *
- * @author MINEDUCYT
+ * @author MINEDUCYT si
  */
 public class AdministradorDAO implements IAdministradorDAO {
 
