@@ -78,48 +78,73 @@ public class AdminFormDocente extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Especialidad:");
 
+        txtDui.setBackground(new java.awt.Color(193, 222, 252));
         txtDui.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtDui.setForeground(new java.awt.Color(102, 102, 102));
+        txtDui.setForeground(new java.awt.Color(0, 0, 51));
+        txtDui.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
+        txtNombre.setBackground(new java.awt.Color(193, 222, 252));
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(102, 102, 102));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
 
+        txtTelefono.setBackground(new java.awt.Color(193, 222, 252));
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(102, 102, 102));
+        txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
+        txtApellido.setBackground(new java.awt.Color(193, 222, 252));
         txtApellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtApellido.setForeground(new java.awt.Color(102, 102, 102));
+        txtApellido.setForeground(new java.awt.Color(0, 0, 51));
+        txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
+        txtCorreo.setBackground(new java.awt.Color(193, 222, 252));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCorreo.setForeground(new java.awt.Color(102, 102, 102));
+        txtCorreo.setForeground(new java.awt.Color(0, 0, 51));
+        txtCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
+        cbGradoAcademico.setBackground(new java.awt.Color(193, 222, 252));
         cbGradoAcademico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbGradoAcademico.setForeground(new java.awt.Color(0, 0, 51));
         cbGradoAcademico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Técnico", "Profesorado", "Licenciatura", "Ingeniería", "Arquitectura", "Maestría", "Doctorado" }));
+        cbGradoAcademico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
+        cbGradoAcademico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cbGradoAcademico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbGradoAcademicoActionPerformed(evt);
             }
         });
 
+        cbEspecialidad.setBackground(new java.awt.Color(193, 222, 252));
         cbEspecialidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbEspecialidad.setForeground(new java.awt.Color(0, 0, 51));
         cbEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Educación", "Artes y humanidades", "Ciencias sociales", "Ciencias económicas", "Derecho", "Ciencias naturales", "Matemática y estadística", "TIC's", "Industria", "Construcción", "Agricultura", "Salud y bienestar", "Servicios" }));
+        cbEspecialidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
+        cbEspecialidad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cbEspecialidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEspecialidadActionPerformed(evt);
             }
         });
 
-        btnCancelarDocente.setBackground(new java.awt.Color(204, 204, 204));
+        btnCancelarDocente.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelarDocente.setForeground(new java.awt.Color(0, 0, 51));
         btnCancelarDocente.setText("Cancelar");
+        btnCancelarDocente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 3));
         btnCancelarDocente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarDocenteActionPerformed(evt);
             }
         });
 
-        btnGuardarDocente.setBackground(new java.awt.Color(204, 255, 204));
+        btnGuardarDocente.setBackground(new java.awt.Color(102, 153, 255));
         btnGuardarDocente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardarDocente.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardarDocente.setText("Guardar Docente");
         btnGuardarDocente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,8 +155,14 @@ public class AdminFormDocente extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Grado Académico:");
 
+        cbTipoContrato.setBackground(new java.awt.Color(193, 222, 252));
         cbTipoContrato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbTipoContrato.setForeground(new java.awt.Color(0, 0, 51));
         cbTipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Permanente", "Temporal", "Por horas clase" }));
+        cbTipoContrato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
+
+        jdcFechaNacimientoDocente.setBackground(new java.awt.Color(193, 222, 252));
+        jdcFechaNacimientoDocente.setForeground(new java.awt.Color(0, 0, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -236,7 +267,7 @@ public class AdminFormDocente extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -249,7 +280,7 @@ public class AdminFormDocente extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 49, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,6 +299,10 @@ public class AdminFormDocente extends javax.swing.JPanel {
     private void cbGradoAcademicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGradoAcademicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbGradoAcademicoActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     public JButton getBtnCancelarDocente() {
         return btnCancelarDocente;

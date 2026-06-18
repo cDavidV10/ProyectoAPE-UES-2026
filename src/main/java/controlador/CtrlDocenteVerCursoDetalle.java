@@ -4,11 +4,13 @@
  */
 package controlador;
 
+import funciones.Paneles;
 import javax.swing.table.DefaultTableModel;
 import modelo.Docente;
 import modelo.Horario;
 import modelo.InicioCurso;
 import vista.DocenteVerCursoDetalle;
+import vista.DocenteVerEstudiantesAsignados;
 
 /**
  *
@@ -24,6 +26,7 @@ public class CtrlDocenteVerCursoDetalle {
         this.curso = curso;
         this.docente = docente;
         cargarDatos();
+        onClckDetalleEstudiantes();
     }
 
     private void cargarDatos() {
@@ -45,5 +48,13 @@ public class CtrlDocenteVerCursoDetalle {
                 h.getHoraFinal()
             });
         }
+    }
+    
+    private void onClckDetalleEstudiantes() {
+        vista.getBtnDetalleEstudiantes().addActionListener(e -> {
+            DocenteVerEstudiantesAsignados vistaEstudiantes = new DocenteVerEstudiantesAsignados();
+            new CtrlDocentesVerEstudiantesAsignados(vistaEstudiantes, docente, curso);
+            new Paneles().insertarPaneles(vistaEstudiantes, vista.getPanelPrincipal());
+        });
     }
 }

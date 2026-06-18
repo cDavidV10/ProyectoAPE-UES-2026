@@ -13,9 +13,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.ArrayList;
 import modelo.Aula;
 import modelo.Docente;
+import modelo.Estudiante;
 import modelo.Horario;
 import modelo.InicioCurso;
 
@@ -43,6 +45,14 @@ public class DocenteCursosDAO implements IDocenteCursosDAO {
         GROUP BY c.codigo, c.nombre, c.descripcion, ic.fecha_apertura, ic.fecha_cierre, ic.cupo_maximo, 
             a.codigo, h.dia, h.hora_inicio, h.hora_final
         """;
+    
+    private static final String BUSCAR_POR_CURSO = """
+        SELECT e.nombre, e.apellido, e.fecha_nacimiento, e.correo FROM inscripcion i 
+        INNER JOIN estudiante e ON i.id_estudiante  = e.id_estudiante
+        INNER JOIN inicio_curso ic ON i.id_inicio_curso  = ic.id_inicio_curso
+        INNER JOIN curso c ON ic.id_curso  = c.id_curso  
+        WHERE c.codigo  =  ? AND  ic.id_docente =  ?
+    """;
     
     @Override
     public List<InicioCurso> listarCursosxDocente(Docente docente) throws Exception {
@@ -113,5 +123,36 @@ public class DocenteCursosDAO implements IDocenteCursosDAO {
         
         curso.setHorario((ArrayList<Horario>) horarios);
         return curso;
+    }
+    
+        public List<Estudiante> listarEstudiantesPorCurso(String codigo, int idDocente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Estudiante> listarEstudiantesPorCurso(String codigoCurso, Docente docente) throws Exception {
+        List<Estudiante> lista = new ArrayList<>();
+
+        try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(BUSCAR_POR_CURSO)) {
+            ps.setString(1, codigoCurso);
+            ps.setInt(2, docente.getIdDocente());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Estudiante est = new Estudiante();
+                est.setNombre(rs.getString("nombre"));
+                est.setApellido(rs.getString("apellido"));
+                LocalDate fechaNac = rs.getObject("fecha_nacimiento", LocalDate.class);
+                est.setFechaNacimiento(fechaNac);
+                est.setCorreo(rs.getString("correo"));
+
+                // calcular edad
+                int edad = Period.between(fechaNac, LocalDate.now()).getYears();
+                est.setEdad(edad);
+
+                lista.add(est);
+            }
+        }
+        return lista;
     }
 }

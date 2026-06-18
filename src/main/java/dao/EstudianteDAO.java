@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import conexion.Conexion;
 import interfaz.IEstudianteDAO;
 import java.sql.SQLException;
+import java.time.Period;
 import javax.swing.JOptionPane;
+import modelo.Docente;
 import modelo.Estudiante;
 
 public class EstudianteDAO implements IEstudianteDAO {
@@ -190,4 +192,9 @@ public class EstudianteDAO implements IEstudianteDAO {
             return false;
         }
     }
+
+    public List<Estudiante> listarEstudiantesPorCurso(String codigo, int idDocente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

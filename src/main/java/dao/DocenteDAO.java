@@ -194,4 +194,28 @@ public class DocenteDAO implements IDocenteDAO {
             return false;
         }
     }
+
+    @Override
+    public Docente buscarPorDui(String dui) throws Exception {
+        String sql = "SELECT * FROM docente WHERE dui = ?";
+        Docente d = null;
+
+        try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, dui);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                d = new Docente();
+                d.setIdDocente(rs.getInt("id_docente"));
+                d.setDui(rs.getString("dui"));
+                d.setNombre(rs.getString("nombre"));
+                d.setApellido(rs.getString("apellido"));
+                d.setCorreo(rs.getString("correo"));
+                d.setTelefono(rs.getString("telefono"));
+                d.setEspecialidad(rs.getString("especialidad"));
+                d.setGradoAcademico(rs.getString("grado_academico"));
+            }
+        }
+        return d;
+    }
 }
