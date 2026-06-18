@@ -124,7 +124,7 @@ public class CtrlAdminCursosHabilitar {
                 vistaHabilitar.getCmbDocente().addItem(d);
             }
 
-            List<Horario> listaHorarios = daoHorario.listar();
+            List<Horario> listaHorarios = daoHorario.horariosDisponibles();
             for (Horario h : listaHorarios) {
                 vistaHabilitar.getCmbHorario().addItem(h);
             }
