@@ -1,0 +1,47 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package funciones;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author cdavi
+ */
+public class Paneles {
+    public void insertarPaneles(JPanel panel, JPanel contenedor) {
+        panel.setSize(1060, 720);
+
+        contenedor.removeAll();
+        contenedor.add(panel, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+
+    public void insertarPaneles(JPanel panel, JPanel contenedor, int ancho, int alto) {
+        panel.setSize(ancho, alto);
+        
+        
+        contenedor.removeAll();
+        contenedor.add(panel, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+    
+    public void insertarPaneles(JPanel panel, JPanel contenedor, int ancho, int alto, boolean remove){
+        contenedor.setLayout(null);
+        panel.setSize(ancho, alto);
+        
+        if (remove){
+            contenedor.removeAll();
+        }
+        
+        contenedor.add(panel);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+}

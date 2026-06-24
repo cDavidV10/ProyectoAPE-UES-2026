@@ -1,0 +1,26 @@
+package interfaz;
+
+import java.util.List;
+import modelo.Docente;
+import modelo.Estudiante;
+
+
+public interface IEstudianteDAO {
+    
+    void insertar(Estudiante e) throws Exception;
+    
+    void actualizar(Estudiante e) throws Exception;
+    
+    void eliminar(int idEstudiante) throws Exception;
+    
+    List<Estudiante> listar() throws Exception;
+    
+    Estudiante buscar(int idEstudiante) throws Exception;
+    
+    public Object buscarRegistro(String buscar) throws Exception;
+
+    public boolean modificarDatos(Estudiante estudAModif) throws Exception;
+
+    public List<Estudiante> listarEstudiantesPorCurso(String codigoCurso, Docente docente) throws Exception;
+    
+}
